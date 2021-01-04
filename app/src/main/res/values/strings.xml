@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">AsesoriasAcademicas</string>
+    <string name="txt_email_login">Email</string>
+    <string name="txt_password_login">Password</string>
+    <string name="txt_indicacion_login">Iniciar Sesión</string>
+    <string name="btn_login">Login</string>
+    <string name="btn_registrarse_login">Registrarse</string>
+
+    <string name="txt_nombre_registration">Nombre</string>
+    <string name="txt_email_registration">Email</string>
+    <string name="txt_password_registration">Contraseña</string>
+    <string name="txt_repet_password_registration">Repite tu contraseña</string>
+    <string name="btn_registrarse_registration">Registrarse</string>
+    <string name="btn_cancelar_registration">Cancelar</string>
+    <string name="txt_indicacion_registration">¡Ya estás a un paso!</string>
+    <string name="txt_indicacion_completa_registration">Por favor, ingresa tus datos para completar el registro de tu cuenta.</string>
+</resources>
