@@ -78,4 +78,28 @@ class Modelo {
         }
         return res
     }
+
+    fun insertarClase(context: Context, tutoria: Tutoria, clase: Clase): Int {
+        var res = 0
+        var materia = tutoria.materia
+        var tema = tutoria.tema
+        var inquietudes = tutoria.inquietudes
+        var fecha = clase.fecha
+        var hora = clase.hora
+        var duracion = clase.duracion
+        var sql = "INSERT INTO TUTORIA (materia, tema, inquietudes) VALUES ('$materia', '$tema', '$inquietudes');"
+        var sql_ = "INSERT INTO CLASE (fecha, hora, duracion, id_tutoria) VALUES ('$fecha', '$hora', '$duracion', '1');"
+
+        System.out.println(sql_)
+        var db: SQLiteDatabase = this.getConn(context)
+        try {
+            db.execSQL(sql)
+            db.execSQL(sql_)
+            res = 1
+        } catch (e: Exception) {
+            db.close()
+            return res
+        }
+        return res
+    }
 }
