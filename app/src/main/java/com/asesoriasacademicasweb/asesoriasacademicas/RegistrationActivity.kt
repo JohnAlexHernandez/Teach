@@ -35,6 +35,8 @@ class RegistrationActivity : AppCompatActivity() {
                 password?.setError("El campo contraseña no puede estar vacío")
             }else if (repetPassword?.text.toString().trim().isEmpty()) {
                 repetPassword?.setError("El campo contraseña no puede estar vacío")
+            }else if (!Pattern.compile("^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)\\S{8,15}$").matcher(password?.text.toString().trim()).matches()){
+                password?.setError("El campo contraseña debe tener entre 8 y 15 caracteres, debe incluir al menos 1 letra minúscula, 1 letra mayúscula y 1 número")
             }else if(password?.text.toString().trim() != repetPassword?.text.toString().trim()) {
                 password?.setError("Las contraseñas no coinciden. Vuelve a intentarlo")
                 password?.setText("")
@@ -43,15 +45,17 @@ class RegistrationActivity : AppCompatActivity() {
                 persona.email = email?.text.toString()
                 persona.nombre = nombre?.text.toString()
                 persona.password = password?.text.toString()
-                resInsert = obj.insertarPersona(this,persona)
+                var resExiste = obj.buscarPersona(this, persona.email)
+                if (resExiste == 1){
+                    Toast.makeText(this,"Ya tenemos registrado un usuario con el email ingresado", Toast.LENGTH_SHORT).show()
+                }else {
+                    resInsert = obj.insertarPersona(this,persona)
+                }
             }
 
             if (resInsert == 1)
             {
                 startActivity(intentMain)
-                Toast.makeText(this,"Transacción exitosa", Toast.LENGTH_SHORT).show()
-            }else{
-                Toast.makeText(this,"Transacción fallida", Toast.LENGTH_SHORT).show()
             }
         }
 

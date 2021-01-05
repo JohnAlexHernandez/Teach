@@ -41,8 +41,9 @@ class Modelo {
             var fila: Cursor = db.rawQuery(sql, null)
             if(fila.moveToFirst()){
                 res = 1
+                System.out.println("El usuario existe")
             }else{
-                System.out.println("No existe el usuario")
+                System.out.println("El usuario no existe ")
             }
         }catch (e: Exception)
         {

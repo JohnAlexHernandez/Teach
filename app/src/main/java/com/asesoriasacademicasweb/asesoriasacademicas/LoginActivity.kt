@@ -46,7 +46,6 @@ class LoginActivity : AppCompatActivity() {
             if (resBuscar == 1 && resValidar == 1)
             {
                 startActivity(intentLogin)
-                Toast.makeText(this,"Usuario encontrado", Toast.LENGTH_SHORT).show()
             }else{
                 Toast.makeText(this,"Correo electrónico y/o contraseña no válidos", Toast.LENGTH_SHORT).show()
             }
