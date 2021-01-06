@@ -23,4 +23,6 @@
     <string name="txt_hora_class">Hora</string>
     <string name="txt_duracion_class">Duracion</string>
     <string name="btn_guardar_class">Guardar</string>
+
+    <string name="txt_management_class">Lista clases</string>
 </resources>

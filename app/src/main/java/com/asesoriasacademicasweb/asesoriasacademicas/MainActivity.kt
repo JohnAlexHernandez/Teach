@@ -10,9 +10,9 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        var btnInsertarClase = findViewById<Button>(R.id.btn_insertar_clase)
-        btnInsertarClase.setOnClickListener{
-            val intentClass = Intent(this, ClassActivity::class.java)
+        var btnListarClase = findViewById<Button>(R.id.btn_listar_clase)
+        btnListarClase.setOnClickListener{
+            val intentClass = Intent(this, ManagementActivity::class.java)
             startActivity(intentClass)
         }
     }

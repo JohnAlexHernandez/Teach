@@ -101,4 +101,26 @@ class Modelo {
         }
         return res
     }
+
+    fun listarClases(context: Context): ArrayList<Tutoria>{
+        var listTutorias: ArrayList<Tutoria> = ArrayList<Tutoria>()
+        var sql = "SELECT materia,tema FROM TUTORIA;"
+
+        var db: SQLiteDatabase = this.getConn(context)
+        try {
+            var fila: Cursor = db.rawQuery(sql, null)
+            if(fila.moveToFirst()){
+                do{
+                    var tutoria: Tutoria = Tutoria()
+                    tutoria.materia = fila.getString(0)
+                    tutoria.tema = fila.getString(1)
+                    listTutorias.add(tutoria)
+                }while (fila.moveToNext())
+            }
+        }catch (e: Exception)
+        {
+            db.close()
+        }
+        return listTutorias
+    }
 }

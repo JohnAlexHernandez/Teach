@@ -21,4 +21,7 @@ class Tutoria {
         set(value) {
             field = value
         }
+    override fun toString(): String{
+        return materia + " " + tema
+    }
 }
