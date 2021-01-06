@@ -87,14 +87,13 @@ class Modelo {
         var fecha = clase.fecha
         var hora = clase.hora
         var duracion = clase.duracion
-        var sql = "INSERT INTO TUTORIA (materia, tema, inquietudes) VALUES ('$materia', '$tema', '$inquietudes');"
-        var sql_ = "INSERT INTO CLASE (fecha, hora, duracion, id_tutoria) VALUES ('$fecha', '$hora', '$duracion', '1');"
+        var sqlTutoria = "INSERT INTO TUTORIA (materia, tema, inquietudes) VALUES ('$materia', '$tema', '$inquietudes');"
+        var sqlClase = "INSERT INTO CLASE (fecha, hora, duracion, id_tutoria) VALUES ('$fecha', '$hora', '$duracion', (SELECT MAX(id_tutoria) FROM TUTORIA));"
 
-        System.out.println(sql_)
         var db: SQLiteDatabase = this.getConn(context)
         try {
-            db.execSQL(sql)
-            db.execSQL(sql_)
+            db.execSQL(sqlTutoria)
+            db.execSQL(sqlClase)
             res = 1
         } catch (e: Exception) {
             db.close()
