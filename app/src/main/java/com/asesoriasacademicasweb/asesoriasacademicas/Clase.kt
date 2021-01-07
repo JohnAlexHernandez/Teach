@@ -21,9 +21,12 @@ class Clase {
         set(value) {
             field = value
         }
-    var id_tutoria = 0
+    var tutoria = Tutoria()
         get() = field
         set(value) {
             field = value
         }
+    override fun toString(): String{
+        return tutoria.materia + "\n" + tutoria.tema
+    }
 }

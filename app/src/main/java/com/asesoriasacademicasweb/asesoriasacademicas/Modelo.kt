@@ -53,6 +53,30 @@ class Modelo {
         return  res
     }
 
+    fun buscarTutoria(context: Context, id_tutoria: Int): Tutoria{
+        var tutoria: Tutoria = Tutoria()
+        var id = id_tutoria
+        var sql = "SELECT id_tutoria, materia, tema, inquietudes FROM TUTORIA WHERE id_tutoria = '$id';"
+
+        var db: SQLiteDatabase = this.getConn(context)
+        try {
+            var fila: Cursor = db.rawQuery(sql, null)
+            if(fila.moveToFirst()){
+                tutoria.id = fila.getInt(0)
+                tutoria.materia = fila.getString(1)
+                tutoria.tema = fila.getString(2)
+                tutoria.inquietudes = fila.getString(3)
+            }else{
+                System.out.println("La tutoria no existe ")
+            }
+        }catch (e: Exception)
+        {
+            db.close()
+            return tutoria
+        }
+        return tutoria
+    }
+
     fun validarSesion(context: Context, email: String, password: String): Int{
         var res = 0
         var email = email
@@ -102,25 +126,43 @@ class Modelo {
         return res
     }
 
-    fun listarClases(context: Context): ArrayList<Tutoria>{
-        var listTutorias: ArrayList<Tutoria> = ArrayList<Tutoria>()
-        var sql = "SELECT materia,tema FROM TUTORIA;"
+    fun listarClases(context: Context): ArrayList<Clase>{
+        var listaClases: ArrayList<Clase> = ArrayList<Clase>()
+        var sql = "SELECT id_clase,fecha,hora,duracion,id_tutoria FROM CLASE;"
 
         var db: SQLiteDatabase = this.getConn(context)
         try {
             var fila: Cursor = db.rawQuery(sql, null)
             if(fila.moveToFirst()){
                 do{
-                    var tutoria: Tutoria = Tutoria()
-                    tutoria.materia = fila.getString(0)
-                    tutoria.tema = fila.getString(1)
-                    listTutorias.add(tutoria)
+                    var clase: Clase = Clase()
+                    clase.id = fila.getInt(0)
+                    clase.fecha = fila.getString(1)
+                    clase.hora = fila.getString(2)
+                    clase.duracion = fila.getString(3)
+                    clase.tutoria = buscarTutoria(context, fila.getInt(4))
+                    listaClases.add(clase)
                 }while (fila.moveToNext())
             }
         }catch (e: Exception)
         {
             db.close()
         }
-        return listTutorias
+        return listaClases
+    }
+
+    fun eliminarClase(context: Context, id: Int): Int {
+        var resDelete = 0
+        var sql = "DELETE FROM CLASE WHERE id_clase = $id"
+        var db: SQLiteDatabase = this.getConn(context)
+        try {
+            db.execSQL(sql)
+            resDelete = 1
+        }catch (e: Exception)
+        {
+            db.close()
+            return resDelete
+        }
+        return resDelete
     }
 }
