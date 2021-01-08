@@ -56,7 +56,8 @@ class Modelo {
     fun buscarTutoria(context: Context, id_tutoria: Int): Tutoria{
         var tutoria: Tutoria = Tutoria()
         var id = id_tutoria
-        var sql = "SELECT id_tutoria, materia, tema, inquietudes FROM TUTORIA WHERE id_tutoria = '$id';"
+        var sql = "SELECT id_tutoria, materia, tema, inquietudes FROM TUTORIA WHERE id_tutoria = $id;"
+        System.out.println(sql)
 
         var db: SQLiteDatabase = this.getConn(context)
         try {
@@ -75,6 +76,31 @@ class Modelo {
             return tutoria
         }
         return tutoria
+    }
+
+    fun buscarClase(context: Context, id_clase: String): Clase{
+        var clase: Clase = Clase()
+        var id = id_clase.toInt()
+        var sql = "SELECT id_clase,fecha,hora,duracion,id_tutoria FROM CLASE WHERE id_clase = $id;"
+
+        var db: SQLiteDatabase = this.getConn(context)
+        try {
+            var fila: Cursor = db.rawQuery(sql, null)
+            if(fila.moveToFirst()){
+                clase.id = fila.getInt(0)
+                clase.fecha = fila.getString(1)
+                clase.hora = fila.getString(2)
+                clase.duracion = fila.getString(3)
+                clase.tutoria = buscarTutoria(context, fila.getInt(4))
+            }else{
+                System.out.println("La clase no existe ")
+            }
+        }catch (e: Exception)
+        {
+            db.close()
+            return clase
+        }
+        return clase
     }
 
     fun validarSesion(context: Context, email: String, password: String): Int{

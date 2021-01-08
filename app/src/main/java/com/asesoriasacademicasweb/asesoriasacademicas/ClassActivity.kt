@@ -29,7 +29,7 @@ class ClassActivity : AppCompatActivity() {
 
         var btnGuardar = findViewById<Button>(R.id.btn_guardar_class)
         btnGuardar.setOnClickListener{
-            var intentInsert = Intent(this, ClassActivity::class.java)
+            var intentInsert = Intent(this, ManagementActivity::class.java)
             var obj: Modelo = Modelo()
             var clase: Clase = Clase()
             var tutoria: Tutoria = Tutoria()
@@ -92,6 +92,12 @@ class ClassActivity : AppCompatActivity() {
                 horaMinutos?.setText(formatohora.format(date))
             }, hora, minutos, false)
             timePickerDialog.show()
+        }
+
+        var btnCancelarClase = findViewById<Button>(R.id.btn_cancelar_clase)
+        btnCancelarClase.setOnClickListener{
+            val intentClass = Intent(this, ManagementActivity::class.java)
+            startActivity(intentClass)
         }
     }
 }

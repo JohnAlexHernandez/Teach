@@ -15,7 +15,7 @@
     <string name="txt_indicacion_registration">¡Ya estás a un paso!</string>
     <string name="txt_indicacion_completa_registration">Por favor, ingresa tus datos para completar el registro de tu cuenta.</string>
 
-    <string name="txt_indicacion_class">Solicitar una nueva clase</string>
+    <string name="txt_indicacion_class">Solicitar clase</string>
     <string name="txt_materia_class">Materia</string>
     <string name="txt_tema_class">Tema</string>
     <string name="txt_inquietudes_class">Inquietudes</string>
@@ -24,5 +24,11 @@
     <string name="txt_duracion_class">Duracion</string>
     <string name="btn_guardar_class">Guardar</string>
 
-    <string name="txt_management_class">Lista clases</string>
+    <string name="txt_listaClase_clase">Lista clases</string>
+
+    <string name="txt_detalle_class">Detalle clase</string>
+    <string name="btn_eliminar_class">Eliminar</string>
+    <string name="btn_editar_class">Editar</string>
+
+    <string name="txt_editar_class">Editar clase</string>
 </resources>
