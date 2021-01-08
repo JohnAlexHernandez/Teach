@@ -2,6 +2,8 @@ package com.asesoriasacademicasweb.asesoriasacademicas
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuItem
 import android.widget.*
 import android.widget.AdapterView.OnItemClickListener
 import androidx.appcompat.app.AppCompatActivity
@@ -29,5 +31,18 @@ class ManagementActivity : AppCompatActivity() {
             val intentClass = Intent(this, ClassActivity::class.java)
             startActivity(intentClass)
         }
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.menu_popup, menu)
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        val intentEditarPerfil = Intent(this, EditarPerfilActivity::class.java)
+        if (item.itemId == R.id.editar_perfil){
+            startActivity(intentEditarPerfil)
+        }
+        return true
     }
 }

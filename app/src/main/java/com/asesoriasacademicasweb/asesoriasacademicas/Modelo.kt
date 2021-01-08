@@ -17,7 +17,29 @@ class Modelo {
         var nombre = persona.nombre
         var email = persona.email
         var password = persona.password
-        var sql = "INSERT INTO PERSONA (nombre, email, password) VALUES ('$nombre', '$email', '$password');"
+        var sql = "INSERT INTO PERSONA (nombre, email, telefono, direccion, password) VALUES ('$nombre', '$email', '', '', '$password');"
+
+        System.out.println(sql)
+        var db: SQLiteDatabase = this.getConn(context)
+        try {
+            db.execSQL(sql)
+            res = 1
+        } catch (e: Exception) {
+            db.close()
+            return res
+        }
+        return res
+    }
+
+    fun actualizarPersona(context: Context, persona: Persona): Int {
+        var res = 0
+        var id = persona.id
+        var nombre = persona.nombre
+        var email = persona.email
+        var telefono = persona.telefono
+        var direccion = persona.direccion
+        var password = persona.password
+        var sql = "UPDATE PERSONA SET nombre='$nombre', email='$email', telefono='$telefono', direccion='$direccion', password='$password' WHERE id_persona=$id;"
 
         System.out.println(sql)
         var db: SQLiteDatabase = this.getConn(context)
@@ -51,6 +73,31 @@ class Modelo {
             return res
         }
         return  res
+    }
+
+    fun obtenerPersona(context: Context, email: String): Persona{
+        var persona: Persona = Persona()
+        var sql = "SELECT id_persona,nombre,email,telefono,direccion,password FROM PERSONA WHERE email = '$email';"
+
+        var db: SQLiteDatabase = this.getConn(context)
+        try {
+            var fila: Cursor = db.rawQuery(sql, null)
+            if(fila.moveToFirst()){
+                persona.id = fila.getInt(0)
+                persona.nombre = fila.getString(1)
+                persona.email = fila.getString(2)
+                persona.telefono = fila.getString(3)
+                persona.direccion = fila.getString(4)
+                persona.password = fila.getString(5)
+            }else{
+                System.out.println("La persona no existe ")
+            }
+        }catch (e: Exception)
+        {
+            db.close()
+            return persona
+        }
+        return persona
     }
 
     fun buscarTutoria(context: Context, id_tutoria: Int): Tutoria{

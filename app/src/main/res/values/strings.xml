@@ -31,4 +31,8 @@
     <string name="btn_editar_class">Editar</string>
 
     <string name="txt_editar_class">Editar clase</string>
+
+    <string name="txt_indicacion_editar_perfil">Editar perfil</string>
+    <string name="txt_telefono_editar_perfil">Telefono</string>
+    <string name="txt_direccion_editar_perfil">Direccion</string>
 </resources>

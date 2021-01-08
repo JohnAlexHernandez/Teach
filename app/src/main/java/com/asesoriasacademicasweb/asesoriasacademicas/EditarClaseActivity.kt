@@ -3,6 +3,8 @@ package com.asesoriasacademicasweb.asesoriasacademicas
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuItem
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
@@ -43,5 +45,18 @@ class EditarClaseActivity : AppCompatActivity() {
             intentCancelar.putExtra("id_clase", "" + idClase);
             startActivity(intentCancelar)
         }
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.menu_popup, menu)
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        val intentEditarPerfil = Intent(this, EditarPerfilActivity::class.java)
+        if (item.itemId == R.id.editar_perfil){
+            startActivity(intentEditarPerfil)
+        }
+        return true
     }
 }

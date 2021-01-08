@@ -44,6 +44,7 @@ class LoginActivity : AppCompatActivity() {
 
             if (resBuscar == 1 && resValidar == 1)
             {
+                intentLogin.putExtra("email", "" + emailBuscado);
                 startActivity(intentLogin)
             }
         }
