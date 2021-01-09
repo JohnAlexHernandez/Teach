@@ -65,10 +65,10 @@ class ClassActivity : AppCompatActivity() {
             }
             if (resInsert == 1)
             {
-                Toast.makeText(this,"Clase guardada", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this,"Transaccion exitosa", Toast.LENGTH_SHORT).show()
                 startActivity(intentInsert)
             }else{
-                Toast.makeText(this,"No se guardó la clase", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this,"Transaccion fallida", Toast.LENGTH_SHORT).show()
             }
 
         }
@@ -76,7 +76,6 @@ class ClassActivity : AppCompatActivity() {
         var formatofecha: SimpleDateFormat = SimpleDateFormat("dd/mm/yyyy")
         fecha = findViewById(R.id.txt_fecha_class)
         fecha?.setOnClickListener{
-            mes = mes + 1
             val datePickerDialog = DatePickerDialog(this, DatePickerDialog.OnDateSetListener { view, anio, mes, dia ->
                 var fechaCalendario = "" + dia + "/" + (mes + 1) + "/" + anio
                 var date: Date  = formatofecha.parse(fechaCalendario)

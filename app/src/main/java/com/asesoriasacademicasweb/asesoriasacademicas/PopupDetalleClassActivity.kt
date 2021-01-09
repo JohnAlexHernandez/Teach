@@ -56,16 +56,14 @@ class PopupDetalleClassActivity : AppCompatActivity() {
             var obj: Modelo = Modelo()
 
             var idBusqueda = clase.id.toString()
-            var resBuscar = obj.buscarClase(this, idBusqueda)
             intentEditarClase.putExtra("id_clase", "" + idBusqueda);
             startActivity(intentEditarClase)
+        }
 
-            if (resBuscar != null)
-            {
-                Toast.makeText(this,"Clase Encontrada",Toast.LENGTH_SHORT).show()
-            }else{
-                Toast.makeText(this,"Clase No Encontrada",Toast.LENGTH_SHORT).show()
-            }
+        var btnListadoClases = findViewById<Button>(R.id.btn_listado_clases)
+        btnListadoClases.setOnClickListener {
+            val intentListadoClases = Intent(this, ManagementActivity::class.java)
+            startActivity(intentListadoClases)
         }
     }
 

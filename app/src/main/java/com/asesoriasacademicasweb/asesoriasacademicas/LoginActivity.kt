@@ -47,6 +47,9 @@ class LoginActivity : AppCompatActivity() {
                 intentLogin.putExtra("email", "" + emailBuscado);
                 startActivity(intentLogin)
             }
+            else{
+                Toast.makeText(this, "Email y/o password no válidos", Toast.LENGTH_SHORT).show()
+            }
         }
     }
 }

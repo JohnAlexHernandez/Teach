@@ -25,6 +25,7 @@
     <string name="btn_guardar_class">Guardar</string>
 
     <string name="txt_listaClase_clase">Lista clases</string>
+    <string name="btn_listado_clases">Volver</string>
 
     <string name="txt_detalle_class">Detalle clase</string>
     <string name="btn_eliminar_class">Eliminar</string>

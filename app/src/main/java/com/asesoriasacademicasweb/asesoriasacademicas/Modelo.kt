@@ -19,7 +19,6 @@ class Modelo {
         var password = persona.password
         var sql = "INSERT INTO PERSONA (nombre, email, telefono, direccion, password) VALUES ('$nombre', '$email', '', '', '$password');"
 
-        System.out.println(sql)
         var db: SQLiteDatabase = this.getConn(context)
         try {
             db.execSQL(sql)
@@ -41,7 +40,6 @@ class Modelo {
         var password = persona.password
         var sql = "UPDATE PERSONA SET nombre='$nombre', email='$email', telefono='$telefono', direccion='$direccion', password='$password' WHERE id_persona=$id;"
 
-        System.out.println(sql)
         var db: SQLiteDatabase = this.getConn(context)
         try {
             db.execSQL(sql)
@@ -104,7 +102,6 @@ class Modelo {
         var tutoria: Tutoria = Tutoria()
         var id = id_tutoria
         var sql = "SELECT id_tutoria, materia, tema, inquietudes FROM TUTORIA WHERE id_tutoria = $id;"
-        System.out.println(sql)
 
         var db: SQLiteDatabase = this.getConn(context)
         try {
@@ -127,9 +124,10 @@ class Modelo {
 
     fun buscarClase(context: Context, id_clase: String): Clase{
         var clase: Clase = Clase()
-        var id = id_clase.toInt()
+        var id = id_clase
         var sql = "SELECT id_clase,fecha,hora,duracion,id_tutoria FROM CLASE WHERE id_clase = $id;"
 
+        System.out.println(sql)
         var db: SQLiteDatabase = this.getConn(context)
         try {
             var fila: Cursor = db.rawQuery(sql, null)
@@ -150,6 +148,32 @@ class Modelo {
         return clase
     }
 
+    fun actualizarClase(context: Context, tutoria: Tutoria, clase: Clase): Int {
+        var res = 0
+        var id_clase = clase.id
+        var fecha = clase.fecha
+        var hora = clase.hora
+        var duracion = clase.duracion
+        var id_tutoria = clase.tutoria.id
+        var materia = tutoria.materia
+        var tema = tutoria.tema
+        var inquietudes = tutoria.inquietudes
+
+        var sqlTutoria = "UPDATE  TUTORIA SET materia='$materia', tema='$tema', inquietudes='$inquietudes' WHERE id_tutoria=$id_tutoria;"
+        var sqlClase = "UPDATE CLASE SET fecha='$fecha', hora='$hora', duracion='$duracion', id_tutoria='$id_tutoria' WHERE id_clase=$id_clase;"
+
+        var db: SQLiteDatabase = this.getConn(context)
+        try {
+            db.execSQL(sqlTutoria)
+            db.execSQL(sqlClase)
+            res = 1
+        } catch (e: Exception) {
+            db.close()
+            return res
+        }
+        return res
+    }
+
     fun validarSesion(context: Context, email: String, password: String): Int{
         var res = 0
         var email = email
@@ -160,8 +184,6 @@ class Modelo {
         try {
             var fila: Cursor = db.rawQuery(sql, null)
             if(fila.moveToFirst()){
-                System.out.println(password)
-                System.out.println(fila.getShort(1))
                 if(password == fila.getString(1)) {
                     res = 1
                 }
