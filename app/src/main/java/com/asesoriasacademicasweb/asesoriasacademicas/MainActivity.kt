@@ -3,10 +3,8 @@ package com.asesoriasacademicasweb.asesoriasacademicas
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.ContextMenu
 import android.view.Menu
 import android.view.MenuItem
-import android.view.View
 import android.widget.Button
 
 class MainActivity : AppCompatActivity() {
@@ -16,7 +14,7 @@ class MainActivity : AppCompatActivity() {
 
         var btnListarClase = findViewById<Button>(R.id.btn_listar_clase)
         btnListarClase.setOnClickListener{
-            val intentClass = Intent(this, ManagementActivity::class.java)
+            val intentClass = Intent(this, GestionarClaseActivity::class.java)
             startActivity(intentClass)
         }
     }

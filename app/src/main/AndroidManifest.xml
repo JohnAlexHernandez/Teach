@@ -13,8 +13,8 @@
         <activity android:name=".EditarClaseActivity" />
         <activity android:name=".PopupDetalleClassActivity" />
         <activity android:name=".GestionarClaseActivity" />
-        <activity android:name=".ManagementActivity" />
-        <activity android:name=".ClassActivity" />
+        <activity android:name=".GestionarClaseActivity" />
+        <activity android:name=".SolicitarClaseActivity" />
         <activity android:name=".RegistrationActivity" />
         <activity android:name=".MainActivity" />
         <activity android:name=".LoginActivity">

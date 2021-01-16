@@ -11,19 +11,19 @@ import java.util.regex.Pattern
 class RegistrationActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_registration)
+        setContentView(R.layout.activity_registrarse)
 
-        var btnInsertarPersona = findViewById<Button>(R.id.btnRegistration_registro)
+        var btnInsertarPersona = findViewById<Button>(R.id.btn_registrarse_registro)
         btnInsertarPersona.setOnClickListener {
             val intentMain = Intent(this, MainActivity::class.java)
             var obj: Modelo = Modelo()
             var persona: Persona = Persona()
             var resInsert = 0
 
-            var nombre: EditText? = findViewById(R.id.txt_nombre_registration)
-            var email: EditText? = findViewById(R.id.txt_email_registration)
-            var password: EditText? = findViewById(R.id.txt_password_registration)
-            var repetPassword: EditText? = findViewById(R.id.txt_repetPassword_registration)
+            var nombre: EditText? = findViewById(R.id.txt_nombre_registro)
+            var email: EditText? = findViewById(R.id.txt_email_registro)
+            var password: EditText? = findViewById(R.id.txt_password_registro)
+            var repetPassword: EditText? = findViewById(R.id.txt_repet_pass_registro)
 
             if(nombre?.text.toString().trim().isEmpty()) {
                 nombre?.setError("El campo nombre no puede estar vacío")
@@ -59,7 +59,7 @@ class RegistrationActivity : AppCompatActivity() {
             }
         }
 
-        var btnCancelarRegistro = findViewById<Button>(R.id.btnCancelar_registro)
+        var btnCancelarRegistro = findViewById<Button>(R.id.btn_cancelar_registro)
         btnCancelarRegistro.setOnClickListener{
             val intentLogin = Intent(this, LoginActivity::class.java)
             startActivity(intentLogin)

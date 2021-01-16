@@ -13,7 +13,7 @@ import android.widget.Toast
 import java.text.SimpleDateFormat
 import java.util.*
 
-class ClassActivity : AppCompatActivity() {
+class SolicitarClaseActivity : AppCompatActivity() {
 
     var fecha: EditText? = null
     var horaMinutos: EditText? = null
@@ -27,22 +27,22 @@ class ClassActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_class)
+        setContentView(R.layout.activity_solicitar_clase)
 
-        var btnGuardar = findViewById<Button>(R.id.btn_guardar_class)
+        var btnGuardar = findViewById<Button>(R.id.btn_guardar_solicitar_clase)
         btnGuardar.setOnClickListener{
-            var intentInsert = Intent(this, ManagementActivity::class.java)
+            var intentInsert = Intent(this, GestionarClaseActivity::class.java)
             var obj: Modelo = Modelo()
             var clase: Clase = Clase()
             var tutoria: Tutoria = Tutoria()
             var resInsert = 0
 
-            var materia: EditText? = findViewById(R.id.txt_materia_class)
-            var tema: EditText? = findViewById(R.id.txt_tema_class)
-            var inquietudes: EditText? = findViewById(R.id.txt_inquietudes_class)
-            fecha = findViewById(R.id.txt_fecha_class)
-            horaMinutos = findViewById(R.id.txt_hora_class)
-            var duracion: EditText? = findViewById(R.id.txt_duracion_class)
+            var materia: EditText? = findViewById(R.id.txt_materia_solicitar_clase)
+            var tema: EditText? = findViewById(R.id.txt_tema_solicitar_clase)
+            var inquietudes: EditText? = findViewById(R.id.txt_inquietudes__solicitar_clase)
+            fecha = findViewById(R.id.txt_fecha_solicitar_clase)
+            horaMinutos = findViewById(R.id.txt_hora_solicitar_clase)
+            var duracion: EditText? = findViewById(R.id.txt_duracion_solicitar_clase)
 
             if(materia?.text.toString().trim().isEmpty()) {
                 materia?.setError("El campo materia no puede estar vacío")
@@ -74,7 +74,7 @@ class ClassActivity : AppCompatActivity() {
         }
 
         var formatofecha: SimpleDateFormat = SimpleDateFormat("dd/mm/yyyy")
-        fecha = findViewById(R.id.txt_fecha_class)
+        fecha = findViewById(R.id.txt_fecha_solicitar_clase)
         fecha?.setOnClickListener{
             val datePickerDialog = DatePickerDialog(this, DatePickerDialog.OnDateSetListener { view, anio, mes, dia ->
                 var fechaCalendario = "" + dia + "/" + (mes + 1) + "/" + anio
@@ -85,7 +85,7 @@ class ClassActivity : AppCompatActivity() {
         }
 
         var formatohora: SimpleDateFormat = SimpleDateFormat("h:mm")
-        horaMinutos = findViewById(R.id.txt_hora_class)
+        horaMinutos = findViewById(R.id.txt_hora_solicitar_clase)
         horaMinutos?.setOnClickListener{
             val timePickerDialog = TimePickerDialog(this, TimePickerDialog.OnTimeSetListener{ view, hora, minutos ->
                 var horaReloj = "" + hora + ":" + minutos
@@ -95,9 +95,9 @@ class ClassActivity : AppCompatActivity() {
             timePickerDialog.show()
         }
 
-        var btnCancelarClase = findViewById<Button>(R.id.btn_cancelar_clase)
+        var btnCancelarClase = findViewById<Button>(R.id.btn_cancelar_solicitar_clase)
         btnCancelarClase.setOnClickListener{
-            val intentClass = Intent(this, ManagementActivity::class.java)
+            val intentClass = Intent(this, GestionarClaseActivity::class.java)
             startActivity(intentClass)
         }
     }

@@ -13,13 +13,13 @@ class LoginActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
 
-        var btnRegistration = findViewById<Button>(R.id.btnRegistration)
+        var btnRegistration = findViewById<Button>(R.id.btn_registrarse_login)
         btnRegistration.setOnClickListener{
             val intentInsert = Intent(this, RegistrationActivity::class.java)
             startActivity(intentInsert)
         }
 
-        var btnLogin = findViewById<Button>(R.id.btnLogin)
+        var btnLogin = findViewById<Button>(R.id.btn_iniciar_sesion_login)
         btnLogin.setOnClickListener{
             var intentLogin = Intent(this, MainActivity::class.java)
             var obj: Modelo = Modelo()

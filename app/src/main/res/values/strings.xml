@@ -5,6 +5,7 @@
     <string name="txt_indicacion_login">Iniciar Sesión</string>
     <string name="btn_login">Login</string>
     <string name="btn_registrarse_login">Registrarse</string>
+    <string name="img_descipcion">Imagen Login</string>
 
     <string name="txt_nombre_registration">Nombre</string>
     <string name="txt_email_registration">Email</string>
@@ -15,14 +16,16 @@
     <string name="txt_indicacion_registration">¡Ya estás a un paso!</string>
     <string name="txt_indicacion_completa_registration">Por favor, ingresa tus datos para completar el registro de tu cuenta.</string>
 
-    <string name="txt_indicacion_class">Solicitar clase</string>
-    <string name="txt_materia_class">Materia</string>
-    <string name="txt_tema_class">Tema</string>
-    <string name="txt_inquietudes_class">Inquietudes</string>
-    <string name="txt_fecha_class">Fecha</string>
-    <string name="txt_hora_class">Hora</string>
-    <string name="txt_duracion_class">Duracion</string>
-    <string name="btn_guardar_class">Guardar</string>
+    <string name="btn_agregar_gestionar_clase">Agregar</string>
+
+    <string name="txt_indicacion_solicitar_clase">Solicitar clase</string>
+    <string name="txt_materia_solicitar_clase">Materia</string>
+    <string name="txt_tema_solicitar_clase">Tema</string>
+    <string name="txt_inquietudes_solicitar_clase">Inquietudes</string>
+    <string name="txt_fecha_solicitar_clase">Fecha</string>
+    <string name="txt_hora_solicitar_clase">Hora</string>
+    <string name="txt_duracion_solicitar_clase">Duracion</string>
+    <string name="btn_guardar_solicitar_clase">Guardar</string>
 
     <string name="txt_listaClase_clase">Lista clases</string>
     <string name="btn_listado_clases">Volver</string>
@@ -32,8 +35,21 @@
     <string name="btn_editar_class">Editar</string>
 
     <string name="txt_editar_class">Editar clase</string>
+    <string name="txt_materia_editar_clase">Materia</string>
+    <string name="txt_tema_editar_clase">Tema</string>
+    <string name="txt_inquietudes_editar_clase">Inquietudes</string>
+    <string name="txt_fecha_editar_clase">Fecha</string>
+    <string name="txt_hora_editar_clase">Hora</string>
+    <string name="txt_duracion_editar_clase">Duracion</string>
+    <string name="btn_guardar_editar_clase">Guardar</string>
 
-    <string name="txt_indicacion_editar_perfil">Editar perfil</string>
+    <string name="txt_nombre_editar_perfil">Nombre</string>
+    <string name="txt_email_editar_perfil">Email</string>
     <string name="txt_telefono_editar_perfil">Telefono</string>
     <string name="txt_direccion_editar_perfil">Direccion</string>
+    <string name="txt_password_editar_perfil">Contraseña</string>
+    <string name="txt_repet_password_editar_perfil">Repite tu contraseña</string>
+    <string name="txt_indicacion_editar_perfil">Editar perfil</string>
+    <string name="btn_guardar_editar_perfil">Guardar</string>
+
 </resources>

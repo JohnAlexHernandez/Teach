@@ -7,7 +7,7 @@
     tools:context=".PopupDetalleClassActivity">
 
     <TextView
-        android:id="@+id/txt_detalle_clase2"
+        android:id="@+id/txv_titulo_detalle_clase"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
@@ -21,22 +21,22 @@
         tools:layout_editor_absoluteY="108dp" />
 
     <Button
-        android:id="@+id/btn_eliminar_clase"
+        android:id="@+id/btn_eliminar_detalle_clase"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="32dp"
-        android:layout_toStartOf="@+id/btn_buscar_clase"
+        android:layout_toStartOf="@+id/btn_buscar_detalle_clase"
         android:text="@string/btn_eliminar_class"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn_buscar_clase"
+        app:layout_constraintTop_toBottomOf="@+id/btn_buscar_detalle_clase"
         tools:ignore="MissingConstraints"></Button>
 
     <Button
-        android:id="@+id/btn_buscar_clase"
+        android:id="@+id/btn_buscar_detalle_clase"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
@@ -45,11 +45,11 @@
         android:text="@string/btn_editar_class"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txt_duracion_clase"
+        app:layout_constraintTop_toBottomOf="@+id/txv_duracion_detalle_clase"
         tools:ignore="MissingConstraints"></Button>
 
     <TextView
-        android:id="@+id/txt_materia_clase"
+        android:id="@+id/txv_materia_detalle_clase"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
@@ -60,10 +60,10 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txt_detalle_clase2" />
+        app:layout_constraintTop_toBottomOf="@+id/txv_titulo_detalle_clase" />
 
     <TextView
-        android:id="@+id/txt_tema_clase"
+        android:id="@+id/txv_tema_detalle_clase"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
@@ -73,10 +73,10 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txt_materia_clase" />
+        app:layout_constraintTop_toBottomOf="@+id/txv_materia_detalle_clase" />
 
     <TextView
-        android:id="@+id/txt_inquietudes_clase"
+        android:id="@+id/txv_inquietudes_detalle_clase"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
@@ -85,10 +85,10 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txt_tema_clase" />
+        app:layout_constraintTop_toBottomOf="@+id/txv_tema_detalle_clase" />
 
     <TextView
-        android:id="@+id/txt_fecha_clase"
+        android:id="@+id/txv_fecha_detalle_clase"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
@@ -97,10 +97,10 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txt_inquietudes_clase" />
+        app:layout_constraintTop_toBottomOf="@+id/txv_inquietudes_detalle_clase" />
 
     <TextView
-        android:id="@+id/txt_hora_clase"
+        android:id="@+id/txv_hora_detalle_clase"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
@@ -109,10 +109,10 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txt_fecha_clase" />
+        app:layout_constraintTop_toBottomOf="@+id/txv_fecha_detalle_clase" />
 
     <TextView
-        android:id="@+id/txt_duracion_clase"
+        android:id="@+id/txv_duracion_detalle_clase"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
@@ -121,10 +121,10 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txt_hora_clase" />
+        app:layout_constraintTop_toBottomOf="@+id/txv_hora_detalle_clase" />
 
     <Button
-        android:id="@+id/btn_listado_clases"
+        android:id="@+id/btn_volver_detalle_clase"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
@@ -133,5 +133,5 @@
         android:text="@string/btn_listado_clases"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn_eliminar_clase" />
+        app:layout_constraintTop_toBottomOf="@+id/btn_eliminar_detalle_clase" />
 </androidx.constraintlayout.widget.ConstraintLayout>

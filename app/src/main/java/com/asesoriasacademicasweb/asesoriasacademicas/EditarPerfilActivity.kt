@@ -5,7 +5,6 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
-import android.widget.Toast
 import java.util.regex.Pattern
 
 class EditarPerfilActivity : AppCompatActivity() {
@@ -25,7 +24,7 @@ class EditarPerfilActivity : AppCompatActivity() {
         var telefono: EditText? = findViewById<EditText>(R.id.txt_telefono_editar_perfil)
         var direccion: EditText? = findViewById<EditText>(R.id.txt_direccion_editar_perfil)
         var password: EditText? = findViewById<EditText>(R.id.txt_password_editar_perfil)
-        var repetPassword: EditText? = findViewById<EditText>(R.id.txt_repetPassword_editar_perfil)
+        var repetPassword: EditText? = findViewById<EditText>(R.id.txt_repet_password_editar_perfil)
 
         nombre?.setText(persona.nombre)
         email?.setText(persona.email)

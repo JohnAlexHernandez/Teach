@@ -6,7 +6,6 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.Button
-import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
 
@@ -18,12 +17,12 @@ class PopupDetalleClassActivity : AppCompatActivity() {
         var idClase= getIntent().getStringExtra("id_clase")
         var obj: Modelo = Modelo()
         var clase: Clase = Clase()
-        var materia: TextView? = findViewById<TextView>(R.id.txt_materia_clase)
-        var tema: TextView? = findViewById<TextView>(R.id.txt_tema_clase)
-        var inquietudes: TextView? = findViewById<TextView>(R.id.txt_inquietudes_clase)
-        var fecha: TextView? = findViewById<TextView>(R.id.txt_fecha_clase)
-        var hora: TextView? = findViewById<TextView>(R.id.txt_hora_clase)
-        var duracion: TextView? = findViewById<TextView>(R.id.txt_duracion_clase)
+        var materia: TextView? = findViewById<TextView>(R.id.txv_materia_detalle_clase)
+        var tema: TextView? = findViewById<TextView>(R.id.txv_tema_detalle_clase)
+        var inquietudes: TextView? = findViewById<TextView>(R.id.txv_inquietudes_detalle_clase)
+        var fecha: TextView? = findViewById<TextView>(R.id.txv_fecha_detalle_clase)
+        var hora: TextView? = findViewById<TextView>(R.id.txv_hora_detalle_clase)
+        var duracion: TextView? = findViewById<TextView>(R.id.txv_duracion_detalle_clase)
 
         clase = obj.buscarClase(this, "" + idClase)
         materia?.setText(clase.tutoria.materia)
@@ -33,9 +32,9 @@ class PopupDetalleClassActivity : AppCompatActivity() {
         hora?.setText(clase.hora)
         duracion?.setText(clase.duracion)
 
-        var btnEliminarClase = findViewById<Button>(R.id.btn_eliminar_clase)
+        var btnEliminarClase = findViewById<Button>(R.id.btn_eliminar_detalle_clase)
         btnEliminarClase.setOnClickListener{
-            val intentEliminarClase = Intent(this, ManagementActivity::class.java)
+            val intentEliminarClase = Intent(this, GestionarClaseActivity::class.java)
             var obj: Modelo = Modelo()
 
             var idBusqueda = clase.id
@@ -50,7 +49,7 @@ class PopupDetalleClassActivity : AppCompatActivity() {
             }
         }
 
-        var btnBuscarClase =findViewById<Button>(R.id.btn_buscar_clase)
+        var btnBuscarClase =findViewById<Button>(R.id.btn_buscar_detalle_clase)
         btnBuscarClase.setOnClickListener {
             val intentEditarClase = Intent(this, EditarClaseActivity::class.java)
             var obj: Modelo = Modelo()
@@ -60,9 +59,9 @@ class PopupDetalleClassActivity : AppCompatActivity() {
             startActivity(intentEditarClase)
         }
 
-        var btnListadoClases = findViewById<Button>(R.id.btn_listado_clases)
+        var btnListadoClases = findViewById<Button>(R.id.btn_volver_detalle_clase)
         btnListadoClases.setOnClickListener {
-            val intentListadoClases = Intent(this, ManagementActivity::class.java)
+            val intentListadoClases = Intent(this, GestionarClaseActivity::class.java)
             startActivity(intentListadoClases)
         }
     }

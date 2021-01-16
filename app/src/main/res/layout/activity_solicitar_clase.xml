@@ -4,115 +4,134 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".RegistrationActivity">
+    tools:context=".SolicitarClaseActivity">
 
     <TextView
-        android:id="@+id/txt_indicacion_registro"
+        android:id="@+id/txt_titulo_solicitar_clase"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
-        android:layout_marginTop="96dp"
         android:layout_marginEnd="32dp"
-        android:text="@string/txt_indicacion_registration"
-        android:textAlignment="center"
+        android:text="@string/txt_indicacion_solicitar_clase"
         android:textSize="18sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        tools:layout_editor_absoluteY="74dp"
+        tools:ignore="MissingConstraints" />
 
     <EditText
-        android:id="@+id/txt_nombre_registration"
+        android:id="@+id/txt_materia_solicitar_clase"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="32dp"
         android:ems="10"
-        android:hint="@string/txt_nombre_registration"
+        android:hint="@string/txt_materia_solicitar_clase"
         android:inputType="textPersonName"
+        android:autofillHints="@string/txt_materia_solicitar_clase"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txt_indicacion_completa_registration" />
+        app:layout_constraintTop_toBottomOf="@+id/txt_titulo_solicitar_clase" />
 
     <EditText
-        android:id="@+id/txt_repetPassword_registration"
+        android:id="@+id/txt_tema_solicitar_clase"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="32dp"
         android:ems="10"
-        android:hint="@string/txt_repet_password_registration"
-        android:inputType="textPassword"
-        android:textSize="18sp"
+        android:hint="@string/txt_tema_solicitar_clase"
+        android:inputType="textPersonName"
+        android:autofillHints="@string/txt_tema_solicitar_clase"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txt_materia_solicitar_clase" />
+
+    <EditText
+        android:id="@+id/txt_fecha_solicitar_clase"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="32dp"
+        android:ems="10"
+        android:hint="@string/txt_fecha_solicitar_clase"
+        android:inputType="date"
+        android:focusable="false"
+        android:clickable="true"
+        android:autofillHints="@string/txt_fecha_solicitar_clase"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txt_password_registration" />
+        app:layout_constraintTop_toBottomOf="@+id/txt_inquietudes__solicitar_clase" />
+
+    <EditText
+        android:id="@+id/txt_hora_solicitar_clase"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="32dp"
+        android:ems="10"
+        android:hint="@string/txt_hora_solicitar_clase"
+        android:inputType="time"
+        android:focusable="false"
+        android:clickable="true"
+        android:autofillHints="@string/txt_hora_solicitar_clase"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txt_fecha_solicitar_clase" />
 
     <Button
-        android:id="@+id/btnRegistration_registro"
+        android:id="@+id/btn_guardar_solicitar_clase"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="32dp"
-        android:text="@string/btn_registrarse_registration"
+        android:text="@string/btn_guardar_solicitar_clase"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txt_repetPassword_registration" />
+        app:layout_constraintTop_toBottomOf="@+id/txt_duracion_solicitar_clase" />
 
     <EditText
-        android:id="@+id/txt_password_registration"
+        android:id="@+id/txt_inquietudes__solicitar_clase"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="32dp"
         android:ems="10"
-        android:hint="@string/txt_password_registration"
-        android:inputType="textPassword"
+        android:gravity="start|top"
+        android:hint="@string/txt_inquietudes_solicitar_clase"
+        android:inputType="textMultiLine"
+        android:autofillHints="@string/txt_inquietudes_solicitar_clase"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txt_email_registration" />
+        app:layout_constraintTop_toBottomOf="@+id/txt_tema_solicitar_clase" />
 
     <EditText
-        android:id="@+id/txt_email_registration"
+        android:id="@+id/txt_duracion_solicitar_clase"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="32dp"
         android:ems="10"
-        android:hint="@string/txt_email_registration"
-        android:inputType="textEmailAddress"
+        android:hint="@string/txt_duracion_solicitar_clase"
+        android:inputType="number"
+        android:autofillHints="@string/txt_duracion_solicitar_clase"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txt_nombre_registration" />
-
-    <TextView
-        android:id="@+id/txt_indicacion_completa_registration"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="32dp"
-        android:text="@string/txt_indicacion_completa_registration"
-        android:textAlignment="gravity"
-        android:textSize="18sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.454"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txt_indicacion_registro" />
+        app:layout_constraintTop_toBottomOf="@+id/txt_hora_solicitar_clase" />
 
     <Button
-        android:id="@+id/btnCancelar_registro"
+        android:id="@+id/btn_cancelar_solicitar_clase"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
@@ -120,7 +139,7 @@
         android:layout_marginEnd="32dp"
         android:text="@string/btn_cancelar_registration"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnRegistration_registro" />
+        app:layout_constraintTop_toBottomOf="@+id/btn_guardar_solicitar_clase" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

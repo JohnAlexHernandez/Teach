@@ -7,7 +7,7 @@
     tools:context=".EditarClaseActivity">
 
     <TextView
-        android:id="@+id/txt_editar_clase"
+        android:id="@+id/txt_titulo_editar_clase"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
@@ -21,104 +21,114 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/txt_materia_editarClase"
+        android:id="@+id/txt_materia_editar_clase"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="32dp"
         android:ems="10"
-        android:hint="@string/txt_materia_class"
+        android:hint="@string/txt_materia_editar_clase"
         android:inputType="textPersonName"
+        android:autofillHints="@string/txt_materia_editar_clase"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txt_editar_clase" />
+        app:layout_constraintTop_toBottomOf="@+id/txt_titulo_editar_clase" />
 
     <EditText
-        android:id="@+id/txt_tema_editarClase"
+        android:id="@+id/txt_tema_editar_clase"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="32dp"
         android:ems="10"
-        android:hint="@string/txt_tema_class"
+        android:hint="@string/txt_tema_editar_clase"
         android:inputType="textPersonName"
+        android:autofillHints="@string/txt_tema_editar_clase"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txt_materia_editarClase" />
+        app:layout_constraintTop_toBottomOf="@+id/txt_materia_editar_clase" />
 
     <EditText
-        android:id="@+id/txt_inquietudes_editarClase"
+        android:id="@+id/txt_inquietudes_editar_clase"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="32dp"
         android:ems="10"
-        android:hint="@string/txt_inquietudes_class"
+        android:hint="@string/txt_inquietudes_editar_clase"
         android:inputType="textPersonName"
+        android:autofillHints="@string/txt_inquietudes_editar_clase"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.502"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txt_tema_editarClase" />
+        app:layout_constraintTop_toBottomOf="@+id/txt_tema_editar_clase" />
 
     <Button
-        android:id="@+id/btn_editar_editarClase"
+        android:id="@+id/btn_guardar_editar_clase"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
         android:layout_marginEnd="32dp"
-        android:text="@string/btn_guardar_class"
+        android:text="@string/btn_guardar_editar_clase"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txt_duracion_editarClase" />
+        app:layout_constraintTop_toBottomOf="@+id/txt_duracion_editar_clase" />
 
     <EditText
-        android:id="@+id/txt_fecha_editarClase"
+        android:id="@+id/txt_fecha_editar_clase"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="32dp"
         android:ems="10"
-        android:hint="@string/txt_fecha_class"
+        android:hint="@string/txt_fecha_editar_clase"
         android:inputType="date"
+        android:focusable="false"
+        android:clickable="true"
+        android:autofillHints="@string/txt_fecha_editar_clase"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txt_inquietudes_editarClase" />
+        app:layout_constraintTop_toBottomOf="@+id/txt_inquietudes_editar_clase" />
 
     <EditText
-        android:id="@+id/txt_hora_editarClase"
+        android:id="@+id/txt_hora_editar_clase"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="32dp"
         android:ems="10"
-        android:hint="@string/txt_hora_class"
+        android:hint="@string/txt_hora_editar_clase"
         android:inputType="time"
+        android:focusable="false"
+        android:clickable="true"
+        android:autofillHints="@string/txt_hora_editar_clase"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txt_fecha_editarClase" />
+        app:layout_constraintTop_toBottomOf="@+id/txt_fecha_editar_clase" />
 
     <EditText
-        android:id="@+id/txt_duracion_editarClase"
+        android:id="@+id/txt_duracion_editar_clase"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="32dp"
         android:ems="10"
-        android:hint="@string/txt_duracion_class"
+        android:hint="@string/txt_duracion_editar_clase"
         android:inputType="number"
+        android:autofillHints="@string/txt_duracion_editar_clase"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txt_hora_editarClase" />
+        app:layout_constraintTop_toBottomOf="@+id/txt_hora_editar_clase" />
 
     <Button
-        android:id="@+id/btn_cancelar_editarClase"
+        android:id="@+id/btn_cancelar_editar_clase"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
@@ -127,6 +137,6 @@
         android:text="@string/btn_cancelar_registration"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn_editar_editarClase" />
+        app:layout_constraintTop_toBottomOf="@+id/btn_guardar_editar_clase" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

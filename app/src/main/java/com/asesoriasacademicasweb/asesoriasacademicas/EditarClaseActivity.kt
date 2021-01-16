@@ -9,7 +9,6 @@ import android.view.Menu
 import android.view.MenuItem
 import android.widget.Button
 import android.widget.EditText
-import android.widget.TextView
 import android.widget.Toast
 import java.text.SimpleDateFormat
 import java.util.*
@@ -35,12 +34,12 @@ class EditarClaseActivity : AppCompatActivity() {
         var clase: Clase = Clase()
         var tutoria: Tutoria = Tutoria()
 
-        var materia: EditText? = findViewById<EditText>(R.id.txt_materia_editarClase)
-        var tema: EditText? = findViewById<EditText>(R.id.txt_tema_editarClase)
-        var inquietudes: EditText? = findViewById<EditText>(R.id.txt_inquietudes_editarClase)
-        var fecha: EditText? = findViewById<EditText>(R.id.txt_fecha_editarClase)
-        var tiempo: EditText? = findViewById<EditText>(R.id.txt_hora_editarClase)
-        var duracion: EditText? = findViewById<EditText>(R.id.txt_duracion_editarClase)
+        var materia: EditText? = findViewById<EditText>(R.id.txt_materia_editar_clase)
+        var tema: EditText? = findViewById<EditText>(R.id.txt_tema_editar_clase)
+        var inquietudes: EditText? = findViewById<EditText>(R.id.txt_inquietudes_editar_clase)
+        var fecha: EditText? = findViewById<EditText>(R.id.txt_fecha_editar_clase)
+        var tiempo: EditText? = findViewById<EditText>(R.id.txt_hora_editar_clase)
+        var duracion: EditText? = findViewById<EditText>(R.id.txt_duracion_editar_clase)
 
         clase = obj.buscarClase(this, "" + idClase)
         materia?.setText(clase.tutoria.materia)
@@ -50,7 +49,7 @@ class EditarClaseActivity : AppCompatActivity() {
         tiempo?.setText(clase.hora)
         duracion?.setText(clase.duracion)
 
-        var btnEditarClase = findViewById<Button>(R.id.btn_editar_editarClase)
+        var btnEditarClase = findViewById<Button>(R.id.btn_guardar_editar_clase)
         btnEditarClase.setOnClickListener{
             if(materia?.text.toString().trim().isEmpty()) {
                 materia?.setError("El campo materia no puede estar vacío")
@@ -83,7 +82,7 @@ class EditarClaseActivity : AppCompatActivity() {
         }
 
         var formatofecha: SimpleDateFormat = SimpleDateFormat("dd/mm/yyyy")
-        fecha = findViewById(R.id.txt_fecha_editarClase)
+        fecha = findViewById(R.id.txt_fecha_editar_clase)
         fecha?.setOnClickListener{
             val datePickerDialog = DatePickerDialog(this, DatePickerDialog.OnDateSetListener { view, anio, mes, dia ->
                 var fechaCalendario = "" + dia + "/" + (mes + 1) + "/" + anio
@@ -94,7 +93,7 @@ class EditarClaseActivity : AppCompatActivity() {
         }
 
         var formatohora: SimpleDateFormat = SimpleDateFormat("h:mm")
-        horaMinutos = findViewById(R.id.txt_hora_editarClase)
+        horaMinutos = findViewById(R.id.txt_hora_editar_clase)
         horaMinutos?.setOnClickListener{
             val timePickerDialog = TimePickerDialog(this, TimePickerDialog.OnTimeSetListener{ view, hora, minutos ->
                 var horaReloj = "" + hora + ":" + minutos
@@ -104,7 +103,7 @@ class EditarClaseActivity : AppCompatActivity() {
             timePickerDialog.show()
         }
 
-        var btnCancelarEditarClase = findViewById<Button>(R.id.btn_cancelar_editarClase)
+        var btnCancelarEditarClase = findViewById<Button>(R.id.btn_cancelar_editar_clase)
         btnCancelarEditarClase.setOnClickListener{
             val intentCancelar = Intent(this, PopupDetalleClassActivity::class.java)
             var idBusqueda = clase.id.toString()
