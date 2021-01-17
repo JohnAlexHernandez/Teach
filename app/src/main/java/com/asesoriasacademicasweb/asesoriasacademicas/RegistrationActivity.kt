@@ -6,6 +6,7 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.asesoriasacademicasweb.asesoriasacademicas.Model.Persona
 import java.util.regex.Pattern
 
 class RegistrationActivity : AppCompatActivity() {
@@ -17,7 +18,7 @@ class RegistrationActivity : AppCompatActivity() {
         btnInsertarPersona.setOnClickListener {
             val intentMain = Intent(this, MainActivity::class.java)
             var obj: Modelo = Modelo()
-            var persona: Persona = Persona()
+            var persona: Persona = Persona("","","","","")
             var resInsert = 0
 
             var nombre: EditText? = findViewById(R.id.txt_nombre_registro)
@@ -44,7 +45,7 @@ class RegistrationActivity : AppCompatActivity() {
             }else {
                 persona.email = email?.text.toString()
                 persona.nombre = nombre?.text.toString()
-                persona.password = password?.text.toString()
+                persona.contrasenia = password?.text.toString()
                 var resExiste = obj.buscarPersona(this, persona.email)
                 if (resExiste == 1){
                     Toast.makeText(this,"Ya tenemos registrado un usuario con el email ingresado", Toast.LENGTH_SHORT).show()

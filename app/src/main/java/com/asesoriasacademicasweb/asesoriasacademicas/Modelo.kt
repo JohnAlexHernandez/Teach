@@ -3,6 +3,7 @@ package com.asesoriasacademicasweb.asesoriasacademicas
 import android.content.Context
 import android.database.Cursor
 import android.database.sqlite.SQLiteDatabase
+import com.asesoriasacademicasweb.asesoriasacademicas.Model.Persona
 import java.lang.Exception
 
 class Modelo {
@@ -16,7 +17,7 @@ class Modelo {
         var bandera = 0
         val nombre = persona.nombre
         val email = persona.email
-        val password = persona.password
+        val password = persona.contrasenia
         val sql = "INSERT INTO PERSONA (nombre, email, telefono, direccion, password) VALUES ('$nombre', '$email', '', '', '$password');"
 
         val db: SQLiteDatabase = this.getConn(context)
@@ -32,13 +33,12 @@ class Modelo {
 
     fun actualizarPersona(context: Context, persona: Persona): Int {
         var bandera = 0
-        val id = persona.id
         val nombre = persona.nombre
         val email = persona.email
         val telefono = persona.telefono
         val direccion = persona.direccion
-        val password = persona.password
-        val sql = "UPDATE PERSONA SET nombre='$nombre', email='$email', telefono='$telefono', direccion='$direccion', password='$password' WHERE id_persona=$id;"
+        val password = persona.contrasenia
+        val sql = "UPDATE PERSONA SET nombre='$nombre', email='$email', telefono='$telefono', direccion='$direccion', password='$password' WHERE email='$email';"
 
         val db: SQLiteDatabase = this.getConn(context)
         try {
@@ -73,20 +73,20 @@ class Modelo {
         return  bandera
     }
 
-    fun obtenerPersona(context: Context, email: String): Persona{
-        val persona: Persona = Persona()
-        val sql = "SELECT id_persona,nombre,email,telefono,direccion,password FROM PERSONA WHERE email = '$email';"
+    fun obtenerPersona(context: Context, email: String): Persona {
+        val persona: Persona =
+            Persona("","","","","")
+        val sql = "SELECT nombre,email,telefono,direccion,password FROM PERSONA WHERE email = '$email';"
 
         val db: SQLiteDatabase = this.getConn(context)
         try {
             val fila: Cursor = db.rawQuery(sql, null)
             if(fila.moveToFirst()){
-                persona.id = fila.getInt(0)
-                persona.nombre = fila.getString(1)
-                persona.email = fila.getString(2)
-                persona.telefono = fila.getString(3)
-                persona.direccion = fila.getString(4)
-                persona.password = fila.getString(5)
+                persona.nombre = fila.getString(0)
+                persona.email = fila.getString(1)
+                persona.telefono = fila.getString(2)
+                persona.direccion = fila.getString(3)
+                persona.contrasenia = fila.getString(4)
             }else{
                 System.out.println("La persona no existe ")
             }

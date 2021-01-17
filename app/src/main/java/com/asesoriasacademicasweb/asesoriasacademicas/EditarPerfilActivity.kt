@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
+import com.asesoriasacademicasweb.asesoriasacademicas.Model.Persona
 import java.util.regex.Pattern
 
 class EditarPerfilActivity : AppCompatActivity() {
@@ -14,7 +15,7 @@ class EditarPerfilActivity : AppCompatActivity() {
 
         val intentMain = Intent(this, MainActivity::class.java)
         var obj: Modelo = Modelo()
-        var persona: Persona = Persona()
+        var persona: Persona = Persona("","","","","")
         var resUpdate = 0
         var emailBuscado= getIntent().getStringExtra("email")
         persona = obj.obtenerPersona(this, "" + emailBuscado)
@@ -30,8 +31,8 @@ class EditarPerfilActivity : AppCompatActivity() {
         email?.setText(persona.email)
         telefono?.setText(persona.telefono)
         direccion?.setText(persona.direccion)
-        password?.setText(persona.password)
-        repetPassword?.setText(persona.password)
+        password?.setText(persona.contraseña)
+        repetPassword?.setText(persona.contraseña)
 
         if(nombre?.text.toString().trim().isEmpty()) {
             nombre?.setError("El campo nombre no puede estar vacío")
@@ -58,7 +59,7 @@ class EditarPerfilActivity : AppCompatActivity() {
             persona.nombre = nombre?.text.toString()
             persona.telefono = telefono?.text.toString()
             persona.direccion = direccion?.text.toString()
-            persona.password = password?.text.toString()
+            persona.contraseña = password?.text.toString()
             var resExiste = obj.obtenerPersona(this, "" + persona.email)
         }
 
@@ -102,7 +103,7 @@ class EditarPerfilActivity : AppCompatActivity() {
                 persona.nombre = nombre?.text.toString()
                 persona.telefono = telefono?.text.toString()
                 persona.direccion = direccion?.text.toString()
-                persona.password = password?.text.toString()
+                persona.contraseña = password?.text.toString()
                 var resExiste = obj.obtenerPersona(this, "" + persona.email)
                 resUpdate = obj.actualizarPersona(this,persona)
             }

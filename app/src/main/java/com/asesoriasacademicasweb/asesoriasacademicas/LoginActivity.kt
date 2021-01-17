@@ -30,6 +30,12 @@ class LoginActivity : AppCompatActivity(), ILoginVista{
         btnLogin.setOnClickListener{
             val email: EditText? = findViewById(R.id.txt_email_login)
             val password: EditText? = findViewById(R.id.txt_password_login)
+            val stringEmail = email?.text.toString().trim()
+            val stringPass = password?.text.toString().trim()
+            var obj: Modelo = Modelo()
+            var banderaBuscar = 0
+            var banderaValidar = 0
+            val intentLogin = Intent(this, MainActivity::class.java)
             /*var intentLogin = Intent(this, MainActivity::class.java)
             var obj: Modelo = Modelo()
             var resBuscar = 0
@@ -59,8 +65,14 @@ class LoginActivity : AppCompatActivity(), ILoginVista{
             else{
                 Toast.makeText(this, "Email y/o password no válidos", Toast.LENGTH_SHORT).show()
             }*/
-
-            iLoginControlador?.OnLogin(email?.text.toString().trim(), password?.text.toString().trim())
+            iLoginControlador?.OnLogin(stringEmail, stringPass)
+            banderaBuscar = obj.buscarPersona(this, stringEmail)
+            banderaValidar = obj.validarSesion(this, stringEmail, stringPass)
+            if (banderaBuscar == 1 && banderaValidar == 1)
+            {
+                intentLogin.putExtra("email", "" + stringEmail);
+                startActivity(intentLogin)
+            }
         }
     }
 
