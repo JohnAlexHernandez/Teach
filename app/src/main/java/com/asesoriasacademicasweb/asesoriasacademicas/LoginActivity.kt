@@ -6,12 +6,19 @@ import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
-import java.util.regex.Pattern
+import com.asesoriasacademicasweb.asesoriasacademicas.Controlador.ILoginControlador
+import com.asesoriasacademicasweb.asesoriasacademicas.Controlador.LoginControlador
+import com.asesoriasacademicasweb.asesoriasacademicas.Vista.ILoginVista
 
-class LoginActivity : AppCompatActivity() {
+class LoginActivity : AppCompatActivity(), ILoginVista{
+
+    var iLoginControlador: ILoginControlador? = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
+
+        iLoginControlador = LoginControlador(this);
 
         var btnRegistration = findViewById<Button>(R.id.btn_registrarse_login)
         btnRegistration.setOnClickListener{
@@ -21,7 +28,9 @@ class LoginActivity : AppCompatActivity() {
 
         var btnLogin = findViewById<Button>(R.id.btn_iniciar_sesion_login)
         btnLogin.setOnClickListener{
-            var intentLogin = Intent(this, MainActivity::class.java)
+            val email: EditText? = findViewById(R.id.txt_email_login)
+            val password: EditText? = findViewById(R.id.txt_password_login)
+            /*var intentLogin = Intent(this, MainActivity::class.java)
             var obj: Modelo = Modelo()
             var resBuscar = 0
             var resValidar = 0
@@ -49,7 +58,17 @@ class LoginActivity : AppCompatActivity() {
             }
             else{
                 Toast.makeText(this, "Email y/o password no válidos", Toast.LENGTH_SHORT).show()
-            }
+            }*/
+
+            iLoginControlador?.OnLogin(email?.text.toString().trim(), password?.text.toString().trim())
         }
+    }
+
+    override fun OnLoginSuccess(mensaje: String) {
+        Toast.makeText(this, mensaje, Toast.LENGTH_SHORT).show()
+    }
+
+    override fun OnLoginError(mensaje: String) {
+        Toast.makeText(this, mensaje, Toast.LENGTH_SHORT).show()
     }
 }
