@@ -8,11 +8,14 @@ import android.widget.EditText
 import android.widget.Toast
 import com.asesoriasacademicasweb.asesoriasacademicas.Controlador.ILoginControlador
 import com.asesoriasacademicasweb.asesoriasacademicas.Controlador.LoginControlador
+import com.asesoriasacademicasweb.asesoriasacademicas.Model.Persona
 import com.asesoriasacademicasweb.asesoriasacademicas.Vista.ILoginVista
 
 class LoginActivity : AppCompatActivity(), ILoginVista{
 
     var iLoginControlador: ILoginControlador? = null
+    var stringEmail = ""
+    var stringPass = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -30,11 +33,8 @@ class LoginActivity : AppCompatActivity(), ILoginVista{
         btnLogin.setOnClickListener{
             val email: EditText? = findViewById(R.id.txt_email_login)
             val password: EditText? = findViewById(R.id.txt_password_login)
-            val stringEmail = email?.text.toString().trim()
-            val stringPass = password?.text.toString().trim()
-            var obj: Modelo = Modelo()
-            var banderaBuscar = 0
-            var banderaValidar = 0
+            stringEmail = email?.text.toString().trim()
+            stringPass = password?.text.toString().trim()
             val intentLogin = Intent(this, MainActivity::class.java)
             /*var intentLogin = Intent(this, MainActivity::class.java)
             var obj: Modelo = Modelo()
@@ -66,8 +66,11 @@ class LoginActivity : AppCompatActivity(), ILoginVista{
                 Toast.makeText(this, "Email y/o password no válidos", Toast.LENGTH_SHORT).show()
             }*/
             iLoginControlador?.OnLogin(this, stringEmail, stringPass)
-            intentLogin.putExtra("email", "" + stringEmail);
-            startActivity(intentLogin)
+            val persona = Persona("",stringEmail, "", "", stringPass)
+            if(persona.esValido(this) == -1) {
+                intentLogin.putExtra("email", "" + stringEmail)
+                startActivity(intentLogin)
+            }
         }
     }
 
