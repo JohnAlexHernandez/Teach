@@ -1,6 +1,8 @@
 package com.asesoriasacademicasweb.asesoriasacademicas.Controlador
 
+import android.content.Context
+
 
 interface ILoginControlador {
-    fun OnLogin(email: String, password: String)
+    fun OnLogin(context: Context, email: String, password: String)
 }

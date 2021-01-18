@@ -31,8 +31,8 @@ class EditarPerfilActivity : AppCompatActivity() {
         email?.setText(persona.email)
         telefono?.setText(persona.telefono)
         direccion?.setText(persona.direccion)
-        password?.setText(persona.contraseña)
-        repetPassword?.setText(persona.contraseña)
+        password?.setText(persona.contrasenia)
+        repetPassword?.setText(persona.contrasenia)
 
         if(nombre?.text.toString().trim().isEmpty()) {
             nombre?.setError("El campo nombre no puede estar vacío")
@@ -59,7 +59,7 @@ class EditarPerfilActivity : AppCompatActivity() {
             persona.nombre = nombre?.text.toString()
             persona.telefono = telefono?.text.toString()
             persona.direccion = direccion?.text.toString()
-            persona.contraseña = password?.text.toString()
+            persona.contrasenia = password?.text.toString()
             var resExiste = obj.obtenerPersona(this, "" + persona.email)
         }
 
@@ -103,7 +103,7 @@ class EditarPerfilActivity : AppCompatActivity() {
                 persona.nombre = nombre?.text.toString()
                 persona.telefono = telefono?.text.toString()
                 persona.direccion = direccion?.text.toString()
-                persona.contraseña = password?.text.toString()
+                persona.contrasenia = password?.text.toString()
                 var resExiste = obj.obtenerPersona(this, "" + persona.email)
                 resUpdate = obj.actualizarPersona(this,persona)
             }

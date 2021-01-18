@@ -65,14 +65,9 @@ class LoginActivity : AppCompatActivity(), ILoginVista{
             else{
                 Toast.makeText(this, "Email y/o password no válidos", Toast.LENGTH_SHORT).show()
             }*/
-            iLoginControlador?.OnLogin(stringEmail, stringPass)
-            banderaBuscar = obj.buscarPersona(this, stringEmail)
-            banderaValidar = obj.validarSesion(this, stringEmail, stringPass)
-            if (banderaBuscar == 1 && banderaValidar == 1)
-            {
-                intentLogin.putExtra("email", "" + stringEmail);
-                startActivity(intentLogin)
-            }
+            iLoginControlador?.OnLogin(this, stringEmail, stringPass)
+            intentLogin.putExtra("email", "" + stringEmail);
+            startActivity(intentLogin)
         }
     }
 
