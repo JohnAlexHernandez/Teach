@@ -51,7 +51,7 @@ class Persona(nombre: String, email: String, telefono: String, direccion: String
         }
     }
 
-    override fun registroValido(context: Context): Int {
+    override fun registroValido(context: Context, repetContrasenia: String): Int {
         val obj = Modelo()
         return if (nombre.trim().isEmpty()) {
             0
@@ -65,6 +65,30 @@ class Persona(nombre: String, email: String, telefono: String, direccion: String
             4
         } else if (obj.buscarPersona(context, email) == 1) {
             5
+        } else if (!contrasenia.equals(repetContrasenia)) {
+            6
+        } else{
+            -1
+        }
+    }
+
+    override fun editarPerfil(context: Context, repetContrasenia: String): Int {
+        return if (nombre.trim().isEmpty()) {
+            0
+        } else if (email.trim().isEmpty()) {
+            1
+        } else if (!Pattern.compile("^[_A-Za-z0-9-+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$").matcher(email.trim()).matches()){
+            2
+        } else if (telefono.trim().isEmpty()) {
+            3
+        } else if (direccion.trim().isEmpty()) {
+            4
+        } else if (contrasenia.trim().isEmpty()){
+            5
+        } else if (!Pattern.compile("^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)\\S{8,15}$").matcher(contrasenia).matches()) {
+            6
+        } else if (!contrasenia.equals(repetContrasenia)) {
+            7
         } else{
             -1
         }

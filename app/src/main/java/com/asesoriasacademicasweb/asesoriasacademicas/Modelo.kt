@@ -74,13 +74,13 @@ class Modelo {
     }
 
     fun obtenerPersona(context: Context, email: String): Persona {
-        val persona: Persona =
-            Persona("","","","","")
+        val persona: Persona = Persona("","","","","")
+        val email = email
         val sql = "SELECT nombre,email,telefono,direccion,password FROM PERSONA WHERE email = '$email';"
 
         val db: SQLiteDatabase = this.getConn(context)
         try {
-            val fila: Cursor = db.rawQuery(sql, null)
+            var fila: Cursor = db.rawQuery(sql, null)
             if(fila.moveToFirst()){
                 persona.nombre = fila.getString(0)
                 persona.email = fila.getString(1)

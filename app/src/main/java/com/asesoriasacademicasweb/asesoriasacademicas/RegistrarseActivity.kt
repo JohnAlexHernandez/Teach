@@ -20,7 +20,9 @@ class RegistrarseActivity : AppCompatActivity(), IRegistrarseVista {
 
         val btnInsertarPersona = findViewById<Button>(R.id.btn_registrarse_registro)
         btnInsertarPersona.setOnClickListener {
+
             val intentMain = Intent(this, MainActivity::class.java)
+            val obj: Modelo = Modelo()
             val nombre: EditText? = findViewById(R.id.txt_nombre_registro)
             val email: EditText? = findViewById(R.id.txt_email_registro)
             val password: EditText? = findViewById(R.id.txt_password_registro)
@@ -31,11 +33,13 @@ class RegistrarseActivity : AppCompatActivity(), IRegistrarseVista {
             val stringRepetPass = repetPassword?.text.toString().trim()
 
             val intentRegistry = Intent(this, MainActivity::class.java)
-            iRegistraseControlador.onRegistry(this, stringNombre, stringEmail, stringPass)
+            iRegistraseControlador.onRegistry(this, stringNombre, stringEmail, stringPass, stringRepetPass)
             val persona = Persona(stringNombre, stringEmail, "", "", stringPass)
-            if(persona.registroValido(this) == -1) {
-                intentRegistry.putExtra("email", "" + stringEmail)
-                startActivity(intentRegistry)
+            if(persona.registroValido(this, stringRepetPass) == -1) {
+                if (obj.insertarPersona(this, persona) == 1) {
+                    intentRegistry.putExtra("email", "" + stringEmail)
+                    startActivity(intentRegistry)
+                }
             }
         }
 

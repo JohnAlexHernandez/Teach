@@ -9,5 +9,6 @@ interface IPersona {
     var direccion : String
     var contrasenia : String
     fun esValido(context: Context): Int
-    fun registroValido(context: Context): Int
+    fun registroValido(context: Context, repetContrasenia: String): Int
+    fun editarPerfil(context: Context, repetContrasenia: String): Int
 }
