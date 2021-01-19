@@ -13,19 +13,15 @@ import com.asesoriasacademicasweb.asesoriasacademicas.Vista.ILoginVista
 
 class LoginActivity : AppCompatActivity(), ILoginVista{
 
-    var iLoginControlador: ILoginControlador? = null
-    var stringEmail = ""
-    var stringPass = ""
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
 
-        iLoginControlador = LoginControlador(this)
+        val iLoginControlador = LoginControlador(this)
 
         val btnRegistration = findViewById<Button>(R.id.btn_registrarse_login)
         btnRegistration.setOnClickListener{
-            val intentInsert = Intent(this, RegistrationActivity::class.java)
+            val intentInsert = Intent(this, RegistrarseActivity::class.java)
             startActivity(intentInsert)
         }
 
@@ -33,11 +29,11 @@ class LoginActivity : AppCompatActivity(), ILoginVista{
         btnLogin.setOnClickListener{
             val email: EditText? = findViewById(R.id.txt_email_login)
             val password: EditText? = findViewById(R.id.txt_password_login)
-            stringEmail = email?.text.toString().trim()
-            stringPass = password?.text.toString().trim()
+            val stringEmail = email?.text.toString().trim()
+            val stringPass = password?.text.toString().trim()
 
             val intentLogin = Intent(this, MainActivity::class.java)
-            iLoginControlador?.onLogin(this, stringEmail, stringPass)
+            iLoginControlador.onLogin(this, stringEmail, stringPass)
             val persona = Persona("",stringEmail, "", "", stringPass)
             if(persona.esValido(this) == -1) {
                 intentLogin.putExtra("email", "" + stringEmail)

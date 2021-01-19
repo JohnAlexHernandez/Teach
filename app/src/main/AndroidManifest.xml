@@ -15,7 +15,7 @@
         <activity android:name=".GestionarClaseActivity" />
         <activity android:name=".GestionarClaseActivity" />
         <activity android:name=".SolicitarClaseActivity" />
-        <activity android:name=".RegistrationActivity" />
+        <activity android:name=".RegistrarseActivity" />
         <activity android:name=".MainActivity" />
         <activity android:name=".LoginActivity">
             <intent-filter>
