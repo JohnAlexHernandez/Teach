@@ -6,7 +6,7 @@ import com.asesoriasacademicasweb.asesoriasacademicas.Vista.ILoginVista
 
 class LoginControlador(var iLoginVista: ILoginVista) : ILoginControlador {
 
-    override fun OnLogin(context: Context, email: String, contrasenia: String) {
+    override fun onLogin(context: Context, email: String, contrasenia: String) {
         val persona = Persona(
             "",
             email,
@@ -16,13 +16,13 @@ class LoginControlador(var iLoginVista: ILoginVista) : ILoginControlador {
         )
 
         when (persona.esValido(context)) {
-            0 -> this.iLoginVista.OnLoginError("Por favor ingrese el Email")
-            1 -> this.iLoginVista.OnLoginError("Por favor ingrese un Email valido")
-            2 -> this.iLoginVista.OnLoginError("Por favor ingrese la contraseña")
-            3 -> this.iLoginVista.OnLoginError("La contraseña debe tener mas de 8 caracteres")
-            4 -> this.iLoginVista.OnLoginError("No existe un usuario con el email ingresado")
-            5 -> this.iLoginVista.OnLoginError("Constraseña incorrecta")
-            -1 -> this.iLoginVista.OnLoginError("Login satisfactorio")
+            0 -> this.iLoginVista.onLoginError("El campo email no puede estar vacío")
+            1 -> this.iLoginVista.onLoginError("El campo email no es válido")
+            2 -> this.iLoginVista.onLoginError("El campo contraseña no puede estar vacío")
+            3 -> this.iLoginVista.onLoginError("El campo contraseña no es válido")
+            4 -> this.iLoginVista.onLoginError("No existe un usuario con el email ingresado")
+            5 -> this.iLoginVista.onLoginError("El campo constraseña es incorrecta")
+            -1 -> this.iLoginVista.onLoginError("Login satisfactorio")
         }
     }
 }

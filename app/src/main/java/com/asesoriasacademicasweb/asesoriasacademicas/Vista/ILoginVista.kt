@@ -1,6 +1,6 @@
 package com.asesoriasacademicasweb.asesoriasacademicas.Vista
 
 interface ILoginVista {
-    fun OnLoginSuccess(mensaje: String)
-    fun OnLoginError(mensaje: String)
+    fun onLoginSuccess(mensaje: String)
+    fun onLoginError(mensaje: String)
 }
