@@ -198,11 +198,11 @@ class Modelo {
         return bandera
     }
 
-    fun insertarClase(context: Context, tutoria: Tutoria, clase: Clase): Int {
+    fun insertarClase(context: Context,  clase: Clase): Int {
         var res = 0
-        val materia = tutoria.materia
-        val tema = tutoria.tema
-        val inquietudes = tutoria.inquietudes
+        val materia = clase.tutoria.materia
+        val tema = clase.tutoria.tema
+        val inquietudes = clase.tutoria.inquietudes
         val fecha = clase.fecha
         val hora = clase.hora
         val duracion = clase.duracion
