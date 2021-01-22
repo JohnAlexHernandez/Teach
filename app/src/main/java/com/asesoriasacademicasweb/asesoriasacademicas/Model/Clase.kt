@@ -34,8 +34,10 @@ class Clase(fecha: String, hora: String, duracion: String, materia: String, tema
             0
         } else if (hora.trim().isEmpty()){
             1
-        } else if (duracion.toInt() <= 0 && duracion.toInt() >= 7){
+        } else if (duracion.trim().isEmpty()){
             2
+        } else if (duracion.toInt() < 1 || duracion.toInt() > 6){
+            3
         } else {
             -1
         }

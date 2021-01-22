@@ -19,11 +19,11 @@ class Tutoria(materia: String, tema: String, inquietudes: String) : ITutoria {
 
     override fun esValido(): Int {
         return if (materia.trim().isEmpty()){
-            3
-        } else if (tema.trim().isEmpty()){
             4
-        } else if (inquietudes.trim().isEmpty()){
+        } else if (tema.trim().isEmpty()){
             5
+        } else if (inquietudes.trim().isEmpty()){
+            6
         } else {
             -1
         }

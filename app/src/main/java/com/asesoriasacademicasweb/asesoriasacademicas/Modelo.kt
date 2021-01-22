@@ -198,7 +198,7 @@ class Modelo {
         return bandera
     }
 
-    fun insertarClase(context: Context,  clase: Clase): Int {
+    fun insertarClase(context: Context, clase: com.asesoriasacademicasweb.asesoriasacademicas.Model.Clase): Int {
         var res = 0
         val materia = clase.tutoria.materia
         val tema = clase.tutoria.tema

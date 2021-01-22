@@ -7,9 +7,8 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
-import android.widget.Button
-import android.widget.EditText
-import android.widget.Toast
+import android.view.View
+import android.widget.*
 import com.asesoriasacademicasweb.asesoriasacademicas.Controlador.SolicitarClaseControlador
 import com.asesoriasacademicasweb.asesoriasacademicas.Vista.ISolicitarClaseVista
 import com.asesoriasacademicasweb.asesoriasacademicas.Model.Clase
@@ -33,6 +32,81 @@ class SolicitarClaseActivity : AppCompatActivity(), ISolicitarClaseVista {
         setContentView(R.layout.activity_solicitar_clase)
 
         val iSolicitarClaseControlador = SolicitarClaseControlador(this)
+        val spnMateria: Spinner = findViewById(R.id.spn_materia)
+        val spnTema: Spinner = findViewById(R.id.spn_tema)
+
+        val materias = arrayOf(
+                "Matemáticas3",
+                "Matemáticas4",
+                "Matemáticas5",
+                "Matemáticas6",
+                "Matemáticas7",
+                "Matemáticas8",
+                "Matemáticas9",
+                "Matemáticas10",
+                "Matemáticas11",
+                "Geometría",
+                "ProbabilidadyEstadística:",
+                "Precálculo",
+                "Física",
+                "HtmlCssyJavaScript:",
+                "AlgoritmiayProgramación",
+                "SQL",
+                "HerramientasOfimáticas"
+        )
+
+        val matematicas3 = arrayOf(
+                "Los números naturales",
+                "Composición y descomposición de números naturales",
+                "Orden de números naturales",
+                "Comparación y ordenación de números naturales >, <,  =",
+                "Noción de fracciones",
+                "Representación gráfica de fracciones",
+                "Fracciones equivalentes",
+                "Adición y sustracción de números naturales y sus propiedades",
+                "Problemas de adición y sustracción",
+                "Multiplicación y división de números naturales y sus propiedades",
+                "Mitad, tercio y cuarto",
+                "Problemas de multiplicación y división"
+        )
+
+        val matematicas4 = arrayOf(
+                "Los números naturales",
+                "Adición de números naturales llevando",
+                "Sustracción de números naturales llevando",
+                "Multiplicación de números naturales por 2 y 3 cifras",
+                "División con ceros en el cociente",
+                "División de naturales con divisores de 2 o más cifras",
+                "Operaciones combinadas",
+                "Los números fraccionarios",
+                "Operaciones con fracciones",
+                "Los números decimales",
+                "Adición y sustracción de números decimales",
+                "Multiplicación y división de números decimales",
+                "Múltiplos y divisores"
+        )
+
+        val adapter = ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, materias)
+        val adapterMath3 = ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, matematicas3)
+        val adapterMath4 = ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, matematicas4)
+        spnMateria.adapter = adapter
+
+        spnMateria.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
+            override fun onNothingSelected(parent: AdapterView<*>?) {
+                TODO("Not yet implemented")
+            }
+
+            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+                val item: String = spnMateria.getItemAtPosition(position).toString()
+
+                if (item.equals("Matemáticas3")){
+                    spnTema.adapter = adapterMath3
+                } else if (item.equals("Matemáticas4")){
+                    spnTema.adapter = adapterMath4
+                }
+            }
+
+        }
 
         val btnGuardar = findViewById<Button>(R.id.btn_guardar_solicitar_clase)
         btnGuardar.setOnClickListener{
@@ -64,10 +138,10 @@ class SolicitarClaseActivity : AppCompatActivity(), ISolicitarClaseVista {
                     stringInquietudes
             )
             if(clase.esValido(this) == -1) {
-                //if (obj.insertarClase(this, clase) == 1) {
+                if (obj.insertarClase(this, clase) == 1) {
                     intentInsert.putExtra("email", "" + stringEmail)
                     startActivity(intentInsert)
-                //}
+                }
             }
             /*var intentInsert = Intent(this, GestionarClaseActivity::class.java)
             var obj: Modelo = Modelo()
