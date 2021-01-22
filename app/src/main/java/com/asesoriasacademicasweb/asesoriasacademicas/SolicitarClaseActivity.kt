@@ -1,5 +1,6 @@
 package com.asesoriasacademicasweb.asesoriasacademicas
 
+import android.annotation.SuppressLint
 import android.app.DatePickerDialog
 import android.app.TimePickerDialog
 import android.content.Intent
@@ -27,6 +28,7 @@ class SolicitarClaseActivity : AppCompatActivity(), ISolicitarClaseVista {
     var hora = calendar.get(Calendar.HOUR_OF_DAY)
     var minutos = calendar.get(Calendar.MINUTE)
 
+    @SuppressLint("SimpleDateFormat")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_solicitar_clase)
@@ -34,25 +36,34 @@ class SolicitarClaseActivity : AppCompatActivity(), ISolicitarClaseVista {
         val iSolicitarClaseControlador = SolicitarClaseControlador(this)
         val spnMateria: Spinner = findViewById(R.id.spn_materia)
         val spnTema: Spinner = findViewById(R.id.spn_tema)
+        var materiaSeleccionada = ""
+        var temaSeleccionado = ""
 
         val materias = arrayOf(
-                "Matemáticas3",
-                "Matemáticas4",
-                "Matemáticas5",
-                "Matemáticas6",
-                "Matemáticas7",
-                "Matemáticas8",
-                "Matemáticas9",
-                "Matemáticas10",
-                "Matemáticas11",
+                "Matemáticas 3",
+                "Matemáticas 4",
+                "Matemáticas 5",
+                "Matemáticas 6",
+                "Matemáticas 7",
+                "Matemáticas 8",
+                "Matemáticas 9",
+                "Matemáticas 10",
+                "Matemáticas 11",
                 "Geometría",
-                "ProbabilidadyEstadística:",
+                "Álgebra",
+                "Trigonometría",
+                "Probabilidad y Estadística",
                 "Precálculo",
+                "Cálculo",
                 "Física",
-                "HtmlCssyJavaScript:",
-                "AlgoritmiayProgramación",
-                "SQL",
-                "HerramientasOfimáticas"
+                "Diseño de páginas web con Html Css y JavaScript",
+                "Algoritmia y Programación",
+                "Modelado UML y Patrones de diseño de software",
+                "Sistema de control de versiones GIT y GITHUB",
+                "Sistemas Operativos GNU/Linux",
+                "Diseño y modelamiento de base de datos",
+                "Metodologías Ágiles SCRUM",
+                "Herramientas Ofimáticas"
         )
 
         val matematicas3 = arrayOf(
@@ -97,13 +108,24 @@ class SolicitarClaseActivity : AppCompatActivity(), ISolicitarClaseVista {
             }
 
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
-                val item: String = spnMateria.getItemAtPosition(position).toString()
+                materiaSeleccionada = spnMateria.getItemAtPosition(position).toString()
 
-                if (item.equals("Matemáticas3")){
+                if (materiaSeleccionada.equals("Matemáticas 3")){
                     spnTema.adapter = adapterMath3
-                } else if (item.equals("Matemáticas4")){
+                } else if (materiaSeleccionada.equals("Matemáticas4")){
                     spnTema.adapter = adapterMath4
                 }
+            }
+
+        }
+
+        spnTema.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
+            override fun onNothingSelected(parent: AdapterView<*>?) {
+                TODO("Not yet implemented")
+            }
+
+            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+               temaSeleccionado = spnTema.getItemAtPosition(position).toString()
             }
 
         }
@@ -113,15 +135,13 @@ class SolicitarClaseActivity : AppCompatActivity(), ISolicitarClaseVista {
 
             val obj = Modelo()
             val stringEmail= getIntent().getStringExtra("email")
-            val materia: EditText? = findViewById(R.id.txt_materia_solicitar_clase)
-            val tema: EditText? = findViewById(R.id.txt_tema_solicitar_clase)
             val inquietudes: EditText? = findViewById(R.id.txt_inquietudes__solicitar_clase)
             fecha = findViewById(R.id.txt_fecha_solicitar_clase)
             horaMinutos = findViewById(R.id.txt_hora_solicitar_clase)
             val duracion: EditText? = findViewById(R.id.txt_duracion_solicitar_clase)
 
-            val stringMateria = materia?.text.toString().trim()
-            val stringTema = tema?.text.toString().trim()
+            val stringMateria = materiaSeleccionada
+            val stringTema = temaSeleccionado
             val stringInquietudes = inquietudes?.text.toString().trim()
             val stringFecha = fecha?.text.toString().trim()
             val stringHoraMinutos = horaMinutos?.text.toString().trim()
@@ -185,7 +205,7 @@ class SolicitarClaseActivity : AppCompatActivity(), ISolicitarClaseVista {
 
         }
 
-        val formatofecha: SimpleDateFormat = SimpleDateFormat("dd/mm/yyyy")
+        val formatofecha = SimpleDateFormat("dd/mm/yyyy")
         fecha = findViewById(R.id.txt_fecha_solicitar_clase)
         fecha?.setOnClickListener{
             val datePickerDialog = DatePickerDialog(this, DatePickerDialog.OnDateSetListener { view, anio, mes, dia ->
@@ -196,7 +216,7 @@ class SolicitarClaseActivity : AppCompatActivity(), ISolicitarClaseVista {
             datePickerDialog.show()
         }
 
-        val formatohora: SimpleDateFormat = SimpleDateFormat("h:mm")
+        val formatohora = SimpleDateFormat("h:mm")
         horaMinutos = findViewById(R.id.txt_hora_solicitar_clase)
         horaMinutos?.setOnClickListener{
             val timePickerDialog = TimePickerDialog(this, TimePickerDialog.OnTimeSetListener{ view, hora, minutos ->
@@ -207,7 +227,7 @@ class SolicitarClaseActivity : AppCompatActivity(), ISolicitarClaseVista {
             timePickerDialog.show()
         }
 
-        var btnCancelarClase = findViewById<Button>(R.id.btn_cancelar_solicitar_clase)
+        val btnCancelarClase = findViewById<Button>(R.id.btn_cancelar_solicitar_clase)
         btnCancelarClase.setOnClickListener{
             val intentClass = Intent(this, GestionarClaseActivity::class.java)
             startActivity(intentClass)

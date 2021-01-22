@@ -21,37 +21,6 @@
         tools:ignore="MissingConstraints" />
 
     <EditText
-        android:id="@+id/txt_materia_solicitar_clase"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="32dp"
-        android:ems="10"
-        android:hint="@string/txt_materia_solicitar_clase"
-        android:inputType="textPersonName"
-        android:autofillHints="@string/txt_materia_solicitar_clase"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txt_titulo_solicitar_clase" />
-
-    <EditText
-        android:id="@+id/txt_tema_solicitar_clase"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="32dp"
-        android:ems="10"
-        android:hint="@string/txt_tema_solicitar_clase"
-        android:inputType="textPersonName"
-        android:autofillHints="@string/txt_tema_solicitar_clase"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txt_materia_solicitar_clase" />
-
-    <EditText
         android:id="@+id/txt_fecha_solicitar_clase"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -106,14 +75,14 @@
         android:layout_marginStart="32dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="32dp"
+        android:autofillHints="@string/txt_inquietudes_solicitar_clase"
         android:ems="10"
         android:gravity="start|top"
         android:hint="@string/txt_inquietudes_solicitar_clase"
         android:inputType="textMultiLine"
-        android:autofillHints="@string/txt_inquietudes_solicitar_clase"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txt_tema_solicitar_clase" />
+        app:layout_constraintTop_toBottomOf="@+id/spn_tema" />
 
     <EditText
         android:id="@+id/txt_duracion_solicitar_clase"
@@ -150,8 +119,9 @@
         android:layout_marginTop="8dp"
         android:layout_marginEnd="32dp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn_cancelar_solicitar_clase"
+        app:layout_constraintTop_toBottomOf="@+id/txt_titulo_solicitar_clase"
         tools:ignore="MissingConstraints" />
 
     <Spinner
@@ -162,6 +132,7 @@
         android:layout_marginTop="8dp"
         android:layout_marginEnd="32dp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/spn_materia" />
 
