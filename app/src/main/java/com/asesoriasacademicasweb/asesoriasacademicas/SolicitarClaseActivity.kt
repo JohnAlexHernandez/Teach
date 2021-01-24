@@ -28,7 +28,6 @@ class SolicitarClaseActivity : AppCompatActivity(), ISolicitarClaseVista {
     var hora = calendar.get(Calendar.HOUR_OF_DAY)
     var minutos = calendar.get(Calendar.MINUTE)
 
-    @SuppressLint("SimpleDateFormat")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_solicitar_clase)
@@ -56,50 +55,102 @@ class SolicitarClaseActivity : AppCompatActivity(), ISolicitarClaseVista {
                 "Precálculo",
                 "Cálculo",
                 "Física",
-                "Diseño de páginas web con Html Css y JavaScript",
+                "Html Css y JavaScript",
                 "Algoritmia y Programación",
-                "Modelado UML y Patrones de diseño de software",
-                "Sistema de control de versiones GIT y GITHUB",
+                "Modelado UML",
+                "Patrones de diseño de software",
+                "GIT y GITHUB",
                 "Sistemas Operativos GNU/Linux",
-                "Diseño y modelamiento de base de datos",
+                "Base de datos",
                 "Metodologías Ágiles SCRUM",
                 "Herramientas Ofimáticas"
         )
 
         val matematicas3 = arrayOf(
                 "Los números naturales",
-                "Composición y descomposición de números naturales",
+                "Composición y descomposición",
                 "Orden de números naturales",
-                "Comparación y ordenación de números naturales >, <,  =",
+                "Comparación y ordenación >, <,  =",
                 "Noción de fracciones",
                 "Representación gráfica de fracciones",
                 "Fracciones equivalentes",
-                "Adición y sustracción de números naturales y sus propiedades",
+                "Adición, sustracción y sus propiedades",
                 "Problemas de adición y sustracción",
-                "Multiplicación y división de números naturales y sus propiedades",
+                "Multiplicación, división y sus propiedades",
                 "Mitad, tercio y cuarto",
                 "Problemas de multiplicación y división"
         )
 
         val matematicas4 = arrayOf(
                 "Los números naturales",
-                "Adición de números naturales llevando",
-                "Sustracción de números naturales llevando",
-                "Multiplicación de números naturales por 2 y 3 cifras",
+                "Adición llevando",
+                "Sustracción llevando",
+                "Multiplicación por 2 y 3 cifras",
                 "División con ceros en el cociente",
-                "División de naturales con divisores de 2 o más cifras",
+                "División con divisores de 2 o más cifras",
                 "Operaciones combinadas",
                 "Los números fraccionarios",
                 "Operaciones con fracciones",
                 "Los números decimales",
-                "Adición y sustracción de números decimales",
-                "Multiplicación y división de números decimales",
+                "Adición y sustracción",
+                "Multiplicación y división",
                 "Múltiplos y divisores"
+        )
+
+        val matematicas5 = arrayOf(
+                "Los números naturales",
+                "Adición y sustracción",
+                "Multiplicación",
+                "División con ceros en el cociente",
+                "División con divisores de 2 y más cifras",
+                "Operaciones combinadas",
+                "Los números decimales",
+                "Lectura y escritura de fracciones",
+                "Comparación de fracciones",
+                "Operaciones con fracciones",
+                "Adición y sustracción",
+                "Multiplicación y división",
+                "Los números Romanos"
+        )
+
+        val matematicas6 = arrayOf(
+                "Romano, binario y decimal",
+                "Los números naturales",
+                "Operaciones con números naturales",
+                "Potenciación, radicación y logaritmación",
+                "Múltiplos y divisores",
+                "Descomposición factorial",
+                "Los números enteros",
+                "La recta numérica(Plano cartesiano)",
+                "Operaciones con números enteros",
+                "Ecuaciones simples",
+                "Los números fraccionarios",
+                "Operaciones con números fraccionarios",
+                "Problemas verbales"
+        )
+
+        val matematicas7 = arrayOf(
+                "Números enteros, polinomios aritméticos",
+                "Expresiones con signos de agrupación",
+                "Los números racionales",
+                "Operaciones con numeros racionales",
+                "Problemas verbales",
+                "Los números decimales",
+                "Operaciones con números decimales",
+                "Planteamiento y resolución de problemas",
+                "Proporcionalidad",
+                "Magnitudes directamente proporcionales",
+                "Magnitudes inversamente proporcionales",
+                "Regla de tres simple",
+                "Problemas de aplicación"
         )
 
         val adapter = ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, materias)
         val adapterMath3 = ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, matematicas3)
         val adapterMath4 = ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, matematicas4)
+        val adapterMath5 = ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, matematicas5)
+        val adapterMath6 = ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, matematicas6)
+        val adapterMath7 = ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, matematicas7)
         spnMateria.adapter = adapter
 
         spnMateria.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
@@ -112,8 +163,14 @@ class SolicitarClaseActivity : AppCompatActivity(), ISolicitarClaseVista {
 
                 if (materiaSeleccionada.equals("Matemáticas 3")){
                     spnTema.adapter = adapterMath3
-                } else if (materiaSeleccionada.equals("Matemáticas4")){
+                } else if (materiaSeleccionada.equals("Matemáticas 4")){
                     spnTema.adapter = adapterMath4
+                } else if (materiaSeleccionada.equals("Matemáticas 5")){
+                    spnTema.adapter = adapterMath5
+                } else if (materiaSeleccionada.equals("Matemáticas 6")){
+                    spnTema.adapter = adapterMath6
+                } else if (materiaSeleccionada.equals("Matemáticas 7")){
+                    spnTema.adapter = adapterMath7
                 }
             }
 
@@ -163,46 +220,6 @@ class SolicitarClaseActivity : AppCompatActivity(), ISolicitarClaseVista {
                     startActivity(intentInsert)
                 }
             }
-            /*var intentInsert = Intent(this, GestionarClaseActivity::class.java)
-            var obj: Modelo = Modelo()
-            var clase: Clase = Clase()
-            var tutoria: Tutoria = Tutoria()
-            var resInsert = 0
-
-            var materia: EditText? = findViewById(R.id.txt_materia_solicitar_clase)
-            var tema: EditText? = findViewById(R.id.txt_tema_solicitar_clase)
-            var inquietudes: EditText? = findViewById(R.id.txt_inquietudes__solicitar_clase)
-            fecha = findViewById(R.id.txt_fecha_solicitar_clase)
-            horaMinutos = findViewById(R.id.txt_hora_solicitar_clase)
-            var duracion: EditText? = findViewById(R.id.txt_duracion_solicitar_clase)
-
-            if(materia?.text.toString().trim().isEmpty()) {
-                materia?.setError("El campo materia no puede estar vacío")
-            }else if (tema?.text.toString().trim().isEmpty()) {
-                tema?.setError("El campo tema no puede estar vacío")
-            }else if (fecha?.text.toString().trim().isEmpty()){
-                fecha?.setError("El campo fecha no puede estar vacío")
-            }else if (horaMinutos?.text.toString().trim().isEmpty()){
-                horaMinutos?.setError("El campo hora no puede estar vacío")
-            }else {
-
-                tutoria.materia = materia?.text.toString()
-                tutoria.tema = tema?.text.toString()
-                tutoria.inquietudes = inquietudes?.text.toString()
-                clase.fecha = fecha?.text.toString()
-                clase.hora = horaMinutos?.text.toString()
-                clase.duracion = duracion?.text.toString()
-
-                resInsert = obj.insertarClase(this, tutoria, clase)
-            }
-            if (resInsert == 1)
-            {
-                Toast.makeText(this,"Transaccion exitosa", Toast.LENGTH_SHORT).show()
-                startActivity(intentInsert)
-            }else{
-                Toast.makeText(this,"Transaccion fallida", Toast.LENGTH_SHORT).show()
-            }*/
-
         }
 
         val formatofecha = SimpleDateFormat("dd/mm/yyyy")
@@ -242,6 +259,8 @@ class SolicitarClaseActivity : AppCompatActivity(), ISolicitarClaseVista {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         val intentEditarPerfil = Intent(this, EditarPerfilActivity::class.java)
         if (item.itemId == R.id.editar_perfil){
+            var email= getIntent().getStringExtra("email")
+            intentEditarPerfil.putExtra("email", "" + email);
             startActivity(intentEditarPerfil)
         }
         return true

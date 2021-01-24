@@ -70,7 +70,7 @@ class EditarClaseActivity : AppCompatActivity() {
 
                 var resUpdate = obj.actualizarClase(this, tutoria, clase)
                 if (resUpdate == 1) {
-                    val intentDetalleClase = Intent(this, PopupDetalleClassActivity::class.java)
+                    val intentDetalleClase = Intent(this, PopupDetalleClaseActivity::class.java)
                     Toast.makeText(this, "Transaccion exitosa", Toast.LENGTH_SHORT).show()
                     var idBusqueda = clase.id.toString()
                     intentDetalleClase.putExtra("id_clase", "" + idBusqueda);
@@ -105,7 +105,7 @@ class EditarClaseActivity : AppCompatActivity() {
 
         var btnCancelarEditarClase = findViewById<Button>(R.id.btn_cancelar_editar_clase)
         btnCancelarEditarClase.setOnClickListener{
-            val intentCancelar = Intent(this, PopupDetalleClassActivity::class.java)
+            val intentCancelar = Intent(this, PopupDetalleClaseActivity::class.java)
             var idBusqueda = clase.id.toString()
             intentCancelar.putExtra("id_clase", "" + idBusqueda);
             startActivity(intentCancelar)

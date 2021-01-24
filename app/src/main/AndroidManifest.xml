@@ -11,7 +11,7 @@
         android:theme="@style/Theme.AsesoriasAcademicas">
         <activity android:name=".EditarPerfilActivity"></activity>
         <activity android:name=".EditarClaseActivity" />
-        <activity android:name=".PopupDetalleClassActivity" />
+        <activity android:name=".PopupDetalleClaseActivity" />
         <activity android:name=".GestionarClaseActivity" />
         <activity android:name=".GestionarClaseActivity" />
         <activity android:name=".SolicitarClaseActivity" />

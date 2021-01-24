@@ -15,6 +15,8 @@ class MainActivity : AppCompatActivity() {
         var btnListarClase = findViewById<Button>(R.id.btn_listar_clase)
         btnListarClase.setOnClickListener{
             val intentClass = Intent(this, GestionarClaseActivity::class.java)
+            val email= getIntent().getStringExtra("email")
+            intentClass.putExtra("email", "" + email);
             startActivity(intentClass)
         }
     }
@@ -27,7 +29,7 @@ class MainActivity : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         val intentEditarPerfil = Intent(this, EditarPerfilActivity::class.java)
         if (item.itemId == R.id.editar_perfil){
-            var email= getIntent().getStringExtra("email")
+            val email= getIntent().getStringExtra("email")
             intentEditarPerfil.putExtra("email", "" + email);
             startActivity(intentEditarPerfil)
         }
