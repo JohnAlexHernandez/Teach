@@ -35,7 +35,7 @@ class RegistrarseActivity : AppCompatActivity(), IRegistrarseVista {
 
             val intentRegistry = Intent(this, MainActivity::class.java)
             iRegistraseControlador.onRegistry(this, stringNombre, stringEmail, stringPass, stringRepetPass)
-            val persona = Persona(stringNombre, stringEmail, "", "", stringPass)
+            val persona = Persona(stringNombre, stringEmail, stringPass)
             if(persona.registroValido(this, stringRepetPass) == -1) {
                 if (obj.insertarPersona(this, persona) == 1) {
                     intentRegistry.putExtra("email", "" + stringEmail)

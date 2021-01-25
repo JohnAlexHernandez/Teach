@@ -34,8 +34,8 @@ class EditarClaseActivity : AppCompatActivity() {
 
         var idClase= getIntent().getStringExtra("id_clase")
         var obj: Modelo = Modelo()
-        var clase: Clase = Clase(0, "", "", "", 0, "", "", "")
-        var tutoria: Tutoria = Tutoria(0, "", "", "")
+        var clase = Clase()
+        var tutoria = Tutoria()
 
         var materia: EditText? = findViewById<EditText>(R.id.txt_materia_editar_clase)
         var tema: EditText? = findViewById<EditText>(R.id.txt_tema_editar_clase)

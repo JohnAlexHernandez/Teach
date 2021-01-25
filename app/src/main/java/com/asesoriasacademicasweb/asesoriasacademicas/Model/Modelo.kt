@@ -74,7 +74,7 @@ class Modelo {
     }
 
     fun obtenerPersona(context: Context, email: String): Persona {
-        val persona: Persona = Persona("", "", "", "", "")
+        val persona = Persona()
         val email = email
         val sql = "SELECT nombre,email,telefono,direccion,password FROM PERSONA WHERE email = '$email';"
 
@@ -99,7 +99,7 @@ class Modelo {
     }
 
     fun buscarTutoria(context: Context, id_tutoria: Int): Tutoria {
-        val tutoria: Tutoria = Tutoria(0, "", "", "")
+        val tutoria = Tutoria()
         val id = id_tutoria
         val sql = "SELECT id_tutoria, materia, tema, inquietudes FROM TUTORIA WHERE id_tutoria = $id;"
 
@@ -123,7 +123,7 @@ class Modelo {
     }
 
     fun buscarClase(context: Context, id_clase: String): Clase {
-        val clase: Clase = Clase(0, "", "", "", 0, "", "", "")
+        val clase = Clase()
         val id = id_clase
         val sql = "SELECT id_clase,fecha,hora,duracion,id_tutoria FROM CLASE WHERE id_clase = $id;"
 
@@ -231,7 +231,7 @@ class Modelo {
             val fila: Cursor = db.rawQuery(sql, null)
             if(fila.moveToFirst()){
                 do{
-                    val clase: Clase = Clase(0, "","","", 0, "", "", "")
+                    val clase = Clase()
                     clase.id = fila.getInt(0)
                     clase.fecha = fila.getString(1)
                     clase.hora = fila.getString(2)

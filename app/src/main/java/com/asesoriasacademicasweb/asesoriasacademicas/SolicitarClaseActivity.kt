@@ -205,13 +205,11 @@ class SolicitarClaseActivity : AppCompatActivity(), ISolicitarClaseVista {
             val stringDuracion = duracion?.text.toString().trim()
 
             val intentInsert = Intent(this, GestionarClaseActivity::class.java)
-            iSolicitarClaseControlador.onNewClass(this, 0, stringFecha, stringHoraMinutos, stringDuracion, 0, stringMateria, stringTema, stringInquietudes)
+            iSolicitarClaseControlador.onNewClass(this, stringFecha, stringHoraMinutos, stringDuracion, stringMateria, stringTema, stringInquietudes)
             val clase = Clase(
-                    0,
                     stringFecha,
                     stringHoraMinutos,
                     stringDuracion,
-                    0,
                     stringMateria,
                     stringTema,
                     stringInquietudes

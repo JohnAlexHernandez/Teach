@@ -18,7 +18,7 @@ class PopupDetalleClaseActivity : AppCompatActivity() {
 
         val idClase= getIntent().getStringExtra("id_clase")
         val obj = Modelo()
-        var clase: Clase? = null
+        var clase = Clase()
         val materia: TextView? = findViewById<TextView>(R.id.txv_materia_detalle_clase)
         val tema: TextView? = findViewById<TextView>(R.id.txv_tema_detalle_clase)
         val inquietudes: TextView? = findViewById<TextView>(R.id.txv_inquietudes_detalle_clase)

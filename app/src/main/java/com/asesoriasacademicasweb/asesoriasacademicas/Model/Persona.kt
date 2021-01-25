@@ -39,9 +39,23 @@ class Persona(_nombre: String = "", _email: String = "", _telefono: String = "",
         this.contrasenia = _contrasenia
     }
 
-    constructor(_email: String, _constrasenia: String): this("", _email, "", "", _constrasenia){
+    constructor(_email: String, _contrasenia: String): this("", _email, "", "", _contrasenia){
         this.email = _email
-        this.contrasenia = contrasenia
+        this.contrasenia = _contrasenia
+    }
+
+    constructor(_nombre: String, _email: String, _contrasenia: String): this(_nombre, _email, "", "", _contrasenia){
+        this.nombre = _nombre
+        this.email = _email
+        this.contrasenia = _contrasenia
+    }
+
+    constructor(): this("", "", "", "", ""){
+        this.nombre = ""
+        this.email = ""
+        this.direccion = ""
+        this.telefono = ""
+        this.contrasenia = ""
     }
 
     override fun esValido(context: Context): Int {

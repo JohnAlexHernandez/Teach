@@ -2,32 +2,53 @@ package com.asesoriasacademicasweb.asesoriasacademicas.Model
 
 import android.content.Context
 
-class Clase(id: Int, fecha: String, hora: String, duracion: String, idClase: Int, materia: String, tema: String, inquietudes: String) : IClase {
-    override var id: Int = id
+class Clase(_id: Int = 0, _fecha: String = "", _hora: String = "", _duracion: String = "", _idClase: Int = 0, _materia: String, _tema: String = "", _inquietudes: String = "") : IClase {
+    override var id: Int = _id
         get() = field
         set(value) {
             field = value
         }
-    override var fecha: String = fecha
+    override var fecha: String = _fecha
         get() = field
         set(value) {
             field = value
         }
-    override var hora: String = hora
+    override var hora: String = _hora
         get() = field
         set(value) {
             field = hora
         }
-    override var duracion: String = duracion
+    override var duracion: String = _duracion
         get() = field
         set(value) {
             field = value
         }
-    override var tutoria: Tutoria = Tutoria(idClase, materia, tema, inquietudes)
+    override var tutoria: Tutoria = Tutoria(_idClase, _materia, _tema, _inquietudes)
         get() = field
         set(value) {
             field = value
         }
+
+    init {
+        this.fecha = _fecha
+        this.hora = _hora
+        this.duracion = _duracion
+        this.tutoria = Tutoria(0, _materia, _tema, _inquietudes)
+    }
+
+    constructor(_fecha: String, _hora: String, _duracion: String, _materia: String, _tema: String, _inquietudes: String): this(0, _fecha, _hora, _duracion, 0,_materia, _tema, _inquietudes){
+        this.fecha = _fecha
+        this.hora = _hora
+        this.duracion = _duracion
+        this.tutoria = Tutoria(0, _materia, _tema, _inquietudes)
+    }
+
+    constructor(): this(0, "","","", 0, "", "", ""){
+        this.fecha = ""
+        this.hora = ""
+        this.duracion = "_duracion"
+        this.tutoria = Tutoria(0, "_materia", "_tema", "_inquietudes")
+    }
 
     override fun toString(): String{
         return tutoria.materia + "\n" + tutoria.tema
