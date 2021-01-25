@@ -20,7 +20,7 @@ class EditarPerfilActivity : AppCompatActivity(), IEditarPerfilVista {
         setContentView(R.layout.activity_editar_perfil)
 
         val obj = Modelo()
-        var persona: Persona
+        var persona = Persona()
         val emailBuscado= getIntent().getStringExtra("email")
         persona = obj.obtenerPersona(this, "" + emailBuscado)
 
@@ -41,7 +41,7 @@ class EditarPerfilActivity : AppCompatActivity(), IEditarPerfilVista {
         val btnCancelarEditarPerfil = findViewById<Button>(R.id.btn_cancelar_editar_perfil)
         btnCancelarEditarPerfil.setOnClickListener{
             val intentMain = Intent(this, MainActivity::class.java)
-            intentMain.putExtra("email", "" + emailBuscado);
+            intentMain.putExtra("email", emailBuscado);
             startActivity(intentMain)
         }
 
@@ -66,7 +66,7 @@ class EditarPerfilActivity : AppCompatActivity(), IEditarPerfilVista {
             val persona = Persona(stringNombre, stringEmail, stringTelefono, stringDireccion, stringPass)
             if(persona.editarPerfil(this, stringRepetPass) == -1) {
                 if (obj.actualizarPersona(this, persona) == 1) {
-                    intentEditProfile.putExtra("email", "" + stringEmail)
+                    intentEditProfile.putExtra("email", stringEmail)
                     startActivity(intentEditProfile)
                 }
             }

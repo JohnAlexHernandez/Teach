@@ -33,7 +33,7 @@ class EditarClaseActivity : AppCompatActivity() {
         setContentView(R.layout.activity_editar_clase)
 
         var idClase= getIntent().getStringExtra("id_clase")
-        var obj: Modelo = Modelo()
+        var obj = Modelo()
         var clase = Clase()
         var tutoria = Tutoria()
 
@@ -44,7 +44,7 @@ class EditarClaseActivity : AppCompatActivity() {
         var tiempo: EditText? = findViewById<EditText>(R.id.txt_hora_editar_clase)
         var duracion: EditText? = findViewById<EditText>(R.id.txt_duracion_editar_clase)
 
-        clase = obj.buscarClase(this, "" + idClase)
+        clase = obj.buscarClase(this, idClase.toString())
         materia?.setText(clase.tutoria.materia)
         tema?.setText(clase.tutoria.tema)
         inquietudes?.setText(clase.tutoria.inquietudes)
@@ -76,7 +76,7 @@ class EditarClaseActivity : AppCompatActivity() {
                     val intentDetalleClase = Intent(this, PopupDetalleClaseActivity::class.java)
                     Toast.makeText(this, "Transaccion exitosa", Toast.LENGTH_SHORT).show()
                     var idBusqueda = clase.id.toString()
-                    intentDetalleClase.putExtra("id_clase", "" + idBusqueda);
+                    intentDetalleClase.putExtra("id_clase", idBusqueda);
                     startActivity(intentDetalleClase)
                 } else {
                     Toast.makeText(this, "Transaccion fallida", Toast.LENGTH_SHORT).show()
@@ -110,7 +110,7 @@ class EditarClaseActivity : AppCompatActivity() {
         btnCancelarEditarClase.setOnClickListener{
             val intentCancelar = Intent(this, PopupDetalleClaseActivity::class.java)
             var idBusqueda = clase.id.toString()
-            intentCancelar.putExtra("id_clase", "" + idBusqueda);
+            intentCancelar.putExtra("id_clase", idBusqueda);
             startActivity(intentCancelar)
         }
     }

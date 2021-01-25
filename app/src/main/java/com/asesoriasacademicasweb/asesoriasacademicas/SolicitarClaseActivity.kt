@@ -216,7 +216,7 @@ class SolicitarClaseActivity : AppCompatActivity(), ISolicitarClaseVista {
             )
             if(clase.esValido(this) == -1) {
                 if (obj.insertarClase(this, clase) == 1) {
-                    intentInsert.putExtra("email", "" + stringEmail)
+                    intentInsert.putExtra("email", stringEmail)
                     startActivity(intentInsert)
                 }
             }
@@ -260,7 +260,7 @@ class SolicitarClaseActivity : AppCompatActivity(), ISolicitarClaseVista {
         val intentEditarPerfil = Intent(this, EditarPerfilActivity::class.java)
         if (item.itemId == R.id.editar_perfil){
             var email= getIntent().getStringExtra("email")
-            intentEditarPerfil.putExtra("email", "" + email);
+            intentEditarPerfil.putExtra("email", email);
             startActivity(intentEditarPerfil)
         }
         return true

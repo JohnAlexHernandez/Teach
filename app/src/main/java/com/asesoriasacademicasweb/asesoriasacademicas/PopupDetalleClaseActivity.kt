@@ -44,7 +44,7 @@ class PopupDetalleClaseActivity : AppCompatActivity() {
             if (obj.eliminarClase(this, idBusqueda) == 1) {
                 Toast.makeText(this,"La clase ha sido eliminada correctamente", Toast.LENGTH_SHORT).show()
                 val email= getIntent().getStringExtra("email")
-                intentEliminarClase.putExtra("email", "" + email);
+                intentEliminarClase.putExtra("email", email);
                 startActivity(intentEliminarClase)
             }else{
                 Toast.makeText(this,"Error al elimniar la clase", Toast.LENGTH_SHORT).show()
@@ -56,9 +56,9 @@ class PopupDetalleClaseActivity : AppCompatActivity() {
             val intentEditarClase = Intent(this, EditarClaseActivity::class.java)
 
             val idBusqueda = clase.id.toString()
-            intentEditarClase.putExtra("id_clase", "" + idBusqueda)
+            intentEditarClase.putExtra("id_clase", idBusqueda)
             val email= getIntent().getStringExtra("email")
-            intentEditarClase.putExtra("email", "" + email);
+            intentEditarClase.putExtra("email", email);
             startActivity(intentEditarClase)
         }
 
@@ -66,7 +66,7 @@ class PopupDetalleClaseActivity : AppCompatActivity() {
         btnListadoClases.setOnClickListener {
             val intentListadoClases = Intent(this, GestionarClaseActivity::class.java)
             val email= getIntent().getStringExtra("email")
-            intentListadoClases.putExtra("email", "" + email);
+            intentListadoClases.putExtra("email", email);
             startActivity(intentListadoClases)
         }
     }
@@ -80,7 +80,7 @@ class PopupDetalleClaseActivity : AppCompatActivity() {
         val intentEditarPerfil = Intent(this, EditarPerfilActivity::class.java)
         if (item.itemId == R.id.editar_perfil){
             var email= getIntent().getStringExtra("email")
-            intentEditarPerfil.putExtra("email", "" + email);
+            intentEditarPerfil.putExtra("email", email);
             startActivity(intentEditarPerfil)
         }
         return true

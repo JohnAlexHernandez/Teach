@@ -27,9 +27,9 @@ class GestionarClaseActivity : AppCompatActivity(), IGestionarClaseVista {
 
         listView?.setOnItemClickListener(OnItemClickListener { parent, view, position, id ->
             val intentPopupDetalleClass = Intent(this, PopupDetalleClaseActivity::class.java)
-            intentPopupDetalleClass.putExtra("id_clase", "" + clases[position].id);
+            intentPopupDetalleClass.putExtra("id_clase", clases[position].id.toString());
             val email= getIntent().getStringExtra("email")
-            intentPopupDetalleClass.putExtra("email", "" + email);
+            intentPopupDetalleClass.putExtra("email", email);
             startActivity(intentPopupDetalleClass)
         })
 
@@ -37,7 +37,7 @@ class GestionarClaseActivity : AppCompatActivity(), IGestionarClaseVista {
         btnAgregarClase.setOnClickListener{
             val intentClass = Intent(this, SolicitarClaseActivity::class.java)
             val email= getIntent().getStringExtra("email")
-            intentClass.putExtra("email", "" + email);
+            intentClass.putExtra("email", email);
             startActivity(intentClass)
         }
     }
@@ -51,7 +51,7 @@ class GestionarClaseActivity : AppCompatActivity(), IGestionarClaseVista {
         val intentEditarPerfil = Intent(this, EditarPerfilActivity::class.java)
         if (item.itemId == R.id.editar_perfil){
             val email= getIntent().getStringExtra("email")
-            intentEditarPerfil.putExtra("email", "" + email);
+            intentEditarPerfil.putExtra("email", email);
             startActivity(intentEditarPerfil)
         }
         return true
