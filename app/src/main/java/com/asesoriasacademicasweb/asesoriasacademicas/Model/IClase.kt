@@ -7,6 +7,6 @@ interface IClase {
     var fecha: String
     var hora: String
     var duracion: String
-    var tutoria: com.asesoriasacademicasweb.asesoriasacademicas.Model.Tutoria
+    var tutoria: Tutoria
     fun esValido(context: Context): Int
 }
