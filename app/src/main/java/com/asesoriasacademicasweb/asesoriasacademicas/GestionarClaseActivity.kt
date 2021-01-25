@@ -8,7 +8,8 @@ import android.widget.*
 import android.widget.AdapterView.OnItemClickListener
 import androidx.appcompat.app.AppCompatActivity
 import com.asesoriasacademicasweb.asesoriasacademicas.Controlador.GestionarClaseControlador
-import com.asesoriasacademicasweb.asesoriasacademicas.Controlador.SolicitarClaseControlador
+import com.asesoriasacademicasweb.asesoriasacademicas.Model.Clase
+import com.asesoriasacademicasweb.asesoriasacademicas.Model.Modelo
 import com.asesoriasacademicasweb.asesoriasacademicas.Vista.IGestionarClaseVista
 
 

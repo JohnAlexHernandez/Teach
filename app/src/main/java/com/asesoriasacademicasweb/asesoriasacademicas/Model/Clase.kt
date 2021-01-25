@@ -1,11 +1,13 @@
 package com.asesoriasacademicasweb.asesoriasacademicas.Model
 
 import android.content.Context
-import com.asesoriasacademicasweb.asesoriasacademicas.Modelo
-import com.asesoriasacademicasweb.asesoriasacademicas.Model.Tutoria
-import java.util.regex.Pattern
 
-class Clase(fecha: String, hora: String, duracion: String, materia: String, tema: String, inquietudes: String) : IClase {
+class Clase(id: Int, fecha: String, hora: String, duracion: String, idClase: Int, materia: String, tema: String, inquietudes: String) : IClase {
+    override var id: Int = id
+        get() = field
+        set(value) {
+            field = value
+        }
     override var fecha: String = fecha
         get() = field
         set(value) {
@@ -21,11 +23,15 @@ class Clase(fecha: String, hora: String, duracion: String, materia: String, tema
         set(value) {
             field = value
         }
-    override var tutoria: Tutoria = Tutoria(materia, tema, inquietudes)
+    override var tutoria: Tutoria = Tutoria(idClase, materia, tema, inquietudes)
         get() = field
         set(value) {
             field = value
         }
+
+    override fun toString(): String{
+        return tutoria.materia + "\n" + tutoria.tema
+    }
 
     override fun esValido(context: Context): Int {
         return if (tutoria.esValido() != -1){

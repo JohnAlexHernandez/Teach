@@ -1,9 +1,9 @@
-package com.asesoriasacademicasweb.asesoriasacademicas
+package com.asesoriasacademicasweb.asesoriasacademicas.Model
 
 import android.content.Context
 import android.database.Cursor
 import android.database.sqlite.SQLiteDatabase
-import com.asesoriasacademicasweb.asesoriasacademicas.Model.Persona
+import com.asesoriasacademicasweb.asesoriasacademicas.ConexionSQLite
 import java.lang.Exception
 
 class Modelo {
@@ -98,8 +98,8 @@ class Modelo {
         return persona
     }
 
-    fun buscarTutoria(context: Context, id_tutoria: Int): Tutoria{
-        val tutoria: Tutoria = Tutoria()
+    fun buscarTutoria(context: Context, id_tutoria: Int): Tutoria {
+        val tutoria: Tutoria = Tutoria(0, "", "", "")
         val id = id_tutoria
         val sql = "SELECT id_tutoria, materia, tema, inquietudes FROM TUTORIA WHERE id_tutoria = $id;"
 
@@ -122,8 +122,8 @@ class Modelo {
         return tutoria
     }
 
-    fun buscarClase(context: Context, id_clase: String): Clase{
-        val clase: Clase = Clase()
+    fun buscarClase(context: Context, id_clase: String): Clase {
+        val clase: Clase = Clase(0, "", "", "", 0, "", "", "")
         val id = id_clase
         val sql = "SELECT id_clase,fecha,hora,duracion,id_tutoria FROM CLASE WHERE id_clase = $id;"
 
@@ -136,7 +136,7 @@ class Modelo {
                 clase.fecha = fila.getString(1)
                 clase.hora = fila.getString(2)
                 clase.duracion = fila.getString(3)
-                clase.tutoria = buscarTutoria(context, fila.getInt(4))
+                clase.tutoria = buscarTutoria(context, fila.getInt(0))
             }else{
                 System.out.println("La clase no existe ")
             }
@@ -198,7 +198,7 @@ class Modelo {
         return bandera
     }
 
-    fun insertarClase(context: Context, clase: com.asesoriasacademicasweb.asesoriasacademicas.Model.Clase): Int {
+    fun insertarClase(context: Context, clase: Clase): Int {
         var res = 0
         val materia = clase.tutoria.materia
         val tema = clase.tutoria.tema
@@ -224,13 +224,14 @@ class Modelo {
     fun listarClases(context: Context): ArrayList<Clase>{
         val listaClases: ArrayList<Clase> = ArrayList<Clase>()
         val sql = "SELECT id_clase,fecha,hora,duracion,id_tutoria FROM CLASE;"
+        println(sql)
 
         val db: SQLiteDatabase = this.getConn(context)
         try {
             val fila: Cursor = db.rawQuery(sql, null)
             if(fila.moveToFirst()){
                 do{
-                    val clase = Clase()
+                    val clase: Clase = Clase(0, "","","", 0, "", "", "")
                     clase.id = fila.getInt(0)
                     clase.fecha = fila.getString(1)
                     clase.hora = fila.getString(2)

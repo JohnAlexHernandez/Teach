@@ -1,6 +1,11 @@
 package com.asesoriasacademicasweb.asesoriasacademicas.Model
 
-class Tutoria(materia: String, tema: String, inquietudes: String) : ITutoria {
+class Tutoria(id: Int, materia: String, tema: String, inquietudes: String) : ITutoria {
+    override var id: Int = id
+        get() = field
+        set(value) {
+            field = value
+        }
     override var materia: String = materia
         get() = field
         set(value) {

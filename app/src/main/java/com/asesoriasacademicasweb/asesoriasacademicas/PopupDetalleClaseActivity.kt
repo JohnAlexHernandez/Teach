@@ -8,6 +8,8 @@ import android.view.MenuItem
 import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
+import com.asesoriasacademicasweb.asesoriasacademicas.Model.Clase
+import com.asesoriasacademicasweb.asesoriasacademicas.Model.Modelo
 
 class PopupDetalleClaseActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -16,7 +18,7 @@ class PopupDetalleClaseActivity : AppCompatActivity() {
 
         val idClase= getIntent().getStringExtra("id_clase")
         val obj = Modelo()
-        var clase = Clase()
+        var clase: Clase? = null
         val materia: TextView? = findViewById<TextView>(R.id.txv_materia_detalle_clase)
         val tema: TextView? = findViewById<TextView>(R.id.txv_tema_detalle_clase)
         val inquietudes: TextView? = findViewById<TextView>(R.id.txv_inquietudes_detalle_clase)

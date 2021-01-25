@@ -1,7 +1,6 @@
 package com.asesoriasacademicasweb.asesoriasacademicas.Model
 
 import android.content.Context
-import com.asesoriasacademicasweb.asesoriasacademicas.Modelo
 import java.util.regex.Pattern
 
 class Persona(nombre: String, email: String, telefono: String, direccion: String, contrasenia: String) : IPersona{

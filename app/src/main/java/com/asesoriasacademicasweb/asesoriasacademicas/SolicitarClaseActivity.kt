@@ -1,6 +1,5 @@
 package com.asesoriasacademicasweb.asesoriasacademicas
 
-import android.annotation.SuppressLint
 import android.app.DatePickerDialog
 import android.app.TimePickerDialog
 import android.content.Intent
@@ -13,6 +12,7 @@ import android.widget.*
 import com.asesoriasacademicasweb.asesoriasacademicas.Controlador.SolicitarClaseControlador
 import com.asesoriasacademicasweb.asesoriasacademicas.Vista.ISolicitarClaseVista
 import com.asesoriasacademicasweb.asesoriasacademicas.Model.Clase
+import com.asesoriasacademicasweb.asesoriasacademicas.Model.Modelo
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -205,11 +205,13 @@ class SolicitarClaseActivity : AppCompatActivity(), ISolicitarClaseVista {
             val stringDuracion = duracion?.text.toString().trim()
 
             val intentInsert = Intent(this, GestionarClaseActivity::class.java)
-            iSolicitarClaseControlador.onNewClass(this, stringFecha, stringHoraMinutos, stringDuracion, stringMateria, stringTema, stringInquietudes)
+            iSolicitarClaseControlador.onNewClass(this, 0, stringFecha, stringHoraMinutos, stringDuracion, 0, stringMateria, stringTema, stringInquietudes)
             val clase = Clase(
+                    0,
                     stringFecha,
                     stringHoraMinutos,
                     stringDuracion,
+                    0,
                     stringMateria,
                     stringTema,
                     stringInquietudes

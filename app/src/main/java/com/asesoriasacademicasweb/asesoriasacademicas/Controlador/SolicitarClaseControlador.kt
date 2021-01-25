@@ -5,11 +5,13 @@ import com.asesoriasacademicasweb.asesoriasacademicas.Model.Clase
 import com.asesoriasacademicasweb.asesoriasacademicas.Vista.ISolicitarClaseVista
 
 class SolicitarClaseControlador(var iSolicitarClaseVista: ISolicitarClaseVista) : ISolicitarClaseControlador {
-    override fun onNewClass(context: Context, fecha: String, hora: String, duracion: String, materia: String, tema: String, inquietudes: String) {
+    override fun onNewClass(context: Context, id: Int, fecha: String, hora: String, duracion: String, idClase: Int, materia: String, tema: String, inquietudes: String) {
         val clase = Clase(
+                id,
                 fecha,
                 hora,
                 duracion,
+                idClase,
                 materia,
                 tema,
                 inquietudes
