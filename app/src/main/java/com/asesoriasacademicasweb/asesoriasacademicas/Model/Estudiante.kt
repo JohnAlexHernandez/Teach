@@ -3,50 +3,40 @@ package com.asesoriasacademicasweb.asesoriasacademicas.Model
 import android.content.Context
 import java.util.regex.Pattern
 
-class Persona(_nombre: String = "", _email: String = "", _telefono: String = "", _direccion: String = "", _contrasenia: String = "") : IPersona {
-
-    override var nombre: String = _nombre
+class Estudiante(idEstudiante: String, nombre: String, email: String, telefono: String, direccion: String, contrasenia: String): IEstudiante, IPersona {
+    override var id: String = idEstudiante
         get() = field
         set(value) {
             field = value
         }
-    override var email: String = _email
+    override var nombre: String = nombre
         get() = field
         set(value) {
             field = value
         }
-    override var telefono: String = _telefono
+    override var email: String = email
         get() = field
         set(value) {
             field = value
         }
-    override var direccion: String = _direccion
+    override var telefono: String = telefono
         get() = field
         set(value) {
             field = value
         }
-    override var contrasenia: String = _contrasenia
+    override var direccion: String = direccion
         get() = field
         set(value) {
             field = value
         }
-
-    init {
-        this.nombre = _nombre
-        this.email = _email
-        this.telefono = _telefono
-        this.direccion = _direccion
-        this.contrasenia = _contrasenia
-    }
-
-    constructor(_email: String, _constrasenia: String): this("", _email, "", "", _constrasenia){
-        this.email = _email
-        this.contrasenia = contrasenia
-    }
+    override var contrasenia: String = contrasenia
+        get() = field
+        set(value) {
+            field = value
+        }
 
     override fun esValido(context: Context): Int {
         val obj = Modelo()
-        println(email.trim())
         return if (email.trim().isEmpty()){
             0
         } else if (!Pattern.compile("^[_A-Za-z0-9-+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$").matcher(email.trim()).matches()){

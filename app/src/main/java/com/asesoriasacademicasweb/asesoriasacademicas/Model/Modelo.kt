@@ -74,7 +74,7 @@ class Modelo {
     }
 
     fun obtenerPersona(context: Context, email: String): Persona {
-        val persona: Persona = Persona("","","","","")
+        val persona: Persona = Persona("", "", "", "", "")
         val email = email
         val sql = "SELECT nombre,email,telefono,direccion,password FROM PERSONA WHERE email = '$email';"
 

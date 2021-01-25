@@ -8,11 +8,11 @@ class LoginControlador(var iLoginVista: ILoginVista) : ILoginControlador {
 
     override fun onLogin(context: Context, email: String, contrasenia: String) {
         val persona = Persona(
-            "",
-            email,
-            "password",
-            "",
-            contrasenia
+                "",
+                email,
+                "password",
+                "",
+                contrasenia
         )
 
         when (persona.esValido(context)) {
