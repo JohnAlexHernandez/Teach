@@ -13,7 +13,6 @@
         <activity android:name=".EditarClaseActivity" />
         <activity android:name=".PopupDetalleClaseActivity" />
         <activity android:name=".GestionarClaseActivity" />
-        <activity android:name=".GestionarClaseActivity" />
         <activity android:name=".SolicitarClaseActivity" />
         <activity android:name=".RegistrarseActivity" />
         <activity android:name=".MainActivity" />
