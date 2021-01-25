@@ -34,8 +34,8 @@ class EditarClaseActivity : AppCompatActivity() {
 
         var idClase= getIntent().getStringExtra("id_clase")
         var obj: Modelo = Modelo()
-        var clase: Clase? = null
-        var tutoria: Tutoria? = null
+        var clase: Clase = Clase(0, "", "", "", 0, "", "", "")
+        var tutoria: Tutoria = Tutoria(0, "", "", "")
 
         var materia: EditText? = findViewById<EditText>(R.id.txt_materia_editar_clase)
         var tema: EditText? = findViewById<EditText>(R.id.txt_tema_editar_clase)
@@ -64,14 +64,14 @@ class EditarClaseActivity : AppCompatActivity() {
                 horaMinutos?.setError("El campo hora no puede estar vacío")
             }else {
 
-                tutoria?.materia = materia?.text.toString()
-                tutoria?.tema = tema?.text.toString()
-                tutoria?.inquietudes = inquietudes?.text.toString()
+                tutoria.materia = materia?.text.toString()
+                tutoria.tema = tema?.text.toString()
+                tutoria.inquietudes = inquietudes?.text.toString()
                 clase.fecha = fecha?.text.toString()
                 clase.hora = horaMinutos?.text.toString()
                 clase.duracion = duracion?.text.toString()
 
-                var resUpdate = obj.actualizarClase(this, tutoria!!, clase)
+                var resUpdate = obj.actualizarClase(this, tutoria, clase)
                 if (resUpdate == 1) {
                     val intentDetalleClase = Intent(this, PopupDetalleClaseActivity::class.java)
                     Toast.makeText(this, "Transaccion exitosa", Toast.LENGTH_SHORT).show()
