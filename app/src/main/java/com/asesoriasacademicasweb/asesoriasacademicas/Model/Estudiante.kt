@@ -3,7 +3,7 @@ package com.asesoriasacademicasweb.asesoriasacademicas.Model
 import android.content.Context
 import java.util.regex.Pattern
 
-class Estudiante(_nombre: String = "", _email: String = "", _telefono: String = "", _direccion: String = "", _contrasenia: String= "", _tipoPersona: String = "Estudiante", _clases : ArrayList<Clase>): IEstudiante, IPersona {
+class Estudiante(_id: Int = 0, _nombre: String = "", _email: String = "", _telefono: String = "", _direccion: String = "", _contrasenia: String= "", _tipoPersona: String = "Estudiante", _clases : ArrayList<Clase>): IEstudiante, IPersona {
     override var nombre: String = _nombre
         get() = field
         set(value) {
@@ -34,7 +34,11 @@ class Estudiante(_nombre: String = "", _email: String = "", _telefono: String = 
         set(value) {
             field = value
         }
-
+    override var id: Int = _id
+        get() = field
+        set(value) {
+            field = value
+        }
     override var clases: ArrayList<Clase> = arrayListOf()
         get() = field
         set(value) {
@@ -42,6 +46,7 @@ class Estudiante(_nombre: String = "", _email: String = "", _telefono: String = 
         }
 
     init {
+        this.id = _id
         this.nombre = _nombre
         this.email = _email
         this.telefono = _telefono
@@ -51,15 +56,26 @@ class Estudiante(_nombre: String = "", _email: String = "", _telefono: String = 
         this.clases = _clases
     }
 
-    constructor(_email: String, _contrasenia: String): this("", _email, "", "", _contrasenia, "Estudiante", ArrayList()){
+    constructor(_email: String, _contrasenia: String): this(0, "", _email, "", "", _contrasenia, "Estudiante", ArrayList()){
         this.email = _email
         this.contrasenia = _contrasenia
     }
 
-    constructor(_nombre: String, _email: String, _contrasenia: String): this(_nombre, _email, "", "", _contrasenia,"Estudiante", ArrayList()){
+    constructor(_nombre: String, _email: String, _contrasenia: String): this(0, _nombre, _email, "", "", _contrasenia,"Estudiante", ArrayList()){
         this.nombre = _nombre
         this.email = _email
         this.contrasenia = _contrasenia
+    }
+
+    constructor(): this(0, "", "", "", "", "", "", ArrayList()){
+        this.id = 0
+        this.nombre = ""
+        this.email = ""
+        this.direccion = ""
+        this.telefono = ""
+        this.contrasenia = ""
+        this.tipoPersona = ""
+        this.clases = ArrayList()
     }
 
     override fun esValido(context: Context): Int {

@@ -12,6 +12,7 @@ import android.widget.*
 import com.asesoriasacademicasweb.asesoriasacademicas.Controlador.SolicitarClaseControlador
 import com.asesoriasacademicasweb.asesoriasacademicas.Vista.ISolicitarClaseVista
 import com.asesoriasacademicasweb.asesoriasacademicas.Model.Clase
+import com.asesoriasacademicasweb.asesoriasacademicas.Model.Estudiante
 import com.asesoriasacademicasweb.asesoriasacademicas.Model.Modelo
 import java.text.SimpleDateFormat
 import java.util.*
@@ -191,6 +192,7 @@ class SolicitarClaseActivity : AppCompatActivity(), ISolicitarClaseVista {
         btnGuardar.setOnClickListener{
 
             val obj = Modelo()
+            var estudiante = Estudiante()
             val stringEmail= getIntent().getStringExtra("email")
             val inquietudes: EditText? = findViewById(R.id.txt_inquietudes__solicitar_clase)
             fecha = findViewById(R.id.txt_fecha_solicitar_clase)
@@ -205,14 +207,18 @@ class SolicitarClaseActivity : AppCompatActivity(), ISolicitarClaseVista {
             val stringDuracion = duracion?.text.toString().trim()
 
             val intentInsert = Intent(this, GestionarClaseActivity::class.java)
-            iSolicitarClaseControlador.onNewClass(this, stringFecha, stringHoraMinutos, stringDuracion, stringMateria, stringTema, stringInquietudes)
+            estudiante = obj.obtenerEstudiante(this,stringEmail.toString())
+            iSolicitarClaseControlador.onNewClass(this, stringFecha, stringHoraMinutos, stringDuracion, stringMateria, stringTema, stringInquietudes, estudiante.id)
             val clase = Clase(
+                    0,
                     stringFecha,
                     stringHoraMinutos,
                     stringDuracion,
+                    0,
                     stringMateria,
                     stringTema,
-                    stringInquietudes
+                    stringInquietudes,
+                    estudiante.id
             )
             if(clase.esValido(this) == -1) {
                 if (obj.insertarClase(this, clase) == 1) {

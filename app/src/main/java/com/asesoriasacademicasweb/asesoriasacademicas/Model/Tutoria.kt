@@ -1,5 +1,7 @@
 package com.asesoriasacademicasweb.asesoriasacademicas.Model
 
+import android.content.Context
+
 class Tutoria(_id: Int, _materia: String, _tema: String, _inquietudes: String) : ITutoria {
     override var id: Int = _id
         get() = field
@@ -29,7 +31,7 @@ class Tutoria(_id: Int, _materia: String, _tema: String, _inquietudes: String) :
         this.inquietudes = ""
     }
 
-    override fun esValido(): Int {
+    override fun esValido(context: Context): Int {
         return if (materia.trim().isEmpty()){
             4
         } else if (tema.trim().isEmpty()){

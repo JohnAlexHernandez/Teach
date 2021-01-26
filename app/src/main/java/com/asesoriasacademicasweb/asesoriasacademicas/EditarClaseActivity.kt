@@ -45,9 +45,9 @@ class EditarClaseActivity : AppCompatActivity() {
         var duracion: EditText? = findViewById<EditText>(R.id.txt_duracion_editar_clase)
 
         clase = obj.buscarClase(this, idClase.toString())
-        materia?.setText(clase.tutoria.materia)
-        tema?.setText(clase.tutoria.tema)
-        inquietudes?.setText(clase.tutoria.inquietudes)
+        materia?.setText(clase.materia)
+        tema?.setText(clase.tema)
+        inquietudes?.setText(clase.inquietudes)
         fecha?.setText(clase.fecha)
         tiempo?.setText(clase.hora)
         duracion?.setText(clase.duracion)
@@ -123,6 +123,8 @@ class EditarClaseActivity : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         val intentEditarPerfil = Intent(this, EditarPerfilActivity::class.java)
         if (item.itemId == R.id.editar_perfil){
+            val email= getIntent().getStringExtra("email")
+            intentEditarPerfil.putExtra("email", email);
             startActivity(intentEditarPerfil)
         }
         return true

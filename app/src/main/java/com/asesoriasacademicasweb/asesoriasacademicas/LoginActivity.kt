@@ -32,7 +32,7 @@ class LoginActivity : AppCompatActivity(), ILoginVista{
             val stringEmail = email?.text.toString().trim()
             val stringPass = password?.text.toString().trim()
 
-            val intentLogin = Intent(this, MainActivity::class.java)
+            val intentLogin = Intent(this, GestionarClaseActivity::class.java)
             iLoginControlador.onLogin(this, stringEmail, stringPass)
             val estudiante = Estudiante(stringEmail, stringPass)
             if(estudiante.esValido(this) == -1) {

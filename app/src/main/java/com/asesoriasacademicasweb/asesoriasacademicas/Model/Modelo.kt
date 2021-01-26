@@ -100,6 +100,32 @@ class Modelo {
         return persona
     }
 
+    fun obtenerEstudiante(context: Context, email: String): Estudiante {
+        val estudiante = Estudiante()
+        val email = email
+        val sql = "SELECT id_estudiante,nombre,email,telefono,direccion,password FROM PERSONA INNER JOIN ESTUDIANTE WHERE PERSONA.id_persona = ESTUDIANTE.id_persona AND email = '$email';"
+
+        val db: SQLiteDatabase = this.getConn(context)
+        try {
+            var fila: Cursor = db.rawQuery(sql, null)
+            if(fila.moveToFirst()){
+                estudiante.id = fila.getInt(0)
+                estudiante.nombre = fila.getString(1)
+                estudiante.email = fila.getString(2)
+                estudiante.telefono = fila.getString(3)
+                estudiante.direccion = fila.getString(4)
+                estudiante.contrasenia = fila.getString(5)
+            }else{
+                System.out.println("La persona no existe ")
+            }
+        }catch (e: Exception)
+        {
+            db.close()
+            return estudiante
+        }
+        return estudiante
+    }
+
     fun buscarTutoria(context: Context, id_tutoria: Int): Tutoria {
         val tutoria = Tutoria()
         val id = id_tutoria
@@ -127,9 +153,8 @@ class Modelo {
     fun buscarClase(context: Context, id_clase: String): Clase {
         val clase = Clase()
         val id = id_clase
-        val sql = "SELECT id_clase,fecha,hora,duracion,id_tutoria FROM CLASE WHERE id_clase = $id;"
+        val sql = "SELECT id_clase,fecha,hora,duracion,materia,tema,inquietudes FROM CLASE INNER JOIN TUTORIA WHERE TUTORIA.id_tutoria = CLASE.id_tutoria AND id_clase = $id;"
 
-        System.out.println(sql)
         val db: SQLiteDatabase = this.getConn(context)
         try {
             val fila: Cursor = db.rawQuery(sql, null)
@@ -138,7 +163,9 @@ class Modelo {
                 clase.fecha = fila.getString(1)
                 clase.hora = fila.getString(2)
                 clase.duracion = fila.getString(3)
-                clase.tutoria = buscarTutoria(context, fila.getInt(0))
+                clase.materia = fila.getString(4)
+                clase.tema = fila.getString(5)
+                clase.inquietudes = fila.getString(6)
             }else{
                 System.out.println("La clase no existe ")
             }
@@ -156,7 +183,7 @@ class Modelo {
         val fecha = clase.fecha
         val hora = clase.hora
         val duracion = clase.duracion
-        val id_tutoria = clase.tutoria.id
+        val id_tutoria = clase.id
         val materia = tutoria.materia
         val tema = tutoria.tema
         val inquietudes = tutoria.inquietudes
@@ -202,14 +229,15 @@ class Modelo {
 
     fun insertarClase(context: Context, clase: Clase): Int {
         var res = 0
-        val materia = clase.tutoria.materia
-        val tema = clase.tutoria.tema
-        val inquietudes = clase.tutoria.inquietudes
+        val materia = clase.materia
+        val tema = clase.tema
+        val inquietudes = clase.inquietudes
         val fecha = clase.fecha
         val hora = clase.hora
         val duracion = clase.duracion
+        val idEstudiante = clase.idEstudiante
         val sqlTutoria = "INSERT INTO TUTORIA (materia, tema, inquietudes) VALUES ('$materia', '$tema', '$inquietudes');"
-        val sqlClase = "INSERT INTO CLASE (fecha, hora, duracion, id_tutoria) VALUES ('$fecha', '$hora', '$duracion', (SELECT MAX(id_tutoria) FROM TUTORIA));"
+        val sqlClase = "INSERT INTO CLASE (fecha, hora, duracion, id_tutoria, id_estudiante) VALUES ('$fecha', '$hora', '$duracion', (SELECT MAX(id_tutoria) FROM TUTORIA), $idEstudiante);"
 
         val db: SQLiteDatabase = this.getConn(context)
         try {
@@ -223,10 +251,9 @@ class Modelo {
         return res
     }
 
-    fun listarClases(context: Context): ArrayList<Clase>{
+    fun listarClases(context: Context, idEstudiante: String): ArrayList<Clase>{
         val listaClases: ArrayList<Clase> = ArrayList<Clase>()
-        val sql = "SELECT id_clase,fecha,hora,duracion,id_tutoria FROM CLASE;"
-        println(sql)
+        val sql = "SELECT id_clase,fecha,hora,duracion,materia,tema,inquietudes FROM CLASE INNER JOIN TUTORIA WHERE TUTORIA.id_tutoria = CLASE.id_tutoria AND id_Estudiante = $idEstudiante;"
 
         val db: SQLiteDatabase = this.getConn(context)
         try {
@@ -238,7 +265,9 @@ class Modelo {
                     clase.fecha = fila.getString(1)
                     clase.hora = fila.getString(2)
                     clase.duracion = fila.getString(3)
-                    clase.tutoria = buscarTutoria(context, fila.getInt(4))
+                    clase.materia = fila.getString(4)
+                    clase.tema = fila.getString(5)
+                    clase.inquietudes = fila.getString(6)
                     listaClases.add(clase)
                 }while (fila.moveToNext())
             }
@@ -253,6 +282,7 @@ class Modelo {
         var bandera = 0
         val sql = "DELETE FROM CLASE WHERE id_clase = $id"
         val db: SQLiteDatabase = this.getConn(context)
+
         try {
             db.execSQL(sql)
             bandera = 1

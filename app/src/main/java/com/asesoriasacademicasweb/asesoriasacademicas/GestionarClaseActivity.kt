@@ -9,6 +9,7 @@ import android.widget.AdapterView.OnItemClickListener
 import androidx.appcompat.app.AppCompatActivity
 import com.asesoriasacademicasweb.asesoriasacademicas.Controlador.GestionarClaseControlador
 import com.asesoriasacademicasweb.asesoriasacademicas.Model.Clase
+import com.asesoriasacademicasweb.asesoriasacademicas.Model.Estudiante
 import com.asesoriasacademicasweb.asesoriasacademicas.Model.Modelo
 import com.asesoriasacademicasweb.asesoriasacademicas.Vista.IGestionarClaseVista
 
@@ -20,7 +21,10 @@ class GestionarClaseActivity : AppCompatActivity(), IGestionarClaseVista {
 
         val iGestionarClaseControlador = GestionarClaseControlador(this)
         val obj = Modelo()
-        val clases: ArrayList<Clase> = obj.listarClases(this)
+        var estudiante = Estudiante()
+        val stringEmail= getIntent().getStringExtra("email")
+        estudiante = obj.obtenerEstudiante(this,stringEmail.toString())
+        val clases: ArrayList<Clase> = obj.listarClases(this, estudiante.id.toString())
         val listView: ListView? = findViewById(R.id.listView_class)
         val adaptador: ArrayAdapter<Clase> = ArrayAdapter<Clase>(this, R.layout.activity_listview, R.id.label, clases)
         listView?.setAdapter(adaptador)
