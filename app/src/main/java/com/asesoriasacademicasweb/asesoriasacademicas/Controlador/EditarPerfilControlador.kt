@@ -1,6 +1,7 @@
 package com.asesoriasacademicasweb.asesoriasacademicas.Controlador
 
 import android.content.Context
+import com.asesoriasacademicasweb.asesoriasacademicas.Model.Estudiante
 import com.asesoriasacademicasweb.asesoriasacademicas.Model.Persona
 import com.asesoriasacademicasweb.asesoriasacademicas.Vista.IEditarPerfilVista
 
@@ -11,7 +12,8 @@ class EditarPerfilControlador(val iEditarPerfilVista: IEditarPerfilVista) : IEdi
                 email,
                 telefono,
                 direccion,
-                contrasenia
+                contrasenia,
+                "Estudiante"
         )
 
         when (persona.editarPerfil(context, repetContrasenia)) {

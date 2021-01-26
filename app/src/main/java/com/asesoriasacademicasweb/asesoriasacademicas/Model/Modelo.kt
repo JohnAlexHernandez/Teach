@@ -18,11 +18,13 @@ class Modelo {
         val nombre = persona.nombre
         val email = persona.email
         val password = persona.contrasenia
-        val sql = "INSERT INTO PERSONA (nombre, email, telefono, direccion, password) VALUES ('$nombre', '$email', '', '', '$password');"
+        val sqlPersona = "INSERT INTO PERSONA (nombre, email, telefono, direccion, password) VALUES ('$nombre', '$email', '', '', '$password');"
+        val sqlEstudiante = "INSERT INTO ESTUDIANTE (id_persona) SELECT MAX(id_persona) FROM PERSONA;"
 
         val db: SQLiteDatabase = this.getConn(context)
         try {
-            db.execSQL(sql)
+            db.execSQL(sqlPersona)
+            db.execSQL(sqlEstudiante)
             bandera = 1
         } catch (e: Exception) {
             db.close()

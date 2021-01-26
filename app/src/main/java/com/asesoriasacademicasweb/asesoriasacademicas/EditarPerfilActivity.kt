@@ -7,6 +7,7 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
 import com.asesoriasacademicasweb.asesoriasacademicas.Controlador.EditarPerfilControlador
+import com.asesoriasacademicasweb.asesoriasacademicas.Model.Estudiante
 import com.asesoriasacademicasweb.asesoriasacademicas.Model.Modelo
 import com.asesoriasacademicasweb.asesoriasacademicas.Model.Persona
 import com.asesoriasacademicasweb.asesoriasacademicas.Vista.IEditarPerfilVista
@@ -63,7 +64,7 @@ class EditarPerfilActivity : AppCompatActivity(), IEditarPerfilVista {
 
             val intentEditProfile = Intent(this, MainActivity::class.java)
             iEditarPerfilControlador.onEditProfile(this, stringNombre, stringEmail, stringTelefono, stringDireccion, stringPass, stringRepetPass)
-            val persona = Persona(stringNombre, stringEmail, stringTelefono, stringDireccion, stringPass)
+            val persona = Persona(stringNombre, stringEmail, stringTelefono, stringDireccion, stringPass, "Estudiante")
             if(persona.editarPerfil(this, stringRepetPass) == -1) {
                 if (obj.actualizarPersona(this, persona) == 1) {
                     intentEditProfile.putExtra("email", stringEmail)

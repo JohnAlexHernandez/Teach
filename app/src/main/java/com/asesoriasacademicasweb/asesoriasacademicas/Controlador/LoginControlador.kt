@@ -1,21 +1,19 @@
 package com.asesoriasacademicasweb.asesoriasacademicas.Controlador
 
 import android.content.Context
+import com.asesoriasacademicasweb.asesoriasacademicas.Model.Estudiante
 import com.asesoriasacademicasweb.asesoriasacademicas.Model.Persona
 import com.asesoriasacademicasweb.asesoriasacademicas.Vista.ILoginVista
 
 class LoginControlador(var iLoginVista: ILoginVista) : ILoginControlador {
 
-    override fun onLogin(context: Context, email: String, contrasenia: String) {
-        val persona = Persona(
-                "",
-                email,
-                "password",
-                "",
-                contrasenia
+    override fun onLogin(context: Context, _email: String, _contrasenia: String) {
+        val estudiante = Estudiante(
+                _email,
+                _contrasenia
         )
 
-        when (persona.esValido(context)) {
+        when (estudiante.esValido(context)) {
             0 -> this.iLoginVista.onLoginError("El campo email no puede estar vacío")
             1 -> this.iLoginVista.onLoginError("El campo email no es válido")
             2 -> this.iLoginVista.onLoginError("El campo contraseña no puede estar vacío")

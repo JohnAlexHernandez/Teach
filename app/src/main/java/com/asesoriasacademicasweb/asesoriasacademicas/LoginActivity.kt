@@ -7,6 +7,7 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
 import com.asesoriasacademicasweb.asesoriasacademicas.Controlador.LoginControlador
+import com.asesoriasacademicasweb.asesoriasacademicas.Model.Estudiante
 import com.asesoriasacademicasweb.asesoriasacademicas.Model.Persona
 import com.asesoriasacademicasweb.asesoriasacademicas.Vista.ILoginVista
 
@@ -33,9 +34,8 @@ class LoginActivity : AppCompatActivity(), ILoginVista{
 
             val intentLogin = Intent(this, MainActivity::class.java)
             iLoginControlador.onLogin(this, stringEmail, stringPass)
-            val persona = Persona(stringEmail, stringPass)
-            println(persona.esValido(this))
-            if(persona.esValido(this) == -1) {
+            val estudiante = Estudiante(stringEmail, stringPass)
+            if(estudiante.esValido(this) == -1) {
                 intentLogin.putExtra("email", stringEmail)
                 startActivity(intentLogin)
             }

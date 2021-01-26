@@ -3,37 +3,64 @@ package com.asesoriasacademicasweb.asesoriasacademicas.Model
 import android.content.Context
 import java.util.regex.Pattern
 
-class Estudiante(idEstudiante: String, nombre: String, email: String, telefono: String, direccion: String, contrasenia: String): IEstudiante, IPersona {
-    override var id: String = idEstudiante
+class Estudiante(_nombre: String = "", _email: String = "", _telefono: String = "", _direccion: String = "", _contrasenia: String= "", _tipoPersona: String = "Estudiante", _clases : ArrayList<Clase>): IEstudiante, IPersona {
+    override var nombre: String = _nombre
         get() = field
         set(value) {
             field = value
         }
-    override var nombre: String = nombre
+    override var email: String = _email
         get() = field
         set(value) {
             field = value
         }
-    override var email: String = email
+    override var telefono: String = _telefono
         get() = field
         set(value) {
             field = value
         }
-    override var telefono: String = telefono
+    override var direccion: String = _direccion
         get() = field
         set(value) {
             field = value
         }
-    override var direccion: String = direccion
+    override var contrasenia: String = _contrasenia
         get() = field
         set(value) {
             field = value
         }
-    override var contrasenia: String = contrasenia
+    override var tipoPersona: String = _tipoPersona
         get() = field
         set(value) {
             field = value
         }
+
+    override var clases: ArrayList<Clase> = arrayListOf()
+        get() = field
+        set(value) {
+            field = value
+        }
+
+    init {
+        this.nombre = _nombre
+        this.email = _email
+        this.telefono = _telefono
+        this.direccion = _direccion
+        this.contrasenia = _contrasenia
+        this.tipoPersona = _tipoPersona
+        this.clases = _clases
+    }
+
+    constructor(_email: String, _contrasenia: String): this("", _email, "", "", _contrasenia, "Estudiante", ArrayList()){
+        this.email = _email
+        this.contrasenia = _contrasenia
+    }
+
+    constructor(_nombre: String, _email: String, _contrasenia: String): this(_nombre, _email, "", "", _contrasenia,"Estudiante", ArrayList()){
+        this.nombre = _nombre
+        this.email = _email
+        this.contrasenia = _contrasenia
+    }
 
     override fun esValido(context: Context): Int {
         val obj = Modelo()

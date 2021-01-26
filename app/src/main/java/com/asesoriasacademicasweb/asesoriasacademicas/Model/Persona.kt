@@ -3,7 +3,7 @@ package com.asesoriasacademicasweb.asesoriasacademicas.Model
 import android.content.Context
 import java.util.regex.Pattern
 
-class Persona(_nombre: String = "", _email: String = "", _telefono: String = "", _direccion: String = "", _contrasenia: String = "") : IPersona {
+class Persona(_nombre: String = "", _email: String = "", _telefono: String = "", _direccion: String = "", _contrasenia: String = "", _tipoPersona: String) : IPersona {
 
     override var nombre: String = _nombre
         get() = field
@@ -30,6 +30,11 @@ class Persona(_nombre: String = "", _email: String = "", _telefono: String = "",
         set(value) {
             field = value
         }
+    override var tipoPersona: String = _tipoPersona
+        get() = field
+        set(value) {
+            field = value
+        }
 
     init {
         this.nombre = _nombre
@@ -37,25 +42,27 @@ class Persona(_nombre: String = "", _email: String = "", _telefono: String = "",
         this.telefono = _telefono
         this.direccion = _direccion
         this.contrasenia = _contrasenia
+        this.tipoPersona = _tipoPersona
     }
 
-    constructor(_email: String, _contrasenia: String): this("", _email, "", "", _contrasenia){
+    constructor(_email: String, _contrasenia: String): this("", _email, "", "", _contrasenia, ""){
         this.email = _email
         this.contrasenia = _contrasenia
     }
 
-    constructor(_nombre: String, _email: String, _contrasenia: String): this(_nombre, _email, "", "", _contrasenia){
+    constructor(_nombre: String, _email: String, _contrasenia: String): this(_nombre, _email, "", "", _contrasenia,""){
         this.nombre = _nombre
         this.email = _email
         this.contrasenia = _contrasenia
     }
 
-    constructor(): this("", "", "", "", ""){
+    constructor(): this("", "", "", "", "", ""){
         this.nombre = ""
         this.email = ""
         this.direccion = ""
         this.telefono = ""
         this.contrasenia = ""
+        this.tipoPersona = ""
     }
 
     override fun esValido(context: Context): Int {

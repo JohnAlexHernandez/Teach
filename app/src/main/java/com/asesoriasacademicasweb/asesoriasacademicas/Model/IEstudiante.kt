@@ -1,5 +1,5 @@
 package com.asesoriasacademicasweb.asesoriasacademicas.Model
 
 interface IEstudiante {
-    var id: String
+    var clases: ArrayList<Clase>
 }

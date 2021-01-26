@@ -8,6 +8,7 @@ interface IPersona {
     var telefono : String
     var direccion : String
     var contrasenia : String
+    var tipoPersona : String
     fun esValido(context: Context): Int
     fun registroValido(context: Context, repetContrasenia: String): Int
     fun editarPerfil(context: Context, repetContrasenia: String): Int
