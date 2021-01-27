@@ -77,6 +77,8 @@ class EditarClaseActivity : AppCompatActivity() {
                     Toast.makeText(this, "Transaccion exitosa", Toast.LENGTH_SHORT).show()
                     var idBusqueda = clase.id.toString()
                     intentDetalleClase.putExtra("id_clase", idBusqueda);
+                    val email= getIntent().getStringExtra("email")
+                    intentDetalleClase.putExtra("email", email);
                     startActivity(intentDetalleClase)
                 } else {
                     Toast.makeText(this, "Transaccion fallida", Toast.LENGTH_SHORT).show()
@@ -110,6 +112,8 @@ class EditarClaseActivity : AppCompatActivity() {
         btnCancelarEditarClase.setOnClickListener{
             val intentCancelar = Intent(this, PopupDetalleClaseActivity::class.java)
             var idBusqueda = clase.id.toString()
+            val email= getIntent().getStringExtra("email")
+            intentCancelar.putExtra("email", email);
             intentCancelar.putExtra("id_clase", idBusqueda);
             startActivity(intentCancelar)
         }

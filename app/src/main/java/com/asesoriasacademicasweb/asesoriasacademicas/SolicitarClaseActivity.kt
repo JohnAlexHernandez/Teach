@@ -252,6 +252,8 @@ class SolicitarClaseActivity : AppCompatActivity(), ISolicitarClaseVista {
         val btnCancelarClase = findViewById<Button>(R.id.btn_cancelar_solicitar_clase)
         btnCancelarClase.setOnClickListener{
             val intentClass = Intent(this, GestionarClaseActivity::class.java)
+            val email= getIntent().getStringExtra("email")
+            intentClass.putExtra("email", email);
             startActivity(intentClass)
         }
     }
