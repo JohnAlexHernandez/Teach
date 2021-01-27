@@ -129,16 +129,15 @@ class Modelo {
     fun buscarTutoria(context: Context, id_tutoria: Int): Tutoria {
         val tutoria = Tutoria()
         val id = id_tutoria
-        val sql = "SELECT id_tutoria, materia, tema, inquietudes FROM TUTORIA WHERE id_tutoria = $id;"
+        val sql = "SELECT materia, tema, inquietudes FROM TUTORIA WHERE id_tutoria = $id;"
 
         val db: SQLiteDatabase = this.getConn(context)
         try {
             val fila: Cursor = db.rawQuery(sql, null)
             if(fila.moveToFirst()){
-                tutoria.id = fila.getInt(0)
-                tutoria.materia = fila.getString(1)
-                tutoria.tema = fila.getString(2)
-                tutoria.inquietudes = fila.getString(3)
+                tutoria.materia = fila.getString(0)
+                tutoria.tema = fila.getString(1)
+                tutoria.inquietudes = fila.getString(2)
             }else{
                 System.out.println("La tutoria no existe ")
             }

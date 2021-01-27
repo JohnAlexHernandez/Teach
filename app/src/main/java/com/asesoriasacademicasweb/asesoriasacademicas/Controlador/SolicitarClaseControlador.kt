@@ -11,7 +11,6 @@ class SolicitarClaseControlador(var iSolicitarClaseVista: ISolicitarClaseVista) 
                 fecha,
                 hora,
                 duracion,
-                0,
                 materia,
                 tema,
                 inquietudes,

@@ -2,12 +2,8 @@ package com.asesoriasacademicasweb.asesoriasacademicas.Model
 
 import android.content.Context
 
-class Tutoria(_id: Int, _materia: String, _tema: String, _inquietudes: String) : ITutoria {
-    override var id: Int = _id
-        get() = field
-        set(value) {
-            field = value
-        }
+class Tutoria(_materia: String, _tema: String, _inquietudes: String) : ITutoria {
+
     override var materia: String = _materia
         get() = field
         set(value) {
@@ -24,8 +20,7 @@ class Tutoria(_id: Int, _materia: String, _tema: String, _inquietudes: String) :
             field = value
         }
 
-    constructor(): this(0, "","",""){
-        this.id = 0
+    constructor(): this("","",""){
         this.materia = ""
         this.tema = ""
         this.inquietudes = ""

@@ -2,8 +2,23 @@ package com.asesoriasacademicasweb.asesoriasacademicas.Model
 
 import android.content.Context
 
-class Clase(_id: Int = 0, _fecha: String = "", _hora: String = "", _duracion: String = "", _idClase: Int = 0, _materia: String, _tema: String = "", _inquietudes: String = "", _idEstudiante: Int = 0) : IClase, ITutoria {
+class Clase(_id: Int = 0, _fecha: String = "", _hora: String = "", _duracion: String = "", _materia: String = "", _tema: String = "", _inquietudes: String = "", _idEstudiante: Int = 0) : IClase, ITutoria {
     override var id: Int = _id
+        get() = field
+        set(value) {
+            field = value
+        }
+    override var fecha: String = _fecha
+        get() = field
+        set(value) {
+            field = value
+        }
+    override var hora: String = _hora
+        get() = field
+        set(value) {
+            field = value
+        }
+    override var duracion: String = _duracion
         get() = field
         set(value) {
             field = value
@@ -23,21 +38,6 @@ class Clase(_id: Int = 0, _fecha: String = "", _hora: String = "", _duracion: St
         set(value) {
             field = value
         }
-    override var fecha: String = _fecha
-        get() = field
-        set(value) {
-            field = value
-        }
-    override var hora: String = _hora
-        get() = field
-        set(value) {
-            field = hora
-        }
-    override var duracion: String = _duracion
-        get() = field
-        set(value) {
-            field = value
-        }
     override var idEstudiante: Int = _idEstudiante
         get() = field
         set(value) {
@@ -46,33 +46,33 @@ class Clase(_id: Int = 0, _fecha: String = "", _hora: String = "", _duracion: St
 
     init {
         this.id = _id
-        this.materia = _materia
-        this.tema = _tema
-        this.inquietudes = _inquietudes
         this.fecha = _fecha
         this.hora = _hora
         this.duracion = _duracion
-        this.idEstudiante = _idEstudiante
-    }
-
-    constructor(_fecha: String, _hora: String, _duracion: String, _materia: String, _tema: String, _inquietudes: String, _idEstudiante: Int): this(0, _fecha, _hora, _duracion, 0,_materia, _tema, _inquietudes, _idEstudiante){
         this.materia = _materia
         this.tema = _tema
         this.inquietudes = _inquietudes
-        this.fecha = _fecha
-        this.hora = _hora
-        this.duracion = _duracion
         this.idEstudiante = _idEstudiante
     }
 
-    constructor(): this(0, "","","", 0, "", "", "", 0){
+    constructor(_fecha: String, _hora: String, _duracion: String, _materia: String, _tema: String, _inquietudes: String, _idEstudiante: Int): this(0, _fecha, _hora, _duracion,_materia, _tema, _inquietudes, _idEstudiante){
+        this.fecha = _fecha
+        this.hora = _hora
+        this.duracion = _duracion
+        this.materia = _materia
+        this.tema = _tema
+        this.inquietudes = _inquietudes
+        this.idEstudiante = _idEstudiante
+    }
+
+    constructor(): this(0, "","","", "", "", "", 0){
         this.id = 0
+        this.fecha = ""
+        this.hora = ""
+        this.duracion = ""
         this.materia = ""
         this.tema = ""
         this.inquietudes = ""
-        this.fecha = ""
-        this.hora = ""
-        this.duracion = "_duracion"
         this.idEstudiante = 0
     }
 

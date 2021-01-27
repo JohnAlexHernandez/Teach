@@ -214,7 +214,6 @@ class SolicitarClaseActivity : AppCompatActivity(), ISolicitarClaseVista {
                     stringFecha,
                     stringHoraMinutos,
                     stringDuracion,
-                    0,
                     stringMateria,
                     stringTema,
                     stringInquietudes,
