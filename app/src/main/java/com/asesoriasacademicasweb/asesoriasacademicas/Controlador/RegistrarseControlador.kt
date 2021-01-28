@@ -1,7 +1,9 @@
 package com.asesoriasacademicasweb.asesoriasacademicas.Controlador
 
 import android.content.Context
+import android.graphics.ColorSpace
 import com.asesoriasacademicasweb.asesoriasacademicas.Model.Estudiante
+import com.asesoriasacademicasweb.asesoriasacademicas.Model.Modelo
 import com.asesoriasacademicasweb.asesoriasacademicas.Model.Persona
 import com.asesoriasacademicasweb.asesoriasacademicas.Vista.ILoginVista
 import com.asesoriasacademicasweb.asesoriasacademicas.Vista.IRegistrarseVista
@@ -24,5 +26,10 @@ class RegistrarseControlador(var iRegistrarseVista: IRegistrarseVista) : IRegist
             6 -> this.iRegistrarseVista.onLoginError("La contraseña no coincide, verifica e intenta nuevamente")
             -1 -> this.iRegistrarseVista.onLoginSuccess("Registro satisfactorio")
         }
+    }
+
+    override fun insertUser(context: Context, persona: Persona): Int {
+        val obj = Modelo()
+        return obj.insertarPersona(context, persona)
     }
 }
