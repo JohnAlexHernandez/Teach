@@ -27,15 +27,22 @@ class GestionarClaseActivity : AppCompatActivity(), IGestionarClaseVista {
         val clases: ArrayList<Clase> = obj.listarClases(this, estudiante.id.toString())
         val listView: ListView? = findViewById(R.id.listView_class)
         val adaptador: ArrayAdapter<Clase> = ArrayAdapter<Clase>(this, R.layout.activity_listview, R.id.label, clases)
-        listView?.setAdapter(adaptador)
+        if (adaptador.count != 0) {
+            listView?.setAdapter(adaptador)
 
-        listView?.setOnItemClickListener(OnItemClickListener { parent, view, position, id ->
-            val intentPopupDetalleClass = Intent(this, PopupDetalleClaseActivity::class.java)
-            intentPopupDetalleClass.putExtra("id_clase", clases[position].id.toString());
-            val email= getIntent().getStringExtra("email")
-            intentPopupDetalleClass.putExtra("email", email);
-            startActivity(intentPopupDetalleClass)
-        })
+            listView?.setOnItemClickListener(OnItemClickListener { parent, view, position, id ->
+                val intentPopupDetalleClass = Intent(this, PopupDetalleClaseActivity::class.java)
+                intentPopupDetalleClass.putExtra("id_clase", clases[position].id.toString());
+                val email= getIntent().getStringExtra("email")
+                intentPopupDetalleClass.putExtra("email", email);
+                startActivity(intentPopupDetalleClass)
+            })
+        } else{
+            val mensajeClasesVacio: ArrayList<String> = ArrayList()
+            mensajeClasesVacio.add("No tiene clases")
+            val adaptadorEmpty: ArrayAdapter<String> = ArrayAdapter<String>(this, R.layout.activity_listview, R.id.label_empty, mensajeClasesVacio)
+            listView?.setAdapter(adaptadorEmpty)
+        }
 
         val btnAgregarClase = findViewById<Button>(R.id.btn_agregar_gestionar_clase)
         btnAgregarClase.setOnClickListener{

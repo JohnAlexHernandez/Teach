@@ -35,12 +35,11 @@ class RegistrarseActivity : AppCompatActivity(), IRegistrarseVista {
             val intentRegistry = Intent(this, GestionarClaseActivity::class.java)
             iRegistraseControlador.onRegistry(this, stringNombre, stringEmail, stringPass, stringRepetPass)
             val persona = Persona(stringNombre, stringEmail, stringPass)
-            if(persona.registroValido(this, stringRepetPass) == -1) {
-                if (obj.insertarPersona(this, persona) == 1) {
-                    intentRegistry.putExtra("email", stringEmail)
-                    startActivity(intentRegistry)
-                }
+            if (obj.insertarPersona(this, persona) == 1) {
+                intentRegistry.putExtra("email", stringEmail)
+                startActivity(intentRegistry)
             }
+
         }
 
         val btnCancelarRegistro = findViewById<Button>(R.id.btn_cancelar_registro)
