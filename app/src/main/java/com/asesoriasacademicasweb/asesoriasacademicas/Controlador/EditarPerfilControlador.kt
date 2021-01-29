@@ -1,7 +1,7 @@
 package com.asesoriasacademicasweb.asesoriasacademicas.Controlador
 
 import android.content.Context
-import com.asesoriasacademicasweb.asesoriasacademicas.Model.Estudiante
+import com.asesoriasacademicasweb.asesoriasacademicas.Model.Modelo
 import com.asesoriasacademicasweb.asesoriasacademicas.Model.Persona
 import com.asesoriasacademicasweb.asesoriasacademicas.Vista.IEditarPerfilVista
 
@@ -27,5 +27,15 @@ class EditarPerfilControlador(val iEditarPerfilVista: IEditarPerfilVista) : IEdi
             7 -> this.iEditarPerfilVista.onLoginError("La contraseña no coincide, verifica e intenta nuevamente")
             -1 -> this.iEditarPerfilVista.onLoginSuccess("Edición del perfil satisfactoria")
         }
+    }
+
+    override fun getUser(context: Context, email: String): Persona {
+        val obj = Modelo()
+        return obj.obtenerPersona(context, email)
+    }
+
+    override fun updateProfile(context: Context, persona: Persona): Int {
+        val obj = Modelo()
+        return obj.actualizarPersona(context, persona)
     }
 }

@@ -8,16 +8,20 @@ import android.view.MenuItem
 import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
+import com.asesoriasacademicasweb.asesoriasacademicas.Controlador.GestionarClaseControlador
 import com.asesoriasacademicasweb.asesoriasacademicas.Model.Clase
 import com.asesoriasacademicasweb.asesoriasacademicas.Model.Modelo
+import com.asesoriasacademicasweb.asesoriasacademicas.Vista.IGestionarClaseVista
 
-class PopupDetalleClaseActivity : AppCompatActivity() {
+class PopupDetalleClaseActivity : AppCompatActivity(), IGestionarClaseVista {
+
+    val iGestionarClaseControlador = GestionarClaseControlador(this)
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_popup_detalle_class)
 
         val idClase= getIntent().getStringExtra("id_clase")
-        val obj = Modelo()
         var clase = Clase()
         val materia: TextView? = findViewById<TextView>(R.id.txv_materia_detalle_clase)
         val tema: TextView? = findViewById<TextView>(R.id.txv_tema_detalle_clase)
@@ -26,7 +30,7 @@ class PopupDetalleClaseActivity : AppCompatActivity() {
         val hora: TextView? = findViewById<TextView>(R.id.txv_hora_detalle_clase)
         val duracion: TextView? = findViewById<TextView>(R.id.txv_duracion_detalle_clase)
 
-        clase = obj.buscarClase(this, idClase.toString())
+        clase = iGestionarClaseControlador.findClass(this, idClase.toString())
         materia?.setText(clase.materia)
         tema?.setText(clase.tema)
         inquietudes?.setText(clase.inquietudes)
@@ -41,7 +45,7 @@ class PopupDetalleClaseActivity : AppCompatActivity() {
 
             val idBusqueda = clase.id
 
-            if (obj.eliminarClase(this, idBusqueda) == 1) {
+            if (iGestionarClaseControlador.deleteClass(this, idBusqueda) == 1) {
                 Toast.makeText(this,"La clase ha sido eliminada correctamente", Toast.LENGTH_SHORT).show()
                 val email= getIntent().getStringExtra("email")
                 intentEliminarClase.putExtra("email", email);
@@ -84,5 +88,13 @@ class PopupDetalleClaseActivity : AppCompatActivity() {
             startActivity(intentEditarPerfil)
         }
         return true
+    }
+
+    override fun onManagementSuccess(mensaje: String) {
+        Toast.makeText(this, mensaje, Toast.LENGTH_SHORT).show()
+    }
+
+    override fun onManagementError(mensaje: String) {
+        Toast.makeText(this, mensaje, Toast.LENGTH_SHORT).show()
     }
 }

@@ -13,11 +13,11 @@ import com.asesoriasacademicasweb.asesoriasacademicas.Vista.ILoginVista
 
 class LoginActivity : AppCompatActivity(), ILoginVista{
 
+    val iLoginControlador = LoginControlador(this)
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
-
-        val iLoginControlador = LoginControlador(this)
 
         val btnRegistration = findViewById<Button>(R.id.btn_registrarse_login)
         btnRegistration.setOnClickListener{

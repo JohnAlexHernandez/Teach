@@ -22,7 +22,6 @@ class RegistrarseActivity : AppCompatActivity(), IRegistrarseVista {
         val btnInsertarPersona = findViewById<Button>(R.id.btn_registrarse_registro)
         btnInsertarPersona.setOnClickListener {
 
-            val obj = Modelo()
             val nombre: EditText? = findViewById(R.id.txt_nombre_registro)
             val email: EditText? = findViewById(R.id.txt_email_registro)
             val password: EditText? = findViewById(R.id.txt_password_registro)

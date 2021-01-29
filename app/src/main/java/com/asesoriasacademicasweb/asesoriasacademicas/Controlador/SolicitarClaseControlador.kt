@@ -2,6 +2,8 @@ package com.asesoriasacademicasweb.asesoriasacademicas.Controlador
 
 import android.content.Context
 import com.asesoriasacademicasweb.asesoriasacademicas.Model.Clase
+import com.asesoriasacademicasweb.asesoriasacademicas.Model.Estudiante
+import com.asesoriasacademicasweb.asesoriasacademicas.Model.Modelo
 import com.asesoriasacademicasweb.asesoriasacademicas.Vista.ISolicitarClaseVista
 
 class SolicitarClaseControlador(var iSolicitarClaseVista: ISolicitarClaseVista) : ISolicitarClaseControlador {
@@ -28,4 +30,16 @@ class SolicitarClaseControlador(var iSolicitarClaseVista: ISolicitarClaseVista) 
             -1 -> this.iSolicitarClaseVista.onLoginSuccess("Solicitud satisfactoria")
         }
     }
+
+    override fun getStudent(context: Context, email: String): Estudiante {
+        val obj = Modelo()
+        return obj.obtenerEstudiante(context, email)
+    }
+
+    override fun insertClass(context: Context, clase: Clase): Int {
+        val obj = Modelo()
+        return obj.insertarClase(context, clase)
+    }
+
+
 }

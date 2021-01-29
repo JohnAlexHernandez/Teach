@@ -28,12 +28,12 @@ class SolicitarClaseActivity : AppCompatActivity(), ISolicitarClaseVista {
 
     var hora = calendar.get(Calendar.HOUR_OF_DAY)
     var minutos = calendar.get(Calendar.MINUTE)
+    val iSolicitarClaseControlador = SolicitarClaseControlador(this)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_solicitar_clase)
 
-        val iSolicitarClaseControlador = SolicitarClaseControlador(this)
         val spnMateria: Spinner = findViewById(R.id.spn_materia)
         val spnTema: Spinner = findViewById(R.id.spn_tema)
         var materiaSeleccionada = ""
@@ -191,7 +191,6 @@ class SolicitarClaseActivity : AppCompatActivity(), ISolicitarClaseVista {
         val btnGuardar = findViewById<Button>(R.id.btn_guardar_solicitar_clase)
         btnGuardar.setOnClickListener{
 
-            val obj = Modelo()
             var estudiante = Estudiante()
             val stringEmail= getIntent().getStringExtra("email")
             val inquietudes: EditText? = findViewById(R.id.txt_inquietudes__solicitar_clase)
@@ -207,7 +206,7 @@ class SolicitarClaseActivity : AppCompatActivity(), ISolicitarClaseVista {
             val stringDuracion = duracion?.text.toString().trim()
 
             val intentInsert = Intent(this, GestionarClaseActivity::class.java)
-            estudiante = obj.obtenerEstudiante(this,stringEmail.toString())
+            estudiante = iSolicitarClaseControlador.getStudent(this,stringEmail.toString())
             iSolicitarClaseControlador.onNewClass(this, stringFecha, stringHoraMinutos, stringDuracion, stringMateria, stringTema, stringInquietudes, estudiante.id)
             val clase = Clase(
                     0,
@@ -220,7 +219,7 @@ class SolicitarClaseActivity : AppCompatActivity(), ISolicitarClaseVista {
                     estudiante.id
             )
             if(clase.esValido(this) == -1) {
-                if (obj.insertarClase(this, clase) == 1) {
+                if (iSolicitarClaseControlador.insertClass(this, clase) == 1) {
                     intentInsert.putExtra("email", stringEmail)
                     startActivity(intentInsert)
                 }

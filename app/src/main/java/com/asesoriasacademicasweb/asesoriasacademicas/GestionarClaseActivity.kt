@@ -15,16 +15,17 @@ import com.asesoriasacademicasweb.asesoriasacademicas.Vista.IGestionarClaseVista
 
 
 class GestionarClaseActivity : AppCompatActivity(), IGestionarClaseVista {
+
+    val iGestionarClaseControlador = GestionarClaseControlador(this)
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_gestionar_clase)
 
-        val iGestionarClaseControlador = GestionarClaseControlador(this)
-        val obj = Modelo()
         var estudiante = Estudiante()
         val stringEmail= getIntent().getStringExtra("email")
-        estudiante = obj.obtenerEstudiante(this,stringEmail.toString())
-        val clases: ArrayList<Clase> = obj.listarClases(this, estudiante.id.toString())
+        estudiante = iGestionarClaseControlador.getStudent(this,stringEmail.toString())
+        val clases: ArrayList<Clase> = iGestionarClaseControlador.getClass(this, estudiante.id.toString())
         val listView: ListView? = findViewById(R.id.listView_class)
         val adaptador: ArrayAdapter<Clase> = ArrayAdapter<Clase>(this, R.layout.activity_listview, R.id.label, clases)
         if (adaptador.count != 0) {

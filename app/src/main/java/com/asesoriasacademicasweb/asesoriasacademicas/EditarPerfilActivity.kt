@@ -20,10 +20,9 @@ class EditarPerfilActivity : AppCompatActivity(), IEditarPerfilVista {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_editar_perfil)
 
-        val obj = Modelo()
         var persona = Persona()
         val emailBuscado= getIntent().getStringExtra("email")
-        persona = obj.obtenerPersona(this, "" + emailBuscado)
+        persona = iEditarPerfilControlador.getUser(this, "" + emailBuscado)
 
         val nombre: EditText? = findViewById<EditText>(R.id.txt_nombre_editar_perfil)
         val email: EditText? = findViewById<EditText>(R.id.txt_email_editar_perfil)
@@ -66,7 +65,7 @@ class EditarPerfilActivity : AppCompatActivity(), IEditarPerfilVista {
             iEditarPerfilControlador.onEditProfile(this, stringNombre, stringEmail, stringTelefono, stringDireccion, stringPass, stringRepetPass)
             val persona = Persona(stringNombre, stringEmail, stringTelefono, stringDireccion, stringPass, "Estudiante")
             if(persona.editarPerfil(this, stringRepetPass) == -1) {
-                if (obj.actualizarPersona(this, persona) == 1) {
+                if (iEditarPerfilControlador.updateProfile(this, persona) == 1) {
                     intentEditProfile.putExtra("email", stringEmail)
                     startActivity(intentEditProfile)
                 }
