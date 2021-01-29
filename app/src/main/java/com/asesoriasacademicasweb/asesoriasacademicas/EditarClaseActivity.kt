@@ -3,20 +3,23 @@ package com.asesoriasacademicasweb.asesoriasacademicas
 import android.app.DatePickerDialog
 import android.app.TimePickerDialog
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
-import android.widget.Button
-import android.widget.EditText
-import android.widget.Toast
+import android.view.View
+import android.widget.*
+import androidx.appcompat.app.AppCompatActivity
+import com.asesoriasacademicasweb.asesoriasacademicas.Controlador.EditarClaseControlador
 import com.asesoriasacademicasweb.asesoriasacademicas.Model.Clase
+import com.asesoriasacademicasweb.asesoriasacademicas.Model.Estudiante
 import com.asesoriasacademicasweb.asesoriasacademicas.Model.Modelo
 import com.asesoriasacademicasweb.asesoriasacademicas.Model.Tutoria
+import com.asesoriasacademicasweb.asesoriasacademicas.Vista.IEditarClaseVista
 import java.text.SimpleDateFormat
 import java.util.*
 
-class EditarClaseActivity : AppCompatActivity() {
+
+class EditarClaseActivity : AppCompatActivity(), IEditarClaseVista {
 
     var fecha: EditText? = null
     var horaMinutos: EditText? = null
@@ -28,6 +31,8 @@ class EditarClaseActivity : AppCompatActivity() {
     var hora = calendar.get(Calendar.HOUR_OF_DAY)
     var minutos = calendar.get(Calendar.MINUTE)
 
+    val iEditarClaseControlador = EditarClaseControlador(this)
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_editar_clase)
@@ -37,52 +42,205 @@ class EditarClaseActivity : AppCompatActivity() {
         var clase = Clase()
         var tutoria = Tutoria()
 
-        var materia: EditText? = findViewById<EditText>(R.id.txt_materia_editar_clase)
-        var tema: EditText? = findViewById<EditText>(R.id.txt_tema_editar_clase)
+        val spnMateria: Spinner? = findViewById(R.id.spn_materia_edit)
+        val spnTema: Spinner? = findViewById(R.id.spn_tema_edit)
         var inquietudes: EditText? = findViewById<EditText>(R.id.txt_inquietudes_editar_clase)
         var fecha: EditText? = findViewById<EditText>(R.id.txt_fecha_editar_clase)
         var tiempo: EditText? = findViewById<EditText>(R.id.txt_hora_editar_clase)
         var duracion: EditText? = findViewById<EditText>(R.id.txt_duracion_editar_clase)
 
         clase = obj.buscarClase(this, idClase.toString())
-        materia?.setText(clase.materia)
-        tema?.setText(clase.tema)
         inquietudes?.setText(clase.inquietudes)
         fecha?.setText(clase.fecha)
         tiempo?.setText(clase.hora)
         duracion?.setText(clase.duracion)
 
+        var materiaSeleccionada = ""
+        var temaSeleccionado = ""
+
+        val materias = arrayOf(
+                "Matemáticas 3",
+                "Matemáticas 4",
+                "Matemáticas 5",
+                "Matemáticas 6",
+                "Matemáticas 7",
+                "Matemáticas 8",
+                "Matemáticas 9",
+                "Matemáticas 10",
+                "Matemáticas 11",
+                "Geometría",
+                "Álgebra",
+                "Trigonometría",
+                "Probabilidad y Estadística",
+                "Precálculo",
+                "Cálculo",
+                "Física",
+                "Html Css y JavaScript",
+                "Algoritmia y Programación",
+                "Modelado UML",
+                "Patrones de diseño de software",
+                "GIT y GITHUB",
+                "Sistemas Operativos GNU/Linux",
+                "Base de datos",
+                "Metodologías Ágiles SCRUM",
+                "Herramientas Ofimáticas"
+        )
+
+        val matematicas3 = arrayOf(
+                "Los números naturales",
+                "Composición y descomposición",
+                "Orden de números naturales",
+                "Comparación y ordenación >, <,  =",
+                "Noción de fracciones",
+                "Representación gráfica de fracciones",
+                "Fracciones equivalentes",
+                "Adición, sustracción y sus propiedades",
+                "Problemas de adición y sustracción",
+                "Multiplicación, división y sus propiedades",
+                "Mitad, tercio y cuarto",
+                "Problemas de multiplicación y división"
+        )
+
+        val matematicas4 = arrayOf(
+                "Los números naturales",
+                "Adición llevando",
+                "Sustracción llevando",
+                "Multiplicación por 2 y 3 cifras",
+                "División con ceros en el cociente",
+                "División con divisores de 2 o más cifras",
+                "Operaciones combinadas",
+                "Los números fraccionarios",
+                "Operaciones con fracciones",
+                "Los números decimales",
+                "Adición y sustracción",
+                "Multiplicación y división",
+                "Múltiplos y divisores"
+        )
+
+        val matematicas5 = arrayOf(
+                "Los números naturales",
+                "Adición y sustracción",
+                "Multiplicación",
+                "División con ceros en el cociente",
+                "División con divisores de 2 y más cifras",
+                "Operaciones combinadas",
+                "Los números decimales",
+                "Lectura y escritura de fracciones",
+                "Comparación de fracciones",
+                "Operaciones con fracciones",
+                "Adición y sustracción",
+                "Multiplicación y división",
+                "Los números Romanos"
+        )
+
+        val matematicas6 = arrayOf(
+                "Romano, binario y decimal",
+                "Los números naturales",
+                "Operaciones con números naturales",
+                "Potenciación, radicación y logaritmación",
+                "Múltiplos y divisores",
+                "Descomposición factorial",
+                "Los números enteros",
+                "La recta numérica(Plano cartesiano)",
+                "Operaciones con números enteros",
+                "Ecuaciones simples",
+                "Los números fraccionarios",
+                "Operaciones con números fraccionarios",
+                "Problemas verbales"
+        )
+
+        val matematicas7 = arrayOf(
+                "Números enteros, polinomios aritméticos",
+                "Expresiones con signos de agrupación",
+                "Los números racionales",
+                "Operaciones con numeros racionales",
+                "Problemas verbales",
+                "Los números decimales",
+                "Operaciones con números decimales",
+                "Planteamiento y resolución de problemas",
+                "Proporcionalidad",
+                "Magnitudes directamente proporcionales",
+                "Magnitudes inversamente proporcionales",
+                "Regla de tres simple",
+                "Problemas de aplicación"
+        )
+
+        val adapter = ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, materias)
+        val adapterMath3 = ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, matematicas3)
+        val adapterMath4 = ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, matematicas4)
+        val adapterMath5 = ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, matematicas5)
+        val adapterMath6 = ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, matematicas6)
+        val adapterMath7 = ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, matematicas7)
+        spnMateria?.adapter = adapter
+
+        spnMateria?.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
+            override fun onNothingSelected(parent: AdapterView<*>?) {
+                TODO("Not yet implemented")
+            }
+
+            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+                materiaSeleccionada = spnMateria?.getItemAtPosition(position).toString()
+
+                if (materiaSeleccionada.equals("Matemáticas 3")){
+                    spnTema?.adapter = adapterMath3
+                } else if (materiaSeleccionada.equals("Matemáticas 4")){
+                    spnTema?.adapter = adapterMath4
+                } else if (materiaSeleccionada.equals("Matemáticas 5")){
+                    spnTema?.adapter = adapterMath5
+                } else if (materiaSeleccionada.equals("Matemáticas 6")){
+                    spnTema?.adapter = adapterMath6
+                } else if (materiaSeleccionada.equals("Matemáticas 7")){
+                    spnTema?.adapter = adapterMath7
+                }
+            }
+        }
+
+        spnTema?.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
+            override fun onNothingSelected(parent: AdapterView<*>?) {
+                TODO("Not yet implemented")
+            }
+
+            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+                temaSeleccionado = spnTema?.getItemAtPosition(position).toString()
+            }
+        }
+
         var btnEditarClase = findViewById<Button>(R.id.btn_guardar_editar_clase)
         btnEditarClase.setOnClickListener{
-            if(materia?.text.toString().trim().isEmpty()) {
-                materia?.setError("El campo materia no puede estar vacío")
-            }else if (tema?.text.toString().trim().isEmpty()) {
-                tema?.setError("El campo tema no puede estar vacío")
-            }else if (fecha?.text.toString().trim().isEmpty()){
-                fecha?.setError("El campo fecha no puede estar vacío")
-            }else if (horaMinutos?.text.toString().trim().isEmpty()){
-                horaMinutos?.setError("El campo hora no puede estar vacío")
-            }else {
 
-                tutoria.materia = materia?.text.toString()
-                tutoria.tema = tema?.text.toString()
-                tutoria.inquietudes = inquietudes?.text.toString()
-                clase.fecha = fecha?.text.toString()
-                clase.hora = horaMinutos?.text.toString()
-                clase.duracion = duracion?.text.toString()
+            var estudiante = Estudiante()
+            val stringEmail= getIntent().getStringExtra("email")
+            val inquietudes: EditText? = findViewById(R.id.txt_inquietudes_editar_clase)
+            fecha = findViewById(R.id.txt_fecha_editar_clase)
+            horaMinutos = findViewById(R.id.txt_hora_editar_clase)
+            val duracion: EditText? = findViewById(R.id.txt_duracion_editar_clase)
 
-                var resUpdate = obj.actualizarClase(this, tutoria, clase)
-                if (resUpdate == 1) {
-                    val intentDetalleClase = Intent(this, PopupDetalleClaseActivity::class.java)
-                    Toast.makeText(this, "Transaccion exitosa", Toast.LENGTH_SHORT).show()
-                    var idBusqueda = clase.id.toString()
-                    intentDetalleClase.putExtra("id_clase", idBusqueda);
-                    val email= getIntent().getStringExtra("email")
-                    intentDetalleClase.putExtra("email", email);
-                    startActivity(intentDetalleClase)
-                } else {
-                    Toast.makeText(this, "Transaccion fallida", Toast.LENGTH_SHORT).show()
-                }
+            val stringMateria = materiaSeleccionada
+            val stringTema = temaSeleccionado
+            val stringInquietudes = inquietudes?.text.toString().trim()
+            val stringFecha = fecha?.text.toString().trim()
+            val stringHoraMinutos = horaMinutos?.text.toString().trim()
+            val stringDuracion = duracion?.text.toString().trim()
+
+            iEditarClaseControlador.onEditClass(this, stringFecha, stringHoraMinutos, stringDuracion, stringMateria, stringTema, stringInquietudes, estudiante.id)
+
+            tutoria.materia = stringMateria
+            tutoria.tema = stringTema
+            tutoria.inquietudes = stringInquietudes
+            clase.fecha = stringFecha
+            clase.hora = stringHoraMinutos
+            clase.duracion = stringDuracion
+
+            if (iEditarClaseControlador.updateClase(this, tutoria, clase) == 1) {
+                val intentDetalleClase = Intent(this, PopupDetalleClaseActivity::class.java)
+                Toast.makeText(this, "Transaccion exitosa", Toast.LENGTH_SHORT).show()
+                var idBusqueda = clase.id.toString()
+                intentDetalleClase.putExtra("id_clase", idBusqueda);
+                val email= getIntent().getStringExtra("email")
+                intentDetalleClase.putExtra("email", email);
+                startActivity(intentDetalleClase)
+            } else {
+                Toast.makeText(this, "Transaccion fallida", Toast.LENGTH_SHORT).show()
             }
         }
 
@@ -132,5 +290,13 @@ class EditarClaseActivity : AppCompatActivity() {
             startActivity(intentEditarPerfil)
         }
         return true
+    }
+
+    override fun onLoginSuccess(mensaje: String) {
+        Toast.makeText(this, mensaje, Toast.LENGTH_SHORT).show()
+    }
+
+    override fun onLoginError(mensaje: String) {
+        Toast.makeText(this, mensaje, Toast.LENGTH_SHORT).show()
     }
 }

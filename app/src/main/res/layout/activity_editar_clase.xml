@@ -21,50 +21,20 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/txt_materia_editar_clase"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="32dp"
-        android:ems="10"
-        android:hint="@string/txt_materia_editar_clase"
-        android:inputType="textPersonName"
-        android:autofillHints="@string/txt_materia_editar_clase"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txt_titulo_editar_clase" />
-
-    <EditText
-        android:id="@+id/txt_tema_editar_clase"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="32dp"
-        android:ems="10"
-        android:hint="@string/txt_tema_editar_clase"
-        android:inputType="textPersonName"
-        android:autofillHints="@string/txt_tema_editar_clase"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txt_materia_editar_clase" />
-
-    <EditText
         android:id="@+id/txt_inquietudes_editar_clase"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="32dp"
+        android:autofillHints="@string/txt_inquietudes_editar_clase"
         android:ems="10"
         android:hint="@string/txt_inquietudes_editar_clase"
         android:inputType="textPersonName"
-        android:autofillHints="@string/txt_inquietudes_editar_clase"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.502"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txt_tema_editar_clase" />
+        app:layout_constraintTop_toBottomOf="@+id/spn_tema_edit" />
 
     <Button
         android:id="@+id/btn_guardar_editar_clase"
@@ -138,5 +108,27 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btn_guardar_editar_clase" />
+
+    <Spinner
+        android:id="@+id/spn_materia_edit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="32dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txt_titulo_editar_clase" />
+
+    <Spinner
+        android:id="@+id/spn_tema_edit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="32dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/spn_materia_edit" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
