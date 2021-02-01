@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">AsesoriasAcademicas</string>
+    <string name="app_name">Teacher</string>
     <string name="txt_email_login">Email</string>
     <string name="txt_password_login">Password</string>
     <string name="txt_indicacion_login">Iniciar Sesión</string>
