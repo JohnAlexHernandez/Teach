@@ -7,7 +7,7 @@ import com.asesoriasacademicasweb.asesoriasacademicas.Model.Tutoria
 import com.asesoriasacademicasweb.asesoriasacademicas.Vista.IEditarClaseVista
 
 class EditarClaseControlador(val iEditarClaseVista: IEditarClaseVista): IEditarClaseControlador {
-    override fun onEditClass(context: Context, fecha: String, hora: String, duracion: String, materia: String, tema: String, inquietudes: String, _idEstudiante: Int){
+    override fun onEditClass(context: Context, fecha: String, hora: String, duracion: String, materia: String, tema: String, inquietudes: String, _idEstudiante: Int): Int{
         val clase = Clase(
                 0,
                 fecha,
@@ -29,6 +29,7 @@ class EditarClaseControlador(val iEditarClaseVista: IEditarClaseVista): IEditarC
             6 -> this.iEditarClaseVista.onLoginError("El campo duracion debe ser igual o inferior a 6 horas")
             -1 -> this.iEditarClaseVista.onLoginSuccess("Solicitud satisfactoria")
         }
+        return clase.esValido(context)
     }
 
     override fun updateClase(context: Context, tutoria: Tutoria, clase: Clase): Int {

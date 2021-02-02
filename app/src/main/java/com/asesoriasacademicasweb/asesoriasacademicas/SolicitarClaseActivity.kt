@@ -207,18 +207,19 @@ class SolicitarClaseActivity : AppCompatActivity(), ISolicitarClaseVista {
 
             val intentInsert = Intent(this, GestionarClaseActivity::class.java)
             estudiante = iSolicitarClaseControlador.getStudent(this,stringEmail.toString())
-            iSolicitarClaseControlador.onNewClass(this, stringFecha, stringHoraMinutos, stringDuracion, stringMateria, stringTema, stringInquietudes, estudiante.id)
-            val clase = Clase(
-                    0,
-                    stringFecha,
-                    stringHoraMinutos,
-                    stringDuracion,
-                    stringMateria,
-                    stringTema,
-                    stringInquietudes,
-                    estudiante.id
-            )
-            if(clase.esValido(this) == -1) {
+
+            if(iSolicitarClaseControlador.onNewClass(this, stringFecha, stringHoraMinutos, stringDuracion, stringMateria, stringTema, stringInquietudes, estudiante.id) == -1) {
+                val clase = Clase(
+                        0,
+                        stringFecha,
+                        stringHoraMinutos,
+                        stringDuracion,
+                        stringMateria,
+                        stringTema,
+                        stringInquietudes,
+                        estudiante.id
+                )
+
                 if (iSolicitarClaseControlador.insertClass(this, clase) == 1) {
                     intentInsert.putExtra("email", stringEmail)
                     startActivity(intentInsert)
@@ -231,8 +232,8 @@ class SolicitarClaseActivity : AppCompatActivity(), ISolicitarClaseVista {
         fecha = findViewById(R.id.txt_fecha_solicitar_clase)
         lanzadorFecha.setOnClickListener{
             val datePickerDialog = DatePickerDialog(this, DatePickerDialog.OnDateSetListener { view, anio, mes, dia ->
-                var fechaCalendario = "" + dia + "/" + (mes + 1) + "/" + anio
-                var date: Date  = formatofecha.parse(fechaCalendario)
+                val fechaCalendario = "" + dia + "/" + (mes + 1) + "/" + anio
+                val date: Date  = formatofecha.parse(fechaCalendario)
                 fecha?.setText(formatofecha.format(date))
             }, anio, mes, dia)
             datePickerDialog.show()

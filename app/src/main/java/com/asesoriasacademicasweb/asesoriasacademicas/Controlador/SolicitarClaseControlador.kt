@@ -7,7 +7,7 @@ import com.asesoriasacademicasweb.asesoriasacademicas.Model.Modelo
 import com.asesoriasacademicasweb.asesoriasacademicas.Vista.ISolicitarClaseVista
 
 class SolicitarClaseControlador(var iSolicitarClaseVista: ISolicitarClaseVista) : ISolicitarClaseControlador {
-    override fun onNewClass(context: Context, fecha: String, hora: String, duracion: String, materia: String, tema: String, inquietudes: String, _idEstudiante: Int) {
+    override fun onNewClass(context: Context, fecha: String, hora: String, duracion: String, materia: String, tema: String, inquietudes: String, _idEstudiante: Int): Int {
         val clase = Clase(
                 0,
                 fecha,
@@ -29,6 +29,7 @@ class SolicitarClaseControlador(var iSolicitarClaseVista: ISolicitarClaseVista) 
             6 -> this.iSolicitarClaseVista.onLoginError("El campo duracion debe ser igual o inferior a 6 horas")
             -1 -> this.iSolicitarClaseVista.onLoginSuccess("Solicitud satisfactoria")
         }
+        return clase.esValido(context)
     }
 
     override fun getStudent(context: Context, email: String): Estudiante {

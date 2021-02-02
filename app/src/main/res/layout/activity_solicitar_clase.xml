@@ -11,13 +11,14 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
+        android:layout_marginTop="16dp"
         android:layout_marginEnd="32dp"
         android:text="@string/txt_indicacion_solicitar_clase"
         android:textSize="18sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="74dp"
+        app:layout_constraintTop_toTopOf="parent"
         tools:ignore="MissingConstraints" />
 
     <EditText
@@ -31,6 +32,7 @@
         android:ems="10"
         android:hint="@string/txt_fecha_solicitar_clase"
         android:inputType="date"
+        android:focusable="false"
         app:layout_constraintEnd_toStartOf="@+id/img_fecha_solicitar_clase"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txt_inquietudes__solicitar_clase" />
@@ -46,6 +48,7 @@
         android:ems="10"
         android:hint="@string/txt_hora_solicitar_clase"
         android:inputType="time"
+        android:focusable="false"
         app:layout_constraintEnd_toStartOf="@+id/img_hora_solicitar_clase"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -102,9 +105,9 @@
         android:layout_marginEnd="31dp"
         android:autofillHints="@string/txt_duracion_solicitar_clase"
         android:ems="10"
+        android:gravity="center"
         android:hint="@string/txt_duracion_solicitar_clase"
         android:inputType="number"
-        android:text="@string/txt_duracion_solicitar_clase_x_defecto"
         app:layout_constraintEnd_toStartOf="@+id/img_aumentar_duracion_solicitar_clase"
         app:layout_constraintStart_toEndOf="@+id/img_disminuir_duracion_solicitar_clase"
         app:layout_constraintTop_toBottomOf="@+id/txt_hora_solicitar_clase"

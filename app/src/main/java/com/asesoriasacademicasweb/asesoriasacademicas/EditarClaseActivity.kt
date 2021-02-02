@@ -222,25 +222,25 @@ class EditarClaseActivity : AppCompatActivity(), IEditarClaseVista {
             val stringHoraMinutos = horaMinutos?.text.toString().trim()
             val stringDuracion = duracion?.text.toString().trim()
 
-            iEditarClaseControlador.onEditClass(this, stringFecha, stringHoraMinutos, stringDuracion, stringMateria, stringTema, stringInquietudes, estudiante.id)
+            if(iEditarClaseControlador.onEditClass(this, stringFecha, stringHoraMinutos, stringDuracion, stringMateria, stringTema, stringInquietudes, estudiante.id) == -1) {
+                tutoria.materia = stringMateria
+                tutoria.tema = stringTema
+                tutoria.inquietudes = stringInquietudes
+                clase.fecha = stringFecha
+                clase.hora = stringHoraMinutos
+                clase.duracion = stringDuracion
 
-            tutoria.materia = stringMateria
-            tutoria.tema = stringTema
-            tutoria.inquietudes = stringInquietudes
-            clase.fecha = stringFecha
-            clase.hora = stringHoraMinutos
-            clase.duracion = stringDuracion
-
-            if (iEditarClaseControlador.updateClase(this, tutoria, clase) == 1) {
-                val intentDetalleClase = Intent(this, PopupDetalleClaseActivity::class.java)
-                Toast.makeText(this, "Transaccion exitosa", Toast.LENGTH_SHORT).show()
-                var idBusqueda = clase.id.toString()
-                intentDetalleClase.putExtra("id_clase", idBusqueda);
-                val email= getIntent().getStringExtra("email")
-                intentDetalleClase.putExtra("email", email);
-                startActivity(intentDetalleClase)
-            } else {
-                Toast.makeText(this, "Transaccion fallida", Toast.LENGTH_SHORT).show()
+                if (iEditarClaseControlador.updateClase(this, tutoria, clase) == 1) {
+                    val intentDetalleClase = Intent(this, PopupDetalleClaseActivity::class.java)
+                    Toast.makeText(this, "Transaccion exitosa", Toast.LENGTH_SHORT).show()
+                    var idBusqueda = clase.id.toString()
+                    intentDetalleClase.putExtra("id_clase", idBusqueda);
+                    val email = getIntent().getStringExtra("email")
+                    intentDetalleClase.putExtra("email", email);
+                    startActivity(intentDetalleClase)
+                } else {
+                    Toast.makeText(this, "Transaccion fallida", Toast.LENGTH_SHORT).show()
+                }
             }
         }
 

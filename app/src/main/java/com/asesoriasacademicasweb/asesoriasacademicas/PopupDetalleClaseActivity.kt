@@ -12,6 +12,8 @@ import com.asesoriasacademicasweb.asesoriasacademicas.Controlador.GestionarClase
 import com.asesoriasacademicasweb.asesoriasacademicas.Model.Clase
 import com.asesoriasacademicasweb.asesoriasacademicas.Model.Modelo
 import com.asesoriasacademicasweb.asesoriasacademicas.Vista.IGestionarClaseVista
+import java.text.SimpleDateFormat
+import java.util.*
 
 class PopupDetalleClaseActivity : AppCompatActivity(), IGestionarClaseVista {
 
@@ -25,7 +27,6 @@ class PopupDetalleClaseActivity : AppCompatActivity(), IGestionarClaseVista {
         var clase = Clase()
         val materia: TextView? = findViewById<TextView>(R.id.txv_materia_detalle_clase)
         val tema: TextView? = findViewById<TextView>(R.id.txv_tema_detalle_clase)
-        val inquietudes: TextView? = findViewById<TextView>(R.id.txv_inquietudes_detalle_clase)
         val fecha: TextView? = findViewById<TextView>(R.id.txv_fecha_detalle_clase)
         val hora: TextView? = findViewById<TextView>(R.id.txv_hora_detalle_clase)
         val duracion: TextView? = findViewById<TextView>(R.id.txv_duracion_detalle_clase)
@@ -33,12 +34,16 @@ class PopupDetalleClaseActivity : AppCompatActivity(), IGestionarClaseVista {
         clase = iGestionarClaseControlador.findClass(this, idClase.toString())
         materia?.setText(clase.materia)
         tema?.setText(clase.tema)
-        inquietudes?.setText(clase.inquietudes)
-        fecha?.setText(clase.fecha)
-        hora?.setText(clase.hora)
+        val formatofecha = SimpleDateFormat("dd/mm/yyyy")
+        val date: Date = formatofecha.parse(clase.fecha)
+        fecha?.setText(formatofecha.format(date))
+
+        val formatohora = SimpleDateFormat("h:mm")
+        val hour: Date  = formatohora.parse(clase.hora)
+        hora?.setText(formatohora.format(hour))
         duracion?.setText(clase.duracion)
 
-        val btnEliminarClase = findViewById<Button>(R.id.btn_eliminar_detalle_clase)
+        /*val btnEliminarClase = findViewById<Button>(R.id.btn_eliminar_detalle_clase)
         btnEliminarClase.setOnClickListener{
             val intentEliminarClase = Intent(this, GestionarClaseActivity::class.java)
             val obj = Modelo()
@@ -53,7 +58,7 @@ class PopupDetalleClaseActivity : AppCompatActivity(), IGestionarClaseVista {
             }else{
                 Toast.makeText(this,"Error al elimniar la clase", Toast.LENGTH_SHORT).show()
             }
-        }
+        }*/
 
         val btnBuscarClase =findViewById<Button>(R.id.btn_buscar_detalle_clase)
         btnBuscarClase.setOnClickListener {

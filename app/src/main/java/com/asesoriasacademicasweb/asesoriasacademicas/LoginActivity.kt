@@ -33,9 +33,8 @@ class LoginActivity : AppCompatActivity(), ILoginVista{
             val stringPass = password?.text.toString().trim()
 
             val intentLogin = Intent(this, GestionarClaseActivity::class.java)
-            iLoginControlador.onLogin(this, stringEmail, stringPass)
-            val estudiante = Estudiante(stringEmail, stringPass)
-            if(estudiante.esValido(this) == -1) {
+            if(iLoginControlador.onLogin(this, stringEmail, stringPass) == -1) {
+                val estudiante = Estudiante(stringEmail, stringPass)
                 intentLogin.putExtra("email", stringEmail)
                 startActivity(intentLogin)
             }

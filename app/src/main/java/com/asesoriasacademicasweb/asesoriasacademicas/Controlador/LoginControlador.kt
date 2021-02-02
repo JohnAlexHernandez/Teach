@@ -7,7 +7,7 @@ import com.asesoriasacademicasweb.asesoriasacademicas.Vista.ILoginVista
 
 class LoginControlador(var iLoginVista: ILoginVista) : ILoginControlador {
 
-    override fun onLogin(context: Context, _email: String, _contrasenia: String) {
+    override fun onLogin(context: Context, _email: String, _contrasenia: String): Int {
         val estudiante = Estudiante(
                 _email,
                 _contrasenia
@@ -22,5 +22,6 @@ class LoginControlador(var iLoginVista: ILoginVista) : ILoginControlador {
             5 -> this.iLoginVista.onLoginError("El campo constraseña es incorrecta")
             -1 -> this.iLoginVista.onLoginError("Login satisfactorio")
         }
+        return estudiante.esValido(context)
     }
 }

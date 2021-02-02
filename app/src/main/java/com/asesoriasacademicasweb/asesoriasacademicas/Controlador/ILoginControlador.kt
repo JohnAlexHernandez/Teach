@@ -4,5 +4,5 @@ import android.content.Context
 
 
 interface ILoginControlador {
-    fun onLogin(context: Context, email: String, contrasenia: String)
+    fun onLogin(context: Context, email: String, contrasenia: String): Int
 }

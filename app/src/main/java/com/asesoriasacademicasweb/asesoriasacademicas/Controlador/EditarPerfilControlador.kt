@@ -6,7 +6,7 @@ import com.asesoriasacademicasweb.asesoriasacademicas.Model.Persona
 import com.asesoriasacademicasweb.asesoriasacademicas.Vista.IEditarPerfilVista
 
 class EditarPerfilControlador(val iEditarPerfilVista: IEditarPerfilVista) : IEditarPerfilControlador {
-    override fun onEditProfile(context: Context, nombre: String, email: String, telefono: String, direccion: String, contrasenia: String,  repetContrasenia: String) {
+    override fun onEditProfile(context: Context, nombre: String, email: String, telefono: String, direccion: String, contrasenia: String,  repetContrasenia: String): Int {
         val persona = Persona(
                 nombre,
                 email,
@@ -27,6 +27,7 @@ class EditarPerfilControlador(val iEditarPerfilVista: IEditarPerfilVista) : IEdi
             7 -> this.iEditarPerfilVista.onLoginError("La contraseña no coincide, verifica e intenta nuevamente")
             -1 -> this.iEditarPerfilVista.onLoginSuccess("Edición del perfil satisfactoria")
         }
+        return persona.editarPerfil(context, repetContrasenia)
     }
 
     override fun getUser(context: Context, email: String): Persona {

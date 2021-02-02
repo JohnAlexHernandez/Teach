@@ -62,9 +62,8 @@ class EditarPerfilActivity : AppCompatActivity(), IEditarPerfilVista {
             val stringRepetPass = repetPassword?.text.toString().trim()
 
             val intentEditProfile = Intent(this, GestionarClaseActivity::class.java)
-            iEditarPerfilControlador.onEditProfile(this, stringNombre, stringEmail, stringTelefono, stringDireccion, stringPass, stringRepetPass)
-            val persona = Persona(stringNombre, stringEmail, stringTelefono, stringDireccion, stringPass, "Estudiante")
-            if(persona.editarPerfil(this, stringRepetPass) == -1) {
+            if(iEditarPerfilControlador.onEditProfile(this, stringNombre, stringEmail, stringTelefono, stringDireccion, stringPass, stringRepetPass) == -1) {
+                val persona = Persona(stringNombre, stringEmail, stringTelefono, stringDireccion, stringPass, "Estudiante")
                 if (iEditarPerfilControlador.updateProfile(this, persona) == 1) {
                     intentEditProfile.putExtra("email", stringEmail)
                     startActivity(intentEditProfile)
