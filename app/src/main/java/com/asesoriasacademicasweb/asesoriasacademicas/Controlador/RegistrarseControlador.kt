@@ -9,7 +9,7 @@ import com.asesoriasacademicasweb.asesoriasacademicas.Vista.ILoginVista
 import com.asesoriasacademicasweb.asesoriasacademicas.Vista.IRegistrarseVista
 
 class RegistrarseControlador(var iRegistrarseVista: IRegistrarseVista) : IRegistrarseControlador {
-    override fun onRegistry(context: Context, nombre: String, email: String, contrasenia: String, reperContrasenia: String) {
+    override fun onRegistry(context: Context, nombre: String, email: String, contrasenia: String, reperContrasenia: String): Int {
         val estudiante = Estudiante(
                 nombre,
                 email,
@@ -26,6 +26,7 @@ class RegistrarseControlador(var iRegistrarseVista: IRegistrarseVista) : IRegist
             6 -> this.iRegistrarseVista.onLoginError("La contraseña no coincide, verifica e intenta nuevamente")
             -1 -> this.iRegistrarseVista.onLoginSuccess("Registro satisfactorio")
         }
+        return estudiante.registroValido(context, reperContrasenia)
     }
 
     override fun insertUser(context: Context, persona: Persona): Int {

@@ -45,12 +45,12 @@
         android:layout_marginStart="32dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="32dp"
+        android:autofillHints="@string/txt_hora_solicitar_clase"
+        android:clickable="true"
         android:ems="10"
+        android:focusable="false"
         android:hint="@string/txt_hora_solicitar_clase"
         android:inputType="time"
-        android:focusable="false"
-        android:clickable="true"
-        android:autofillHints="@string/txt_hora_solicitar_clase"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txt_fecha_solicitar_clase" />
@@ -64,9 +64,22 @@
         android:layout_marginEnd="32dp"
         android:text="@string/btn_guardar_solicitar_clase"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txt_duracion_solicitar_clase" />
+
+    <Button
+        android:id="@+id/btn_cancelar_solicitar_clase"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="32dp"
+        android:text="@string/btn_cancelar_registration"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_guardar_solicitar_clase" />
 
     <EditText
         android:id="@+id/txt_inquietudes__solicitar_clase"
@@ -88,28 +101,17 @@
         android:id="@+id/txt_duracion_solicitar_clase"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
+        android:layout_marginStart="34dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="32dp"
+        android:autofillHints="@string/txt_duracion_solicitar_clase"
         android:ems="10"
         android:hint="@string/txt_duracion_solicitar_clase"
         android:inputType="number"
-        android:autofillHints="@string/txt_duracion_solicitar_clase"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txt_hora_solicitar_clase" />
-
-    <Button
-        android:id="@+id/btn_cancelar_solicitar_clase"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="32dp"
-        android:text="@string/btn_cancelar_registration"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn_guardar_solicitar_clase" />
+        app:layout_constraintEnd_toStartOf="@+id/btn_aumentar_solicitar_clase"
+        app:layout_constraintStart_toEndOf="@+id/btn_disminuir_solicitar_clase"
+        app:layout_constraintTop_toBottomOf="@+id/txt_hora_solicitar_clase"
+        tools:ignore="MissingConstraints" />
 
     <Spinner
         android:id="@+id/spn_materia"
@@ -135,5 +137,36 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/spn_materia" />
+
+    <Button
+        android:id="@+id/btn_disminuir_solicitar_clase"
+        android:layout_width="36dp"
+        android:layout_height="46dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        android:padding="0dp"
+        android:text="-"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/btn_guardar_solicitar_clase"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txt_hora_solicitar_clase"
+        app:layout_constraintVertical_bias="1.0"
+        tools:ignore="MissingConstraints" />
+
+    <Button
+        android:id="@+id/btn_aumentar_solicitar_clase"
+        android:layout_width="36dp"
+        android:layout_height="46dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginBottom="8dp"
+        android:padding="0dp"
+        android:text="+"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/btn_guardar_solicitar_clase"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txt_hora_solicitar_clase"
+        tools:ignore="MissingConstraints" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

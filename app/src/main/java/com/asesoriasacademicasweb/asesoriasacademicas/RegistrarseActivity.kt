@@ -32,11 +32,12 @@ class RegistrarseActivity : AppCompatActivity(), IRegistrarseVista {
             val stringRepetPass = repetPassword?.text.toString().trim()
 
             val intentRegistry = Intent(this, GestionarClaseActivity::class.java)
-            iRegistraseControlador.onRegistry(this, stringNombre, stringEmail, stringPass, stringRepetPass)
-            val persona = Persona(stringNombre, stringEmail, stringPass)
-            if (iRegistraseControlador.insertUser(this, persona) == 1) {
-                intentRegistry.putExtra("email", stringEmail)
-                startActivity(intentRegistry)
+            if(iRegistraseControlador.onRegistry(this, stringNombre, stringEmail, stringPass, stringRepetPass) == -1) {
+                val persona = Persona(stringNombre, stringEmail, stringPass)
+                if (iRegistraseControlador.insertUser(this, persona) == 1) {
+                    intentRegistry.putExtra("email", stringEmail)
+                    startActivity(intentRegistry)
+                }
             }
 
         }

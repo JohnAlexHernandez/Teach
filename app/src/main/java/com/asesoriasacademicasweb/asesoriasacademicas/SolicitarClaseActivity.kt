@@ -36,6 +36,7 @@ class SolicitarClaseActivity : AppCompatActivity(), ISolicitarClaseVista {
 
         val spnMateria: Spinner = findViewById(R.id.spn_materia)
         val spnTema: Spinner = findViewById(R.id.spn_tema)
+        var duracion: EditText? = findViewById<EditText>(R.id.txt_duracion_solicitar_clase)
         var materiaSeleccionada = ""
         var temaSeleccionado = ""
 
@@ -196,14 +197,13 @@ class SolicitarClaseActivity : AppCompatActivity(), ISolicitarClaseVista {
             val inquietudes: EditText? = findViewById(R.id.txt_inquietudes__solicitar_clase)
             fecha = findViewById(R.id.txt_fecha_solicitar_clase)
             horaMinutos = findViewById(R.id.txt_hora_solicitar_clase)
-            val duracion: EditText? = findViewById(R.id.txt_duracion_solicitar_clase)
 
             val stringMateria = materiaSeleccionada
             val stringTema = temaSeleccionado
             val stringInquietudes = inquietudes?.text.toString().trim()
             val stringFecha = fecha?.text.toString().trim()
             val stringHoraMinutos = horaMinutos?.text.toString().trim()
-            val stringDuracion = duracion?.text.toString().trim()
+            var stringDuracion = duracion?.text.toString().trim()
 
             val intentInsert = Intent(this, GestionarClaseActivity::class.java)
             estudiante = iSolicitarClaseControlador.getStudent(this,stringEmail.toString())
@@ -254,6 +254,13 @@ class SolicitarClaseActivity : AppCompatActivity(), ISolicitarClaseVista {
             val email= getIntent().getStringExtra("email")
             intentClass.putExtra("email", email);
             startActivity(intentClass)
+        }
+
+        val btnDisminurClase = findViewById<Button>(R.id.btn_disminuir_solicitar_clase)
+        btnDisminurClase.setOnClickListener{
+            var intDuracion = duracion?.text.toString().trim().toInt() - 1
+            duracion?.setText(intDuracion.toString())
+            println(duracion?.text.toString().trim().toInt() - 1)
         }
     }
 
