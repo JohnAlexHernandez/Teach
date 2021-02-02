@@ -159,6 +159,7 @@
         android:layout_marginEnd="32dp"
         android:layout_marginBottom="8dp"
         android:clickable="true"
+        android:filterTouchesWhenObscured="false"
         app:layout_constraintBottom_toTopOf="@+id/txt_hora_solicitar_clase"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txt_inquietudes__solicitar_clase"
