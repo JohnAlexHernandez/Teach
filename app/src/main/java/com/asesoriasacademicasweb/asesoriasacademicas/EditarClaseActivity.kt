@@ -245,8 +245,9 @@ class EditarClaseActivity : AppCompatActivity(), IEditarClaseVista {
         }
 
         var formatofecha: SimpleDateFormat = SimpleDateFormat("dd/mm/yyyy")
+        val lanzadorFecha: ImageView = findViewById(R.id.img_fecha_editar_clase)
         fecha = findViewById(R.id.txt_fecha_editar_clase)
-        fecha?.setOnClickListener{
+        lanzadorFecha.setOnClickListener{
             val datePickerDialog = DatePickerDialog(this, DatePickerDialog.OnDateSetListener { view, anio, mes, dia ->
                 var fechaCalendario = "" + dia + "/" + (mes + 1) + "/" + anio
                 var date: Date  = formatofecha.parse(fechaCalendario)
@@ -256,8 +257,9 @@ class EditarClaseActivity : AppCompatActivity(), IEditarClaseVista {
         }
 
         var formatohora: SimpleDateFormat = SimpleDateFormat("h:mm")
+        val lanzadorTiempo: ImageView = findViewById(R.id.img_hora_editar_clase)
         horaMinutos = findViewById(R.id.txt_hora_editar_clase)
-        horaMinutos?.setOnClickListener{
+        lanzadorTiempo.setOnClickListener{
             val timePickerDialog = TimePickerDialog(this, TimePickerDialog.OnTimeSetListener{ view, hora, minutos ->
                 var horaReloj = "" + hora + ":" + minutos
                 var date: Date  = formatohora.parse(horaReloj)
@@ -274,6 +276,29 @@ class EditarClaseActivity : AppCompatActivity(), IEditarClaseVista {
             intentCancelar.putExtra("email", email);
             intentCancelar.putExtra("id_clase", idBusqueda);
             startActivity(intentCancelar)
+        }
+
+        val btnDisminurDuracion = findViewById<ImageView>(R.id.img_disminuir_duracion_editar_clase)
+        btnDisminurDuracion.setOnClickListener{
+            var intDuracion = duracion?.text.toString().trim().toInt()
+            var nuevaDuracion = intDuracion - 1
+            if(nuevaDuracion >= 1) {
+                duracion?.setText(nuevaDuracion.toString())
+            } else {
+                duracion?.setText("0")
+            }
+        }
+
+        val btnAumentarDuracion = findViewById<ImageView>(R.id.img_aumentar_duracion_editar_clase)
+        btnAumentarDuracion.setOnClickListener{
+            var intDuracion = duracion?.text.toString().trim().toInt()
+            var nuevaDuracion = intDuracion + 1
+            if(nuevaDuracion <= 6) {
+                duracion?.setText(nuevaDuracion.toString())
+            } else {
+                duracion?.setText("6")
+                Toast.makeText(this, "No es posible definir una clase mayor a 6 horas", Toast.LENGTH_SHORT).show()
+            }
         }
     }
 

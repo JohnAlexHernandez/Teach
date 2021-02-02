@@ -55,13 +55,13 @@
         android:layout_marginStart="32dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="32dp"
+        android:autofillHints="@string/txt_fecha_editar_clase"
+        android:clickable="true"
         android:ems="10"
+        android:focusable="false"
         android:hint="@string/txt_fecha_editar_clase"
         android:inputType="date"
-        android:focusable="false"
-        android:clickable="true"
-        android:autofillHints="@string/txt_fecha_editar_clase"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/img_fecha_editar_clase"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txt_inquietudes_editar_clase" />
 
@@ -72,13 +72,13 @@
         android:layout_marginStart="32dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="32dp"
+        android:autofillHints="@string/txt_hora_editar_clase"
+        android:clickable="true"
         android:ems="10"
+        android:focusable="false"
         android:hint="@string/txt_hora_editar_clase"
         android:inputType="time"
-        android:focusable="false"
-        android:clickable="true"
-        android:autofillHints="@string/txt_hora_editar_clase"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/img_hora_editar_clase"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txt_fecha_editar_clase" />
 
@@ -89,12 +89,12 @@
         android:layout_marginStart="32dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="32dp"
+        android:autofillHints="@string/txt_duracion_editar_clase"
         android:ems="10"
         android:hint="@string/txt_duracion_editar_clase"
         android:inputType="number"
-        android:autofillHints="@string/txt_duracion_editar_clase"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/img_aumentar_duracion_editar_clase"
+        app:layout_constraintStart_toEndOf="@+id/img_disminuir_duracion_editar_clase"
         app:layout_constraintTop_toBottomOf="@+id/txt_hora_editar_clase" />
 
     <Button
@@ -130,5 +130,53 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/spn_materia_edit" />
+
+    <ImageView
+        android:id="@+id/img_fecha_editar_clase"
+        android:layout_width="36dp"
+        android:layout_height="46dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="32dp"
+        android:clickable="true"
+        app:layout_constraintBottom_toTopOf="@+id/txt_hora_editar_clase"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txt_inquietudes_editar_clase"
+        app:layout_constraintVertical_bias="0.0"
+        app:srcCompat="@drawable/ic_calendar_today_black_18dp" />
+
+    <ImageView
+        android:id="@+id/img_hora_editar_clase"
+        android:layout_width="36dp"
+        android:layout_height="46dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="32dp"
+        android:clickable="true"
+        app:layout_constraintBottom_toTopOf="@+id/txt_duracion_editar_clase"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txt_fecha_editar_clase"
+        app:layout_constraintVertical_bias="0.0"
+        app:srcCompat="@drawable/ic_schedule_black_18dp" />
+
+    <ImageView
+        android:id="@+id/img_aumentar_duracion_editar_clase"
+        android:layout_width="36dp"
+        android:layout_height="46dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="32dp"
+        app:layout_constraintBottom_toTopOf="@+id/btn_guardar_editar_clase"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txt_hora_editar_clase"
+        app:srcCompat="@drawable/ic_add_circle_black_18dp" />
+
+    <ImageView
+        android:id="@+id/img_disminuir_duracion_editar_clase"
+        android:layout_width="36dp"
+        android:layout_height="46dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="7dp"
+        app:layout_constraintBottom_toTopOf="@+id/btn_guardar_editar_clase"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txt_hora_editar_clase"
+        app:srcCompat="@drawable/ic_remove_circle_black_18dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

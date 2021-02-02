@@ -227,8 +227,9 @@ class SolicitarClaseActivity : AppCompatActivity(), ISolicitarClaseVista {
         }
 
         val formatofecha = SimpleDateFormat("dd/mm/yyyy")
+        val lanzadorFecha: ImageView = findViewById(R.id.img_fecha_solicitar_clase)
         fecha = findViewById(R.id.txt_fecha_solicitar_clase)
-        fecha?.setOnClickListener{
+        lanzadorFecha.setOnClickListener{
             val datePickerDialog = DatePickerDialog(this, DatePickerDialog.OnDateSetListener { view, anio, mes, dia ->
                 var fechaCalendario = "" + dia + "/" + (mes + 1) + "/" + anio
                 var date: Date  = formatofecha.parse(fechaCalendario)
@@ -238,8 +239,9 @@ class SolicitarClaseActivity : AppCompatActivity(), ISolicitarClaseVista {
         }
 
         val formatohora = SimpleDateFormat("h:mm")
+        val lanzadorTiempo: ImageView = findViewById(R.id.img_hora_solicitar_clase)
         horaMinutos = findViewById(R.id.txt_hora_solicitar_clase)
-        horaMinutos?.setOnClickListener{
+        lanzadorTiempo.setOnClickListener{
             val timePickerDialog = TimePickerDialog(this, TimePickerDialog.OnTimeSetListener{ view, hora, minutos ->
                 val horaReloj = "" + hora + ":" + minutos
                 val date: Date  = formatohora.parse(horaReloj)
@@ -256,11 +258,27 @@ class SolicitarClaseActivity : AppCompatActivity(), ISolicitarClaseVista {
             startActivity(intentClass)
         }
 
-        val btnDisminurClase = findViewById<Button>(R.id.btn_disminuir_solicitar_clase)
-        btnDisminurClase.setOnClickListener{
-            var intDuracion = duracion?.text.toString().trim().toInt() - 1
-            duracion?.setText(intDuracion.toString())
-            println(duracion?.text.toString().trim().toInt() - 1)
+        val btnDisminurDuracion = findViewById<ImageView>(R.id.img_disminuir_duracion_solicitar_clase)
+        btnDisminurDuracion.setOnClickListener{
+            var intDuracion = duracion?.text.toString().trim().toInt()
+            var nuevaDuracion = intDuracion - 1
+            if(nuevaDuracion >= 1) {
+                duracion?.setText(nuevaDuracion.toString())
+            } else {
+                duracion?.setText("0")
+            }
+        }
+
+        val btnAumentarDuracion = findViewById<ImageView>(R.id.img_aumentar_duracion_solicitar_clase)
+        btnAumentarDuracion.setOnClickListener{
+            var intDuracion = duracion?.text.toString().trim().toInt()
+            var nuevaDuracion = intDuracion + 1
+            if(nuevaDuracion <= 6) {
+                duracion?.setText(nuevaDuracion.toString())
+            } else {
+                duracion?.setText("6")
+                Toast.makeText(this, "No es posible definir una clase mayor a 6 horas", Toast.LENGTH_SHORT).show()
+            }
         }
     }
 
