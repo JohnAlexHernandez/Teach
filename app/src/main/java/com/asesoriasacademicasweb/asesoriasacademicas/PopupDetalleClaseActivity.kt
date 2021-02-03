@@ -34,13 +34,8 @@ class PopupDetalleClaseActivity : AppCompatActivity(), IGestionarClaseVista {
         clase = iGestionarClaseControlador.findClass(this, idClase.toString())
         materia?.setText(clase.materia)
         tema?.setText(clase.tema)
-        val formatofecha = SimpleDateFormat("dd/mm/yyyy")
-        val date: Date = formatofecha.parse(clase.fecha)
-        fecha?.setText(formatofecha.format(date))
-
-        val formatohora = SimpleDateFormat("h:mm")
-        val hour: Date  = formatohora.parse(clase.hora)
-        hora?.setText(formatohora.format(hour))
+        fecha?.setText(clase.fecha)
+        hora?.setText(clase.hora)
         duracion?.setText(clase.duracion)
 
         /*val btnEliminarClase = findViewById<Button>(R.id.btn_eliminar_detalle_clase)
@@ -91,6 +86,13 @@ class PopupDetalleClaseActivity : AppCompatActivity(), IGestionarClaseVista {
             var email= getIntent().getStringExtra("email")
             intentEditarPerfil.putExtra("email", email);
             startActivity(intentEditarPerfil)
+        }
+
+        val intentLogout = Intent(this, LoginActivity::class.java)
+        if (item.itemId == R.id.logout){
+            val email= getIntent().getStringExtra("email")
+            intentLogout.putExtra("email", email);
+            startActivity(intentLogout)
         }
         return true
     }

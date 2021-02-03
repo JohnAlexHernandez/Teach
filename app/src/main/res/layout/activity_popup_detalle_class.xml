@@ -125,4 +125,17 @@
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txv_tema_detalle_clase" />
+
+    <TextView
+        android:id="@+id/txv_etiqueta_hora_solicitar_clase"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="8dp"
+        android:text="@string/txv_etiqueta_hora_detalle_clase"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/txv_duracion_detalle_clase"
+        app:layout_constraintEnd_toStartOf="@+id/txv_hora_detalle_clase"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@+id/txv_fecha_detalle_clase" />
 </androidx.constraintlayout.widget.ConstraintLayout>

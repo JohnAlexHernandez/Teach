@@ -3,18 +3,20 @@ package com.asesoriasacademicasweb.asesoriasacademicas
 import android.app.DatePickerDialog
 import android.app.TimePickerDialog
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
+import android.os.Build
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import android.widget.*
+import androidx.annotation.RequiresApi
+import androidx.appcompat.app.AppCompatActivity
 import com.asesoriasacademicasweb.asesoriasacademicas.Controlador.SolicitarClaseControlador
-import com.asesoriasacademicasweb.asesoriasacademicas.Vista.ISolicitarClaseVista
 import com.asesoriasacademicasweb.asesoriasacademicas.Model.Clase
 import com.asesoriasacademicasweb.asesoriasacademicas.Model.Estudiante
-import com.asesoriasacademicasweb.asesoriasacademicas.Model.Modelo
+import com.asesoriasacademicasweb.asesoriasacademicas.Vista.ISolicitarClaseVista
 import java.text.SimpleDateFormat
+
 import java.util.*
 
 class SolicitarClaseActivity : AppCompatActivity(), ISolicitarClaseVista {
@@ -30,6 +32,7 @@ class SolicitarClaseActivity : AppCompatActivity(), ISolicitarClaseVista {
     var minutos = calendar.get(Calendar.MINUTE)
     val iSolicitarClaseControlador = SolicitarClaseControlador(this)
 
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_solicitar_clase)
@@ -294,6 +297,13 @@ class SolicitarClaseActivity : AppCompatActivity(), ISolicitarClaseVista {
             var email= getIntent().getStringExtra("email")
             intentEditarPerfil.putExtra("email", email);
             startActivity(intentEditarPerfil)
+        }
+
+        val intentLogout = Intent(this, LoginActivity::class.java)
+        if (item.itemId == R.id.logout){
+            val email= getIntent().getStringExtra("email")
+            intentLogout.putExtra("email", email);
+            startActivity(intentLogout)
         }
         return true
     }

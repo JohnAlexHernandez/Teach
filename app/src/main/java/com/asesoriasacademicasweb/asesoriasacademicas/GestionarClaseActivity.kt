@@ -66,6 +66,13 @@ class GestionarClaseActivity : AppCompatActivity(), IGestionarClaseVista {
             intentEditarPerfil.putExtra("email", email);
             startActivity(intentEditarPerfil)
         }
+
+        val intentLogout = Intent(this, LoginActivity::class.java)
+        if (item.itemId == R.id.logout){
+            val email= getIntent().getStringExtra("email")
+            intentLogout.putExtra("email", email);
+            startActivity(intentLogout)
+        }
         return true
     }
 

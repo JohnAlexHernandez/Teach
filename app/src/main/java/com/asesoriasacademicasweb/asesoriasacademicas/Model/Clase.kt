@@ -1,6 +1,8 @@
 package com.asesoriasacademicasweb.asesoriasacademicas.Model
 
 import android.content.Context
+import java.text.SimpleDateFormat
+import java.util.*
 
 class Clase(_id: Int = 0, _fecha: String = "", _hora: String = "", _duracion: String = "", _materia: String = "", _tema: String = "", _inquietudes: String = "", _idEstudiante: Int = 0) : IClase, ITutoria {
     override var id: Int = _id
@@ -81,6 +83,10 @@ class Clase(_id: Int = 0, _fecha: String = "", _hora: String = "", _duracion: St
     }
 
     override fun esValido(context: Context): Int {
+        val formatoFecha = SimpleDateFormat("dd/MM/yyyy")
+        val formatoHora = SimpleDateFormat("h:mm")
+        val fechaActual = formatoFecha.format(Date())
+        val horaActual = formatoHora.format(Date())
         return if (materia.trim().isEmpty()){
             0
         } else if (tema.trim().isEmpty()){
@@ -89,12 +95,16 @@ class Clase(_id: Int = 0, _fecha: String = "", _hora: String = "", _duracion: St
             2
         } else if (fecha.trim().isEmpty()){
             3
-        } else if (hora.trim().isEmpty()){
+        } else if (fecha.trim() < fechaActual){
             4
-        } else if (duracion.trim().isEmpty()){
+        } else if (hora.trim().isEmpty()){
             5
-        } else if (duracion.toInt() < 1 || duracion.toInt() > 6){
+        } else if (hora.trim() < horaActual){
             6
+        } else if (duracion.trim().isEmpty()){
+            7
+        } else if (duracion.toInt() < 1 || duracion.toInt() > 6){
+            8
         } else {
             -1
         }
