@@ -280,24 +280,33 @@ class EditarClaseActivity : AppCompatActivity(), IEditarClaseVista {
 
         val btnDisminurDuracion = findViewById<ImageView>(R.id.img_disminuir_duracion_editar_clase)
         btnDisminurDuracion.setOnClickListener{
-            var intDuracion = duracion?.text.toString().trim().toInt()
-            var nuevaDuracion = intDuracion - 1
-            if(nuevaDuracion >= 1) {
-                duracion?.setText(nuevaDuracion.toString())
+            if (duracion?.text.toString().isEmpty()){
+                duracion?.setText("1")
             } else {
-                duracion?.setText("0")
+                var intDuracion = duracion?.text.toString().trim().toInt()
+                var nuevaDuracion = intDuracion - 1
+                if (nuevaDuracion >= 1) {
+                    duracion?.setText(nuevaDuracion.toString())
+                } else {
+                    duracion?.setText("1")
+                    Toast.makeText(this, "No es posible definir una clase menor a 1 hora", Toast.LENGTH_SHORT).show()
+                }
             }
         }
 
         val btnAumentarDuracion = findViewById<ImageView>(R.id.img_aumentar_duracion_editar_clase)
         btnAumentarDuracion.setOnClickListener{
-            var intDuracion = duracion?.text.toString().trim().toInt()
-            var nuevaDuracion = intDuracion + 1
-            if(nuevaDuracion <= 6) {
-                duracion?.setText(nuevaDuracion.toString())
+            if (duracion?.text.toString().isEmpty()){
+                duracion?.setText("1")
             } else {
-                duracion?.setText("6")
-                Toast.makeText(this, "No es posible definir una clase mayor a 6 horas", Toast.LENGTH_SHORT).show()
+                var intDuracion = duracion?.text.toString().trim().toInt()
+                var nuevaDuracion = intDuracion + 1
+                if(nuevaDuracion <= 6) {
+                    duracion?.setText(nuevaDuracion.toString())
+                } else {
+                    duracion?.setText("6")
+                    Toast.makeText(this, "No es posible definir una clase mayor a 6 horas", Toast.LENGTH_SHORT).show()
+                }
             }
         }
     }

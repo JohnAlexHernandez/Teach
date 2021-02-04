@@ -25,14 +25,12 @@ class EditarPerfilActivity : AppCompatActivity(), IEditarPerfilVista {
         persona = iEditarPerfilControlador.getUser(this, "" + emailBuscado)
 
         val nombre: EditText? = findViewById<EditText>(R.id.txt_nombre_editar_perfil)
-        val email: EditText? = findViewById<EditText>(R.id.txt_email_editar_perfil)
         val telefono: EditText? = findViewById<EditText>(R.id.txt_telefono_editar_perfil)
         val direccion: EditText? = findViewById<EditText>(R.id.txt_direccion_editar_perfil)
         val password: EditText? = findViewById<EditText>(R.id.txt_password_editar_perfil)
         val repetPassword: EditText? = findViewById<EditText>(R.id.txt_repet_password_editar_perfil)
 
         nombre?.setText(persona.nombre)
-        email?.setText(persona.email)
         telefono?.setText(persona.telefono)
         direccion?.setText(persona.direccion)
         password?.setText(persona.contrasenia)
@@ -49,23 +47,22 @@ class EditarPerfilActivity : AppCompatActivity(), IEditarPerfilVista {
         btnGuardarEditarPerfil.setOnClickListener{
 
             val nombre: EditText? = findViewById(R.id.txt_nombre_editar_perfil)
-            val email: EditText? = findViewById(R.id.txt_email_editar_perfil)
             val telefono: EditText? = findViewById(R.id.txt_telefono_editar_perfil)
             val direccion: EditText? = findViewById(R.id.txt_direccion_editar_perfil)
             val password: EditText? = findViewById(R.id.txt_password_editar_perfil)
             val repetPassword: EditText? = findViewById(R.id.txt_repet_password_editar_perfil)
             val stringNombre = nombre?.text.toString().trim()
-            val stringEmail = email?.text.toString().trim()
+            val stringEmail = emailBuscado
             val stringTelefono = telefono?.text.toString().trim()
             val stringDireccion = direccion?.text.toString().trim()
             val stringPass = password?.text.toString().trim()
             val stringRepetPass = repetPassword?.text.toString().trim()
 
             val intentEditProfile = Intent(this, GestionarClaseActivity::class.java)
-            if(iEditarPerfilControlador.onEditProfile(this, stringNombre, stringEmail, stringTelefono, stringDireccion, stringPass, stringRepetPass) == -1) {
-                val persona = Persona(stringNombre, stringEmail, stringTelefono, stringDireccion, stringPass, "Estudiante")
+            if(iEditarPerfilControlador.onEditProfile(this, stringNombre, stringEmail!!, stringTelefono, stringDireccion, stringPass, stringRepetPass) == -1) {
+                val persona = Persona(stringNombre, stringEmail!!, stringTelefono, stringDireccion, stringPass, "Estudiante")
                 if (iEditarPerfilControlador.updateProfile(this, persona) == 1) {
-                    intentEditProfile.putExtra("email", stringEmail)
+                    intentEditProfile.putExtra("email", stringEmail!!)
                     startActivity(intentEditProfile)
                 }
             }

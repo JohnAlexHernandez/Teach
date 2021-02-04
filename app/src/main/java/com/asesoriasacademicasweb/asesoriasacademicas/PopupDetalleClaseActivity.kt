@@ -5,9 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
-import android.widget.Button
-import android.widget.TextView
-import android.widget.Toast
+import android.widget.*
 import com.asesoriasacademicasweb.asesoriasacademicas.Controlador.GestionarClaseControlador
 import com.asesoriasacademicasweb.asesoriasacademicas.Model.Clase
 import com.asesoriasacademicasweb.asesoriasacademicas.Model.Modelo
@@ -30,6 +28,15 @@ class PopupDetalleClaseActivity : AppCompatActivity(), IGestionarClaseVista {
         val fecha: TextView? = findViewById<TextView>(R.id.txv_fecha_detalle_clase)
         val hora: TextView? = findViewById<TextView>(R.id.txv_hora_detalle_clase)
         val duracion: TextView? = findViewById<TextView>(R.id.txv_duracion_detalle_clase)
+        val estado: Switch = findViewById(R.id.swt_estado_solicitar_clase)
+
+        estado.setOnCheckedChangeListener{buttonView, isChecked ->
+            if (isChecked){
+                Toast.makeText(this,"Checked",Toast.LENGTH_SHORT).show()
+            } else {
+                Toast.makeText(this,"Un-Checked",Toast.LENGTH_SHORT).show()
+            }
+        }
 
         clase = iGestionarClaseControlador.findClass(this, idClase.toString())
         materia?.setText(clase.materia)

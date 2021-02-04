@@ -27,6 +27,7 @@
     <string name="txt_duracion_solicitar_clase">Duracion</string>
     <string name="txt_duracion_solicitar_clase_x_defecto">0</string>
     <string name="btn_guardar_solicitar_clase">Guardar</string>
+    <string name="swt_estado_solicitar_clase">Estado</string>
 
     <string name="txt_listaClase_clase">Lista clases</string>
     <string name="btn_listado_clases">Cancelar</string>
@@ -37,6 +38,7 @@
     <string name="txv_etiqueta_duracion_detalle_clase">Duración:</string>
     <string name="txv_etiqueta_fecha_detalle_clase">Fecha:</string>
     <string name="txv_etiqueta_hora_detalle_clase">Hora:</string>
+    <string name="txv_progreso_detalle_clase">Progreso</string>
 
     <string name="txt_editar_class">Editar clase</string>
     <string name="txt_materia_editar_clase">Materia</string>

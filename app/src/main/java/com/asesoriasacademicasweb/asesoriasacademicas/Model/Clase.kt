@@ -99,7 +99,7 @@ class Clase(_id: Int = 0, _fecha: String = "", _hora: String = "", _duracion: St
             4
         } else if (hora.trim().isEmpty()){
             5
-        } else if (hora.trim() < horaActual){
+        } else if (fecha.trim() == fechaActual && hora.trim() < horaActual){
             6
         } else if (duracion.trim().isEmpty()){
             7
