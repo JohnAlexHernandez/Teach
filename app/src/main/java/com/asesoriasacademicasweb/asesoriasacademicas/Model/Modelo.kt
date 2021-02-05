@@ -152,7 +152,7 @@ class Modelo {
     fun buscarClase(context: Context, id_clase: String): Clase {
         val clase = Clase()
         val id = id_clase
-        val sql = "SELECT id_clase,fecha,hora,duracion,materia,tema,inquietudes FROM CLASE INNER JOIN TUTORIA WHERE TUTORIA.id_tutoria = CLASE.id_tutoria AND id_clase = $id;"
+        val sql = "SELECT id_clase,fecha,hora,duracion,materia,tema,inquietudes,estado FROM CLASE INNER JOIN TUTORIA WHERE TUTORIA.id_tutoria = CLASE.id_tutoria AND id_clase = $id;"
 
         val db: SQLiteDatabase = this.getConn(context)
         try {
@@ -165,6 +165,7 @@ class Modelo {
                 clase.materia = fila.getString(4)
                 clase.tema = fila.getString(5)
                 clase.inquietudes = fila.getString(6)
+                clase.estado = fila.getString(7)
             }else{
                 System.out.println("La clase no existe ")
             }
@@ -186,8 +187,9 @@ class Modelo {
         val materia = tutoria.materia
         val tema = tutoria.tema
         val inquietudes = tutoria.inquietudes
+        val estado = tutoria.estado
 
-        val sqlTutoria = "UPDATE  TUTORIA SET materia='$materia', tema='$tema', inquietudes='$inquietudes' WHERE id_tutoria=$id_tutoria;"
+        val sqlTutoria = "UPDATE TUTORIA SET materia='$materia', tema='$tema', inquietudes='$inquietudes', estado='$estado' WHERE id_tutoria=$id_tutoria;"
         val sqlClase = "UPDATE CLASE SET fecha='$fecha', hora='$hora', duracion='$duracion', id_tutoria='$id_tutoria' WHERE id_clase=$id_clase;"
 
         val db: SQLiteDatabase = this.getConn(context)
@@ -231,11 +233,12 @@ class Modelo {
         val materia = clase.materia
         val tema = clase.tema
         val inquietudes = clase.inquietudes
+        val estado = clase.estado
         val fecha = clase.fecha
         val hora = clase.hora
         val duracion = clase.duracion
         val idEstudiante = clase.idEstudiante
-        val sqlTutoria = "INSERT INTO TUTORIA (materia, tema, inquietudes) VALUES ('$materia', '$tema', '$inquietudes');"
+        val sqlTutoria = "INSERT INTO TUTORIA (materia, tema, inquietudes, estado) VALUES ('$materia', '$tema', '$inquietudes', '$estado');"
         val sqlClase = "INSERT INTO CLASE (fecha, hora, duracion, id_tutoria, id_estudiante) VALUES ('$fecha', '$hora', '$duracion', (SELECT MAX(id_tutoria) FROM TUTORIA), $idEstudiante);"
 
         val db: SQLiteDatabase = this.getConn(context)
@@ -252,7 +255,7 @@ class Modelo {
 
     fun listarClases(context: Context, idEstudiante: String): ArrayList<Clase>{
         val listaClases: ArrayList<Clase> = ArrayList<Clase>()
-        val sql = "SELECT id_clase,fecha,hora,duracion,materia,tema,inquietudes FROM CLASE INNER JOIN TUTORIA WHERE TUTORIA.id_tutoria = CLASE.id_tutoria AND id_Estudiante = $idEstudiante;"
+        val sql = "SELECT id_clase,fecha,hora,duracion,materia,tema,inquietudes,estado FROM CLASE INNER JOIN TUTORIA WHERE TUTORIA.id_tutoria = CLASE.id_tutoria AND id_Estudiante = $idEstudiante;"
 
         val db: SQLiteDatabase = this.getConn(context)
         try {
@@ -267,6 +270,7 @@ class Modelo {
                     clase.materia = fila.getString(4)
                     clase.tema = fila.getString(5)
                     clase.inquietudes = fila.getString(6)
+                    clase.estado = fila.getString(7)
                     listaClases.add(clase)
                 }while (fila.moveToNext())
             }
@@ -287,6 +291,23 @@ class Modelo {
             bandera = 1
         }catch (e: Exception)
         {
+            db.close()
+            return bandera
+        }
+        return bandera
+    }
+
+    fun cambiarEstado(context: Context, estado: String, id: String): Int {
+        var bandera = 0
+        val estado = estado
+
+        val sql = "UPDATE TUTORIA SET estado='$estado' WHERE id_tutoria = $id;"
+
+        val db: SQLiteDatabase = this.getConn(context)
+        try {
+            db.execSQL(sql)
+            bandera = 1
+        } catch (e: Exception) {
             db.close()
             return bandera
         }

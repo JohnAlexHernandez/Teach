@@ -2,7 +2,7 @@ package com.asesoriasacademicasweb.asesoriasacademicas.Model
 
 import android.content.Context
 
-class Tutoria(_materia: String, _tema: String, _inquietudes: String) : ITutoria {
+class Tutoria(_materia: String, _tema: String, _inquietudes: String, _estado: String) : ITutoria {
 
     override var materia: String = _materia
         get() = field
@@ -19,11 +19,17 @@ class Tutoria(_materia: String, _tema: String, _inquietudes: String) : ITutoria 
         set(value) {
             field = value
         }
+    override var estado: String = _estado
+        get() = field
+        set(value) {
+            field = value
+        }
 
-    constructor(): this("","",""){
+    constructor(): this("","","", ""){
         this.materia = ""
         this.tema = ""
         this.inquietudes = ""
+        this.estado = ""
     }
 
     override fun esValido(context: Context): Int {
@@ -33,6 +39,8 @@ class Tutoria(_materia: String, _tema: String, _inquietudes: String) : ITutoria 
             5
         } else if (inquietudes.trim().isEmpty()){
             6
+        } else if (estado.trim().isEmpty()){
+            7
         } else {
             -1
         }

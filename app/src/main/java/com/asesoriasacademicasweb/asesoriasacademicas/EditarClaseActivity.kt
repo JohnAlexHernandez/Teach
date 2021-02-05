@@ -222,10 +222,11 @@ class EditarClaseActivity : AppCompatActivity(), IEditarClaseVista {
             val stringHoraMinutos = horaMinutos?.text.toString().trim()
             val stringDuracion = duracion?.text.toString().trim()
 
-            if(iEditarClaseControlador.onEditClass(this, stringFecha, stringHoraMinutos, stringDuracion, stringMateria, stringTema, stringInquietudes, estudiante.id) == -1) {
+            if(iEditarClaseControlador.onEditClass(this, stringFecha, stringHoraMinutos, stringDuracion, stringMateria, stringTema, stringInquietudes, clase.estado, estudiante.id) == -1) {
                 tutoria.materia = stringMateria
                 tutoria.tema = stringTema
                 tutoria.inquietudes = stringInquietudes
+                tutoria.estado = clase.estado
                 clase.fecha = stringFecha
                 clase.hora = stringHoraMinutos
                 clase.duracion = stringDuracion

@@ -6,5 +6,6 @@ interface ITutoria {
     var materia: String
     var tema: String
     var inquietudes: String
+    var estado: String
     fun esValido(context: Context): Int
 }

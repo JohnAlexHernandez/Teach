@@ -4,7 +4,7 @@ import android.content.Context
 import java.text.SimpleDateFormat
 import java.util.*
 
-class Clase(_id: Int = 0, _fecha: String = "", _hora: String = "", _duracion: String = "", _materia: String = "", _tema: String = "", _inquietudes: String = "", _idEstudiante: Int = 0) : IClase, ITutoria {
+class Clase(_id: Int = 0, _fecha: String = "", _hora: String = "", _duracion: String = "", _materia: String = "", _tema: String = "", _inquietudes: String = "", _estado: String = "", _idEstudiante: Int = 0) : IClase, ITutoria {
     override var id: Int = _id
         get() = field
         set(value) {
@@ -40,6 +40,11 @@ class Clase(_id: Int = 0, _fecha: String = "", _hora: String = "", _duracion: St
         set(value) {
             field = value
         }
+    override var estado: String = _estado
+        get() = field
+        set(value) {
+            field = value
+        }
     override var idEstudiante: Int = _idEstudiante
         get() = field
         set(value) {
@@ -54,20 +59,22 @@ class Clase(_id: Int = 0, _fecha: String = "", _hora: String = "", _duracion: St
         this.materia = _materia
         this.tema = _tema
         this.inquietudes = _inquietudes
+        this.estado = _estado
         this.idEstudiante = _idEstudiante
     }
 
-    constructor(_fecha: String, _hora: String, _duracion: String, _materia: String, _tema: String, _inquietudes: String, _idEstudiante: Int): this(0, _fecha, _hora, _duracion,_materia, _tema, _inquietudes, _idEstudiante){
+    constructor(_fecha: String, _hora: String, _duracion: String, _materia: String, _tema: String, _inquietudes: String, _estado: String, _idEstudiante: Int): this(0, _fecha, _hora, _duracion,_materia, _tema, _inquietudes, _estado, _idEstudiante){
         this.fecha = _fecha
         this.hora = _hora
         this.duracion = _duracion
         this.materia = _materia
         this.tema = _tema
         this.inquietudes = _inquietudes
+        this.estado = _estado
         this.idEstudiante = _idEstudiante
     }
 
-    constructor(): this(0, "","","", "", "", "", 0){
+    constructor(): this(0, "","","", "", "", "", "", 0){
         this.id = 0
         this.fecha = ""
         this.hora = ""
@@ -75,6 +82,7 @@ class Clase(_id: Int = 0, _fecha: String = "", _hora: String = "", _duracion: St
         this.materia = ""
         this.tema = ""
         this.inquietudes = ""
+        this.estado = ""
         this.idEstudiante = 0
     }
 
@@ -93,6 +101,8 @@ class Clase(_id: Int = 0, _fecha: String = "", _hora: String = "", _duracion: St
             1
         } else if (inquietudes.trim().isEmpty()){
             2
+        } else if (estado.trim().isEmpty()){
+            9
         } else if (fecha.trim().isEmpty()){
             3
         } else if (fecha.trim() < fechaActual){

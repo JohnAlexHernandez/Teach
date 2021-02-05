@@ -1,6 +1,7 @@
 package com.asesoriasacademicasweb.asesoriasacademicas.Controlador
 
 import android.content.Context
+import android.view.Display
 import com.asesoriasacademicasweb.asesoriasacademicas.Model.Clase
 import com.asesoriasacademicasweb.asesoriasacademicas.Model.Estudiante
 import com.asesoriasacademicasweb.asesoriasacademicas.Model.Modelo
@@ -28,5 +29,10 @@ class GestionarClaseControlador(var iGestionarClaseVista: IGestionarClaseVista) 
     override fun getStudent(context: Context, email: String): Estudiante {
         val obj = Modelo()
         return obj.obtenerEstudiante(context, email)
+    }
+
+    override fun changeStatus(context: Context, estado: String, id: String): Int {
+        val obj = Modelo()
+        return obj.cambiarEstado(context, estado, id)
     }
 }

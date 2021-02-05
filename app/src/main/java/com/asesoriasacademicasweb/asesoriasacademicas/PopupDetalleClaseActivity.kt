@@ -30,20 +30,27 @@ class PopupDetalleClaseActivity : AppCompatActivity(), IGestionarClaseVista {
         val duracion: TextView? = findViewById<TextView>(R.id.txv_duracion_detalle_clase)
         val estado: Switch = findViewById(R.id.swt_estado_solicitar_clase)
 
-        estado.setOnCheckedChangeListener{buttonView, isChecked ->
-            if (isChecked){
-                Toast.makeText(this,"Checked",Toast.LENGTH_SHORT).show()
-            } else {
-                Toast.makeText(this,"Un-Checked",Toast.LENGTH_SHORT).show()
-            }
-        }
-
         clase = iGestionarClaseControlador.findClass(this, idClase.toString())
         materia?.setText(clase.materia)
         tema?.setText(clase.tema)
+
+        if(clase.estado.equals("activo")){
+            estado.setChecked(true)
+        } else {
+            estado.setChecked(false)
+        }
+
         fecha?.setText(clase.fecha)
         hora?.setText(clase.hora)
         duracion?.setText(clase.duracion)
+
+        estado.setOnCheckedChangeListener{buttonView, isChecked ->
+            if (isChecked){
+                iGestionarClaseControlador.changeStatus(this, "activo", idClase.toString())
+            } else {
+                iGestionarClaseControlador.changeStatus(this, "inactivo", idClase.toString())
+            }
+        }
 
         /*val btnEliminarClase = findViewById<Button>(R.id.btn_eliminar_detalle_clase)
         btnEliminarClase.setOnClickListener{

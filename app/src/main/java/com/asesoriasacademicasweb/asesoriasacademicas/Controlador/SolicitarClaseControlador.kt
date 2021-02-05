@@ -7,7 +7,7 @@ import com.asesoriasacademicasweb.asesoriasacademicas.Model.Modelo
 import com.asesoriasacademicasweb.asesoriasacademicas.Vista.ISolicitarClaseVista
 
 class SolicitarClaseControlador(var iSolicitarClaseVista: ISolicitarClaseVista) : ISolicitarClaseControlador {
-    override fun onNewClass(context: Context, fecha: String, hora: String, duracion: String, materia: String, tema: String, inquietudes: String, _idEstudiante: Int): Int {
+    override fun onNewClass(context: Context, fecha: String, hora: String, duracion: String, materia: String, tema: String, inquietudes: String, estado: String, _idEstudiante: Int): Int {
         val clase = Clase(
                 0,
                 fecha,
@@ -16,6 +16,7 @@ class SolicitarClaseControlador(var iSolicitarClaseVista: ISolicitarClaseVista) 
                 materia,
                 tema,
                 inquietudes,
+                estado,
                 _idEstudiante
         )
 
@@ -23,6 +24,7 @@ class SolicitarClaseControlador(var iSolicitarClaseVista: ISolicitarClaseVista) 
             0 -> this.iSolicitarClaseVista.onLoginError("El campo materia no puede estar vacío")
             1 -> this.iSolicitarClaseVista.onLoginError("El campo tema no puede estar vacío")
             2 -> this.iSolicitarClaseVista.onLoginError("El campo inquietudes no puede estar vacío")
+            9 -> this.iSolicitarClaseVista.onLoginError("El campo estado no puede estar vacío")
             3 -> this.iSolicitarClaseVista.onLoginError("El campo fecha no puede estar vacío")
             4 -> this.iSolicitarClaseVista.onLoginError("El campo fecha es inferior a la fecha actual")
             5 -> this.iSolicitarClaseVista.onLoginError("El campo hora no puede estar vacío")

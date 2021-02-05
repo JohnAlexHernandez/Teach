@@ -211,7 +211,7 @@ class SolicitarClaseActivity : AppCompatActivity(), ISolicitarClaseVista {
             val intentInsert = Intent(this, GestionarClaseActivity::class.java)
             estudiante = iSolicitarClaseControlador.getStudent(this,stringEmail.toString())
 
-            if(iSolicitarClaseControlador.onNewClass(this, stringFecha, stringHoraMinutos, stringDuracion, stringMateria, stringTema, stringInquietudes, estudiante.id) == -1) {
+            if(iSolicitarClaseControlador.onNewClass(this, stringFecha, stringHoraMinutos, stringDuracion, stringMateria, stringTema, stringInquietudes, "activo", estudiante.id) == -1) {
                 val clase = Clase(
                         0,
                         stringFecha,
@@ -220,6 +220,7 @@ class SolicitarClaseActivity : AppCompatActivity(), ISolicitarClaseVista {
                         stringMateria,
                         stringTema,
                         stringInquietudes,
+                        "activo",
                         estudiante.id
                 )
 

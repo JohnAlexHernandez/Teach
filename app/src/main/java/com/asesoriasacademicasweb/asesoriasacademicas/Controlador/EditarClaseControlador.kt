@@ -7,7 +7,7 @@ import com.asesoriasacademicasweb.asesoriasacademicas.Model.Tutoria
 import com.asesoriasacademicasweb.asesoriasacademicas.Vista.IEditarClaseVista
 
 class EditarClaseControlador(val iEditarClaseVista: IEditarClaseVista): IEditarClaseControlador {
-    override fun onEditClass(context: Context, fecha: String, hora: String, duracion: String, materia: String, tema: String, inquietudes: String, _idEstudiante: Int): Int{
+    override fun onEditClass(context: Context, fecha: String, hora: String, duracion: String, materia: String, tema: String, inquietudes: String, estado: String, _idEstudiante: Int): Int{
         val clase = Clase(
                 0,
                 fecha,
@@ -16,6 +16,7 @@ class EditarClaseControlador(val iEditarClaseVista: IEditarClaseVista): IEditarC
                 materia,
                 tema,
                 inquietudes,
+                estado,
                 _idEstudiante
         )
 
@@ -23,6 +24,7 @@ class EditarClaseControlador(val iEditarClaseVista: IEditarClaseVista): IEditarC
             0 -> this.iEditarClaseVista.onLoginError("El campo materia no puede estar vacío")
             1 -> this.iEditarClaseVista.onLoginError("El campo tema no puede estar vacío")
             2 -> this.iEditarClaseVista.onLoginError("El campo inquietudes no puede estar vacío")
+            9 -> this.iEditarClaseVista.onLoginError("El campo estado no puede estar vacío")
             3 -> this.iEditarClaseVista.onLoginError("El campo fecha no puede estar vacío")
             4 -> this.iEditarClaseVista.onLoginError("El campo fecha es inferior a la fecha actual")
             5 -> this.iEditarClaseVista.onLoginError("El campo hora no puede estar vacío")
