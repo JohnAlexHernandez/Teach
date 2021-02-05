@@ -36,8 +36,10 @@ class PopupDetalleClaseActivity : AppCompatActivity(), IGestionarClaseVista {
 
         if(clase.estado.equals("activo")){
             estado.setChecked(true)
+            estado.setTextOn("Activa")
         } else {
             estado.setChecked(false)
+            estado.setTextOff("Inactiva")
         }
 
         fecha?.setText(clase.fecha)
