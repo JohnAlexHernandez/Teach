@@ -183,14 +183,13 @@ class Modelo {
         val fecha = clase.fecha
         val hora = clase.hora
         val duracion = clase.duracion
-        val id_tutoria = clase.id
         val materia = tutoria.materia
         val tema = tutoria.tema
         val inquietudes = tutoria.inquietudes
         val estado = tutoria.estado
 
-        val sqlTutoria = "UPDATE TUTORIA SET materia='$materia', tema='$tema', inquietudes='$inquietudes', estado='$estado' WHERE id_tutoria=$id_tutoria;"
-        val sqlClase = "UPDATE CLASE SET fecha='$fecha', hora='$hora', duracion='$duracion', id_tutoria='$id_tutoria' WHERE id_clase=$id_clase;"
+        val sqlTutoria = "UPDATE TUTORIA SET materia='$materia', tema='$tema', inquietudes='$inquietudes', estado='$estado' WHERE id_tutoria = (SELECT id_tutoria FROM CLASE WHERE id_clase=$id_clase);"
+        val sqlClase = "UPDATE CLASE SET fecha='$fecha', hora='$hora', duracion='$duracion', id_tutoria = (SELECT id_tutoria FROM CLASE WHERE id_clase=$id_clase) WHERE id_clase=$id_clase;"
 
         val db: SQLiteDatabase = this.getConn(context)
         try {
@@ -301,7 +300,7 @@ class Modelo {
         var bandera = 0
         val estado = estado
 
-        val sql = "UPDATE TUTORIA SET estado='$estado' WHERE id_tutoria = $id;"
+        val sql = "UPDATE TUTORIA SET estado='$estado' WHERE id_tutoria = (SELECT id_tutoria FROM CLASE WHERE id_clase=$id);"
 
         val db: SQLiteDatabase = this.getConn(context)
         try {
@@ -312,5 +311,25 @@ class Modelo {
             return bandera
         }
         return bandera
+    }
+
+    fun obtenerEstado(context: Context, id: String): String {
+        var estado = ""
+        val sql = "SELECT materia, tema, inquietudes, estado FROM TUTORIA WHERE id_tutoria = (SELECT id_tutoria FROM CLASE WHERE id_clase=$id);"
+
+        val db: SQLiteDatabase = this.getConn(context)
+        try {
+            var fila: Cursor = db.rawQuery(sql, null)
+            if(fila.moveToFirst()){
+                estado = fila.getString(3)
+            }else{
+                System.out.println("La tutoria no existe ")
+            }
+        }catch (e: Exception)
+        {
+            db.close()
+            return estado
+        }
+        return estado
     }
 }

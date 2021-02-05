@@ -11,4 +11,5 @@ interface IGestionarClaseControlador {
     fun deleteClass(context: Context, idClase: Int): Int
     fun getStudent(context: Context, email: String): Estudiante
     fun changeStatus(context: Context, estado: String, idClase: String): Int
+    fun getStatus(context: Context, idClase: String): String
 }

@@ -7,8 +7,6 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
 import com.asesoriasacademicasweb.asesoriasacademicas.Controlador.EditarPerfilControlador
-import com.asesoriasacademicasweb.asesoriasacademicas.Model.Estudiante
-import com.asesoriasacademicasweb.asesoriasacademicas.Model.Modelo
 import com.asesoriasacademicasweb.asesoriasacademicas.Model.Persona
 import com.asesoriasacademicasweb.asesoriasacademicas.Vista.IEditarPerfilVista
 

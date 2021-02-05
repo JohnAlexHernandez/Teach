@@ -101,8 +101,10 @@ class Clase(_id: Int = 0, _fecha: String = "", _hora: String = "", _duracion: St
             1
         } else if (inquietudes.trim().isEmpty()){
             2
-        } else if (estado.trim().isEmpty()){
+        } else if (estado.trim().isEmpty()) {
             9
+        } else if (estado.trim().equals("inactivo")){
+            10
         } else if (fecha.trim().isEmpty()){
             3
         } else if (fecha.trim() < fechaActual){

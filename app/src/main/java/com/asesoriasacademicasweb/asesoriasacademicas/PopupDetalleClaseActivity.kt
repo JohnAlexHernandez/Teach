@@ -8,10 +8,7 @@ import android.view.MenuItem
 import android.widget.*
 import com.asesoriasacademicasweb.asesoriasacademicas.Controlador.GestionarClaseControlador
 import com.asesoriasacademicasweb.asesoriasacademicas.Model.Clase
-import com.asesoriasacademicasweb.asesoriasacademicas.Model.Modelo
 import com.asesoriasacademicasweb.asesoriasacademicas.Vista.IGestionarClaseVista
-import java.text.SimpleDateFormat
-import java.util.*
 
 class PopupDetalleClaseActivity : AppCompatActivity(), IGestionarClaseVista {
 
@@ -21,6 +18,7 @@ class PopupDetalleClaseActivity : AppCompatActivity(), IGestionarClaseVista {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_popup_detalle_class)
 
+        val intentListadoClases = Intent(this, GestionarClaseActivity::class.java)
         val idClase= getIntent().getStringExtra("id_clase")
         var clase = Clase()
         val materia: TextView? = findViewById<TextView>(R.id.txv_materia_detalle_clase)
@@ -34,7 +32,7 @@ class PopupDetalleClaseActivity : AppCompatActivity(), IGestionarClaseVista {
         materia?.setText(clase.materia)
         tema?.setText(clase.tema)
 
-        if(clase.estado.equals("activo")){
+        if(iGestionarClaseControlador.getStatus(this, idClase.toString()).equals("activo")){
             estado.setChecked(true)
             estado.setTextOn("Activa")
         } else {
@@ -49,42 +47,33 @@ class PopupDetalleClaseActivity : AppCompatActivity(), IGestionarClaseVista {
         estado.setOnCheckedChangeListener{buttonView, isChecked ->
             if (isChecked){
                 iGestionarClaseControlador.changeStatus(this, "activo", idClase.toString())
+                Toast.makeText(this, "La clase se cambió a estado ACTIVO", Toast.LENGTH_SHORT).show()
             } else {
                 iGestionarClaseControlador.changeStatus(this, "inactivo", idClase.toString())
+                Toast.makeText(this, "La clase se cambió a estado INACTIVO", Toast.LENGTH_SHORT).show()
+
             }
+            val email= getIntent().getStringExtra("email")
+            intentListadoClases.putExtra("email", email);
+            startActivity(intentListadoClases)
         }
-
-        /*val btnEliminarClase = findViewById<Button>(R.id.btn_eliminar_detalle_clase)
-        btnEliminarClase.setOnClickListener{
-            val intentEliminarClase = Intent(this, GestionarClaseActivity::class.java)
-            val obj = Modelo()
-
-            val idBusqueda = clase.id
-
-            if (iGestionarClaseControlador.deleteClass(this, idBusqueda) == 1) {
-                Toast.makeText(this,"La clase ha sido eliminada correctamente", Toast.LENGTH_SHORT).show()
-                val email= getIntent().getStringExtra("email")
-                intentEliminarClase.putExtra("email", email);
-                startActivity(intentEliminarClase)
-            }else{
-                Toast.makeText(this,"Error al elimniar la clase", Toast.LENGTH_SHORT).show()
-            }
-        }*/
 
         val btnBuscarClase =findViewById<Button>(R.id.btn_buscar_detalle_clase)
         btnBuscarClase.setOnClickListener {
             val intentEditarClase = Intent(this, EditarClaseActivity::class.java)
-
             val idBusqueda = clase.id.toString()
             intentEditarClase.putExtra("id_clase", idBusqueda)
             val email= getIntent().getStringExtra("email")
             intentEditarClase.putExtra("email", email);
-            startActivity(intentEditarClase)
+            if (iGestionarClaseControlador.getStatus(this, idClase.toString()).equals("activo")) {
+                startActivity(intentEditarClase)
+            } else{
+                Toast.makeText(this, "No es posible editar una clase con estado INACTVO", Toast.LENGTH_SHORT).show()
+            }
         }
 
         val btnListadoClases = findViewById<Button>(R.id.btn_volver_detalle_clase)
         btnListadoClases.setOnClickListener {
-            val intentListadoClases = Intent(this, GestionarClaseActivity::class.java)
             val email= getIntent().getStringExtra("email")
             intentListadoClases.putExtra("email", email);
             startActivity(intentListadoClases)

@@ -3,13 +3,11 @@ package com.asesoriasacademicasweb.asesoriasacademicas
 import android.app.DatePickerDialog
 import android.app.TimePickerDialog
 import android.content.Intent
-import android.os.Build
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import android.widget.*
-import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import com.asesoriasacademicasweb.asesoriasacademicas.Controlador.SolicitarClaseControlador
 import com.asesoriasacademicasweb.asesoriasacademicas.Model.Clase
@@ -32,7 +30,6 @@ class SolicitarClaseActivity : AppCompatActivity(), ISolicitarClaseVista {
     var minutos = calendar.get(Calendar.MINUTE)
     val iSolicitarClaseControlador = SolicitarClaseControlador(this)
 
-    @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_solicitar_clase)

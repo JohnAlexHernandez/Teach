@@ -25,6 +25,7 @@ class EditarClaseControlador(val iEditarClaseVista: IEditarClaseVista): IEditarC
             1 -> this.iEditarClaseVista.onLoginError("El campo tema no puede estar vacío")
             2 -> this.iEditarClaseVista.onLoginError("El campo inquietudes no puede estar vacío")
             9 -> this.iEditarClaseVista.onLoginError("El campo estado no puede estar vacío")
+            10 -> this.iEditarClaseVista.onLoginError("No es posible editar una clase con estado INACTVO")
             3 -> this.iEditarClaseVista.onLoginError("El campo fecha no puede estar vacío")
             4 -> this.iEditarClaseVista.onLoginError("El campo fecha es inferior a la fecha actual")
             5 -> this.iEditarClaseVista.onLoginError("El campo hora no puede estar vacío")

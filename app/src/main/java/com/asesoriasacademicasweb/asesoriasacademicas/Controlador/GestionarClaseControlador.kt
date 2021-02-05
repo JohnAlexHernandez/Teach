@@ -35,4 +35,9 @@ class GestionarClaseControlador(var iGestionarClaseVista: IGestionarClaseVista) 
         val obj = Modelo()
         return obj.cambiarEstado(context, estado, id)
     }
+
+    override fun getStatus(context: Context, idClase: String): String {
+        val obj = Modelo()
+        return obj.obtenerEstado(context, idClase)
+    }
 }
