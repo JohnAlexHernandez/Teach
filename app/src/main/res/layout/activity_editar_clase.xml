@@ -1,181 +1,189 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".EditarClaseActivity">
+    android:fillViewport="true">
 
-    <TextView
-        android:id="@+id/txt_titulo_editar_clase"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="32dp"
-        android:text="@string/txt_editar_class"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <EditText
-        android:id="@+id/txt_inquietudes_editar_clase"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="32dp"
-        android:autofillHints="@string/txt_inquietudes_editar_clase"
-        android:ems="10"
-        android:hint="@string/txt_inquietudes_editar_clase"
-        android:inputType="textPersonName"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.502"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/spn_tema_edit" />
-
-    <Button
-        android:id="@+id/btn_guardar_editar_clase"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginEnd="32dp"
-        android:text="@string/btn_guardar_editar_clase"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txt_duracion_editar_clase" />
-
-    <EditText
-        android:id="@+id/txt_fecha_editar_clase"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="32dp"
-        android:autofillHints="@string/txt_fecha_editar_clase"
-        android:ems="10"
-        android:hint="@string/txt_fecha_editar_clase"
-        android:inputType="date"
-        android:focusable="false"
-        app:layout_constraintEnd_toStartOf="@+id/img_fecha_editar_clase"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txt_inquietudes_editar_clase" />
-
-    <EditText
-        android:id="@+id/txt_hora_editar_clase"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="32dp"
-        android:autofillHints="@string/txt_hora_editar_clase"
-        android:ems="10"
-        android:hint="@string/txt_hora_editar_clase"
-        android:inputType="time"
-        android:focusable="false"
-        app:layout_constraintEnd_toStartOf="@+id/img_hora_editar_clase"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txt_fecha_editar_clase" />
-
-    <EditText
-        android:id="@+id/txt_duracion_editar_clase"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="32dp"
-        android:autofillHints="@string/txt_duracion_editar_clase"
-        android:ems="10"
-        android:gravity="center"
-        android:hint="@string/txt_duracion_editar_clase"
-        android:inputType="number"
-        app:layout_constraintEnd_toStartOf="@+id/img_aumentar_duracion_editar_clase"
-        app:layout_constraintStart_toEndOf="@+id/img_disminuir_duracion_editar_clase"
-        app:layout_constraintTop_toBottomOf="@+id/txt_hora_editar_clase" />
-
-    <Button
-        android:id="@+id/btn_cancelar_editar_clase"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="32dp"
-        android:text="@string/btn_cancelar_registration"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn_guardar_editar_clase" />
-
-    <Spinner
-        android:id="@+id/spn_materia_edit"
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="32dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txt_titulo_editar_clase" />
+        tools:context=".EditarClaseActivity">
 
-    <Spinner
-        android:id="@+id/spn_tema_edit"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="32dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/spn_materia_edit" />
+        <TextView
+            android:id="@+id/txt_titulo_editar_clase"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="32dp"
+            android:text="@string/txt_editar_class"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    <ImageView
-        android:id="@+id/img_fecha_editar_clase"
-        android:layout_width="36dp"
-        android:layout_height="46dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="32dp"
-        android:clickable="true"
-        app:layout_constraintBottom_toTopOf="@+id/txt_hora_editar_clase"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txt_inquietudes_editar_clase"
-        app:layout_constraintVertical_bias="0.0"
-        app:srcCompat="@drawable/ic_calendar_today_black_18dp" />
+        <EditText
+            android:id="@+id/txt_inquietudes_editar_clase"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="32dp"
+            android:autofillHints="@string/txt_inquietudes_editar_clase"
+            android:ems="10"
+            android:hint="@string/txt_inquietudes_editar_clase"
+            android:inputType="textPersonName"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.502"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/spn_tema_edit" />
 
-    <ImageView
-        android:id="@+id/img_hora_editar_clase"
-        android:layout_width="36dp"
-        android:layout_height="46dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="32dp"
-        android:clickable="true"
-        app:layout_constraintBottom_toTopOf="@+id/txt_duracion_editar_clase"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txt_fecha_editar_clase"
-        app:layout_constraintVertical_bias="0.0"
-        app:srcCompat="@drawable/ic_schedule_black_18dp" />
+        <Button
+            android:id="@+id/btn_guardar_editar_clase"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginEnd="32dp"
+            android:text="@string/btn_guardar_editar_clase"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txt_duracion_editar_clase" />
 
-    <ImageView
-        android:id="@+id/img_aumentar_duracion_editar_clase"
-        android:layout_width="36dp"
-        android:layout_height="46dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="32dp"
-        app:layout_constraintBottom_toTopOf="@+id/btn_guardar_editar_clase"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txt_hora_editar_clase"
-        app:srcCompat="@drawable/ic_add_circle_black_18dp" />
+        <EditText
+            android:id="@+id/txt_fecha_editar_clase"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="32dp"
+            android:autofillHints="@string/txt_fecha_editar_clase"
+            android:ems="10"
+            android:hint="@string/txt_fecha_editar_clase"
+            android:inputType="date"
+            android:focusable="false"
+            app:layout_constraintEnd_toStartOf="@+id/img_fecha_editar_clase"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txt_inquietudes_editar_clase" />
 
-    <ImageView
-        android:id="@+id/img_disminuir_duracion_editar_clase"
-        android:layout_width="36dp"
-        android:layout_height="46dp"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="7dp"
-        app:layout_constraintBottom_toTopOf="@+id/btn_guardar_editar_clase"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txt_hora_editar_clase"
-        app:srcCompat="@drawable/ic_remove_circle_black_18dp" />
+        <EditText
+            android:id="@+id/txt_hora_editar_clase"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="32dp"
+            android:autofillHints="@string/txt_hora_editar_clase"
+            android:ems="10"
+            android:hint="@string/txt_hora_editar_clase"
+            android:inputType="time"
+            android:focusable="false"
+            app:layout_constraintEnd_toStartOf="@+id/img_hora_editar_clase"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txt_fecha_editar_clase" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <EditText
+            android:id="@+id/txt_duracion_editar_clase"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="32dp"
+            android:autofillHints="@string/txt_duracion_editar_clase"
+            android:ems="10"
+            android:gravity="center"
+            android:hint="@string/txt_duracion_editar_clase"
+            android:inputType="number"
+            app:layout_constraintEnd_toStartOf="@+id/img_aumentar_duracion_editar_clase"
+            app:layout_constraintStart_toEndOf="@+id/img_disminuir_duracion_editar_clase"
+            app:layout_constraintTop_toBottomOf="@+id/txt_hora_editar_clase" />
+
+        <Button
+            android:id="@+id/btn_cancelar_editar_clase"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="32dp"
+            android:text="@string/btn_cancelar_registration"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/btn_guardar_editar_clase" />
+
+        <Spinner
+            android:id="@+id/spn_materia_edit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="32dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txt_titulo_editar_clase" />
+
+        <Spinner
+            android:id="@+id/spn_tema_edit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="32dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/spn_materia_edit" />
+
+        <ImageView
+            android:id="@+id/img_fecha_editar_clase"
+            android:layout_width="36dp"
+            android:layout_height="46dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="32dp"
+            android:clickable="true"
+            app:layout_constraintBottom_toTopOf="@+id/txt_hora_editar_clase"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txt_inquietudes_editar_clase"
+            app:layout_constraintVertical_bias="0.0"
+            app:srcCompat="@drawable/ic_calendar_today_black_18dp" />
+
+        <ImageView
+            android:id="@+id/img_hora_editar_clase"
+            android:layout_width="36dp"
+            android:layout_height="46dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="32dp"
+            android:clickable="true"
+            app:layout_constraintBottom_toTopOf="@+id/txt_duracion_editar_clase"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txt_fecha_editar_clase"
+            app:layout_constraintVertical_bias="0.0"
+            app:srcCompat="@drawable/ic_schedule_black_18dp" />
+
+        <ImageView
+            android:id="@+id/img_aumentar_duracion_editar_clase"
+            android:layout_width="36dp"
+            android:layout_height="46dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="32dp"
+            app:layout_constraintBottom_toTopOf="@+id/btn_guardar_editar_clase"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txt_hora_editar_clase"
+            app:srcCompat="@drawable/ic_add_circle_black_18dp" />
+
+        <ImageView
+            android:id="@+id/img_disminuir_duracion_editar_clase"
+            android:layout_width="36dp"
+            android:layout_height="46dp"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="7dp"
+            app:layout_constraintBottom_toTopOf="@+id/btn_guardar_editar_clase"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txt_hora_editar_clase"
+            app:srcCompat="@drawable/ic_remove_circle_black_18dp" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

@@ -1,162 +1,170 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".PopupDetalleClaseActivity">
+    android:fillViewport="true">
 
-    <TextView
-        android:id="@+id/txv_titulo_detalle_clase"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="32dp"
-        android:text="@string/txt_detalle_class"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="MissingConstraints" />
-
-    <TextView
-        android:id="@+id/txv_materia_detalle_clase"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="32dp"
-        android:textSize="24sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txv_titulo_detalle_clase" />
-
-    <TextView
-        android:id="@+id/txv_tema_detalle_clase"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="32dp"
-        android:textStyle="italic"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txv_materia_detalle_clase" />
-
-    <TextView
-        android:id="@+id/txv_fecha_detalle_clase"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        app:layout_constraintEnd_toStartOf="@+id/txv_hora_detalle_clase"
-        app:layout_constraintHorizontal_bias="0.101"
-        app:layout_constraintStart_toEndOf="@+id/txv_etiqueta_fecha_detalle_clase"
-        app:layout_constraintTop_toBottomOf="@+id/txv_tema_detalle_clase" />
-
-    <TextView
-        android:id="@+id/txv_hora_detalle_clase"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="40dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txv_tema_detalle_clase" />
-
-    <TextView
-        android:id="@+id/txv_duracion_detalle_clase"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="32dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.104"
-        app:layout_constraintStart_toEndOf="@+id/txv_etiqueta_duracion_detalle_clase"
-        app:layout_constraintTop_toBottomOf="@+id/txv_hora_detalle_clase" />
-
-    <Button
-        android:id="@+id/btn_volver_detalle_clase"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="32dp"
-        android:text="@string/btn_listado_clases"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn_buscar_detalle_clase" />
-
-    <Button
-        android:id="@+id/btn_buscar_detalle_clase"
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="32dp"
-        android:text="@string/btn_editar_class"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/swt_estado_solicitar_clase"
-        tools:ignore="MissingConstraints"></Button>
+        android:layout_height="match_parent"
+        tools:context=".PopupDetalleClaseActivity">
 
-    <TextView
-        android:id="@+id/txv_etiqueta_duracion_detalle_clase"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="8dp"
-        android:text="@string/txv_etiqueta_duracion_detalle_clase"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txv_fecha_detalle_clase" />
+        <TextView
+            android:id="@+id/txv_titulo_detalle_clase"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="32dp"
+            android:text="@string/txt_detalle_class"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="MissingConstraints" />
 
-    <TextView
-        android:id="@+id/txv_etiqueta_fecha_detalle_clase"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="8dp"
-        android:text="@string/txv_etiqueta_fecha_detalle_clase"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txv_tema_detalle_clase" />
+        <TextView
+            android:id="@+id/txv_materia_detalle_clase"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="32dp"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txv_titulo_detalle_clase" />
 
-    <TextView
-        android:id="@+id/txv_etiqueta_hora_solicitar_clase"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="20dp"
-        android:layout_marginBottom="8dp"
-        android:text="@string/txv_etiqueta_hora_detalle_clase"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/txv_duracion_detalle_clase"
-        app:layout_constraintEnd_toStartOf="@+id/txv_hora_detalle_clase"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toEndOf="@+id/txv_fecha_detalle_clase" />
+        <TextView
+            android:id="@+id/txv_tema_detalle_clase"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="32dp"
+            android:textStyle="italic"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txv_materia_detalle_clase" />
 
-    <Switch
-        android:id="@+id/swt_estado_solicitar_clase"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="32dp"
-        android:text="@string/swt_estado_solicitar_clase"
-        android:thumb="@drawable/switch_thumb"
-        android:track="@drawable/switch_track"
-        android:textOff="Inactiva"
-        android:textOn="Activa"
-        android:showText="true"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txv_etiqueta_duracion_detalle_clase"
-        tools:ignore="MissingConstraints,UseSwitchCompatOrMaterialXml" />
+        <TextView
+            android:id="@+id/txv_fecha_detalle_clase"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            app:layout_constraintEnd_toStartOf="@+id/txv_hora_detalle_clase"
+            app:layout_constraintHorizontal_bias="0.101"
+            app:layout_constraintStart_toEndOf="@+id/txv_etiqueta_fecha_detalle_clase"
+            app:layout_constraintTop_toBottomOf="@+id/txv_tema_detalle_clase" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <TextView
+            android:id="@+id/txv_hora_detalle_clase"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="40dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txv_tema_detalle_clase" />
+
+        <TextView
+            android:id="@+id/txv_duracion_detalle_clase"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="32dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.104"
+            app:layout_constraintStart_toEndOf="@+id/txv_etiqueta_duracion_detalle_clase"
+            app:layout_constraintTop_toBottomOf="@+id/txv_hora_detalle_clase" />
+
+        <Button
+            android:id="@+id/btn_volver_detalle_clase"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="32dp"
+            android:text="@string/btn_listado_clases"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/btn_buscar_detalle_clase" />
+
+        <Button
+            android:id="@+id/btn_buscar_detalle_clase"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="32dp"
+            android:text="@string/btn_editar_class"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/swt_estado_solicitar_clase"
+            tools:ignore="MissingConstraints"/>
+
+        <TextView
+            android:id="@+id/txv_etiqueta_duracion_detalle_clase"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="8dp"
+            android:text="@string/txv_etiqueta_duracion_detalle_clase"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txv_fecha_detalle_clase" />
+
+        <TextView
+            android:id="@+id/txv_etiqueta_fecha_detalle_clase"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="8dp"
+            android:text="@string/txv_etiqueta_fecha_detalle_clase"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txv_tema_detalle_clase" />
+
+        <TextView
+            android:id="@+id/txv_etiqueta_hora_solicitar_clase"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="20dp"
+            android:layout_marginBottom="8dp"
+            android:text="@string/txv_etiqueta_hora_detalle_clase"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@+id/txv_duracion_detalle_clase"
+            app:layout_constraintEnd_toStartOf="@+id/txv_hora_detalle_clase"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toEndOf="@+id/txv_fecha_detalle_clase" />
+
+        <Switch
+            android:id="@+id/swt_estado_solicitar_clase"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="32dp"
+            android:text="@string/swt_estado_solicitar_clase"
+            android:thumb="@drawable/switch_thumb"
+            android:track="@drawable/switch_track"
+            android:textOff="Inactiva"
+            android:textOn="Activa"
+            android:showText="true"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txv_etiqueta_duracion_detalle_clase"
+            tools:ignore="MissingConstraints,UseSwitchCompatOrMaterialXml" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>
