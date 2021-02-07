@@ -68,7 +68,7 @@ class PopupDetalleClaseActivity : AppCompatActivity(), IGestionarClaseVista {
             if (iGestionarClaseControlador.getStatus(this, idClase.toString()).equals("activo")) {
                 startActivity(intentEditarClase)
             } else{
-                Toast.makeText(this, "No es posible editar una clase con estado INACTVO", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "No es posible editar una clase con estado INACTIVO", Toast.LENGTH_SHORT).show()
             }
         }
 

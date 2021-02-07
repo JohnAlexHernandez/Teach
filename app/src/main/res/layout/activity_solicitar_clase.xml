@@ -1,203 +1,143 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fillViewport="true">
+    android:fillViewport="true" >
 
-    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".SolicitarClaseActivity">
-
-    <TextView
-        android:id="@+id/txt_titulo_solicitar_clase"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="32dp"
-        android:text="@string/txt_indicacion_solicitar_clase"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="MissingConstraints" />
-
-    <EditText
-        android:id="@+id/txt_fecha_solicitar_clase"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="32dp"
-        android:autofillHints="@string/txt_fecha_solicitar_clase"
-        android:ems="10"
-        android:hint="@string/txt_fecha_solicitar_clase"
-        android:inputType="date"
-        android:focusable="false"
-        app:layout_constraintEnd_toStartOf="@+id/img_fecha_solicitar_clase"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txt_inquietudes__solicitar_clase" />
-
-    <EditText
-        android:id="@+id/txt_hora_solicitar_clase"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="32dp"
-        android:autofillHints="@string/txt_hora_solicitar_clase"
-        android:ems="10"
-        android:hint="@string/txt_hora_solicitar_clase"
-        android:inputType="time"
-        android:focusable="false"
-        app:layout_constraintEnd_toStartOf="@+id/img_hora_solicitar_clase"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txt_fecha_solicitar_clase" />
-
-    <Button
-        android:id="@+id/btn_guardar_solicitar_clase"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="32dp"
-        android:text="@string/btn_guardar_solicitar_clase"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txt_duracion_solicitar_clase" />
-
-    <Button
-        android:id="@+id/btn_cancelar_solicitar_clase"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="32dp"
-        android:text="@string/btn_cancelar_registration"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn_guardar_solicitar_clase" />
-
-    <EditText
-        android:id="@+id/txt_inquietudes__solicitar_clase"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="32dp"
-        android:autofillHints="@string/txt_inquietudes_solicitar_clase"
-        android:ems="10"
-        android:gravity="start|top"
-        android:hint="@string/txt_inquietudes_solicitar_clase"
-        android:inputType="textMultiLine"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/spn_tema" />
-
-    <EditText
-        android:id="@+id/txt_duracion_solicitar_clase"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="35dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="31dp"
-        android:autofillHints="@string/txt_duracion_solicitar_clase"
-        android:ems="10"
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
         android:gravity="center"
-        android:hint="@string/txt_duracion_solicitar_clase"
-        android:inputType="number"
-        app:layout_constraintEnd_toStartOf="@+id/img_aumentar_duracion_solicitar_clase"
-        app:layout_constraintStart_toEndOf="@+id/img_disminuir_duracion_solicitar_clase"
-        app:layout_constraintTop_toBottomOf="@+id/txt_hora_solicitar_clase"
-        tools:ignore="MissingConstraints" />
+        android:padding="32dp"
+        tools:context=".SolicitarClaseActivity" >
 
-    <Spinner
-        android:id="@+id/spn_materia"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="32dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txt_titulo_solicitar_clase"
-        tools:ignore="MissingConstraints" />
+        <TextView
+            android:id="@+id/txt_titulo_solicitar_clase"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/txt_indicacion_solicitar_clase"
+            android:textSize="18sp"
+            android:textStyle="bold" />
 
-    <Spinner
-        android:id="@+id/spn_tema"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="32dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/spn_materia" />
+        <Spinner
+            android:id="@+id/spn_materia"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
 
-    <ImageView
-        android:id="@+id/img_hora_solicitar_clase"
-        android:layout_width="36dp"
-        android:layout_height="46dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="32dp"
-        android:layout_marginBottom="8dp"
-        android:clickable="true"
-        app:layout_constraintBottom_toTopOf="@+id/txt_duracion_solicitar_clase"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txt_fecha_solicitar_clase"
-        app:srcCompat="@drawable/ic_schedule_black_18dp" />
+        <Spinner
+            android:id="@+id/spn_tema"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
 
-    <ImageView
-        android:id="@+id/img_fecha_solicitar_clase"
-        android:layout_width="36dp"
-        android:layout_height="46dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="32dp"
-        android:layout_marginBottom="8dp"
-        android:clickable="true"
-        android:filterTouchesWhenObscured="false"
-        app:layout_constraintBottom_toTopOf="@+id/txt_hora_solicitar_clase"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txt_inquietudes__solicitar_clase"
-        app:srcCompat="@drawable/ic_calendar_today_black_18dp" />
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" >
 
-    <ImageView
-        android:id="@+id/img_aumentar_duracion_solicitar_clase"
-        android:layout_width="36dp"
-        android:layout_height="46dp"
-        android:layout_marginTop="7dp"
-        android:layout_marginEnd="32dp"
-        android:clickable="true"
-        app:layout_constraintBottom_toTopOf="@+id/btn_guardar_solicitar_clase"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txt_hora_solicitar_clase"
-        app:layout_constraintVertical_bias="0.125"
-        app:srcCompat="@drawable/ic_add_circle_black_18dp" />
+            <EditText
+                android:id="@+id/txt_fecha_solicitar_clase"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:autofillHints="@string/txt_fecha_solicitar_clase"
+                android:ems="10"
+                android:hint="@string/txt_fecha_solicitar_clase"
+                android:inputType="date"
+                android:focusable="false"
+                android:layout_alignParentLeft="true"/>
 
-    <ImageView
-        android:id="@+id/img_disminuir_duracion_solicitar_clase"
-        android:layout_width="36dp"
-        android:layout_height="46dp"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginBottom="8dp"
-        android:clickable="true"
-        app:layout_constraintBottom_toTopOf="@+id/btn_guardar_solicitar_clase"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txt_hora_solicitar_clase"
-        app:layout_constraintVertical_bias="1.0"
-        app:srcCompat="@drawable/ic_remove_circle_black_18dp" />
+            <ImageView
+                android:id="@+id/img_fecha_solicitar_clase"
+                android:layout_width="36dp"
+                android:layout_height="46dp"
+                android:clickable="true"
+                android:filterTouchesWhenObscured="false"
+                android:layout_alignParentRight="true"
+                app:srcCompat="@drawable/ic_calendar_today_black_18dp" />
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" >
+
+            <EditText
+                android:id="@+id/txt_hora_solicitar_clase"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:autofillHints="@string/txt_hora_solicitar_clase"
+                android:ems="10"
+                android:hint="@string/txt_hora_solicitar_clase"
+                android:inputType="time"
+                android:focusable="false"
+                android:layout_alignParentLeft="true"/>
+
+            <ImageView
+                android:id="@+id/img_hora_solicitar_clase"
+                android:layout_width="36dp"
+                android:layout_height="46dp"
+                android:clickable="true"
+                android:layout_alignParentRight="true"
+                app:srcCompat="@drawable/ic_schedule_black_18dp" />
+
+        </RelativeLayout>
+
+        <EditText
+            android:id="@+id/txt_inquietudes__solicitar_clase"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:autofillHints="@string/txt_inquietudes_solicitar_clase"
+            android:ems="10"
+            android:hint="@string/txt_inquietudes_solicitar_clase"
+            android:inputType="textMultiLine" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" >
+
+            <ImageView
+                android:id="@+id/img_disminuir_duracion_solicitar_clase"
+                android:layout_width="36dp"
+                android:layout_height="46dp"
+                android:clickable="true"
+                android:layout_alignParentLeft="true"
+                app:srcCompat="@drawable/ic_remove_circle_black_18dp" />
+
+            <EditText
+                android:id="@+id/txt_duracion_solicitar_clase"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:autofillHints="@string/txt_duracion_solicitar_clase"
+                android:ems="10"
+                android:gravity="center"
+                android:hint="@string/txt_duracion_solicitar_clase"
+                android:inputType="number"
+                android:layout_centerInParent="true"/>
+
+            <ImageView
+                android:id="@+id/img_aumentar_duracion_solicitar_clase"
+                android:layout_width="36dp"
+                android:layout_height="46dp"
+                android:clickable="true"
+                android:layout_alignParentRight="true"
+                app:srcCompat="@drawable/ic_add_circle_black_18dp" />
+
+        </RelativeLayout>
+
+        <Button
+            android:id="@+id/btn_guardar_solicitar_clase"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/btn_guardar_solicitar_clase" />
+
+        <Button
+            android:id="@+id/btn_cancelar_solicitar_clase"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/btn_cancelar_registration" />
+
+    </LinearLayout>
 </ScrollView>
