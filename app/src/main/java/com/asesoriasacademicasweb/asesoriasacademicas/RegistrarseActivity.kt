@@ -6,17 +6,33 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.android.volley.Request
+import com.android.volley.RequestQueue
+import com.android.volley.Response
+import com.android.volley.toolbox.JsonObjectRequest
+import com.android.volley.toolbox.Volley
 import com.asesoriasacademicasweb.asesoriasacademicas.Controlador.RegistrarseControlador
 import com.asesoriasacademicasweb.asesoriasacademicas.Model.Persona
 import com.asesoriasacademicasweb.asesoriasacademicas.Vista.IRegistrarseVista
+import org.json.JSONObject
+
+
+
 
 class RegistrarseActivity : AppCompatActivity(), IRegistrarseVista {
 
     val iRegistraseControlador = RegistrarseControlador(this)
+    var stringNombre = ""
+    var stringEmail = ""
+    var stringPass = ""
+    var stringRepetPass= ""
+    var request: RequestQueue? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_registrarse)
+
+        request = Volley.newRequestQueue(this)
 
         val btnInsertarPersona = findViewById<Button>(R.id.btn_registrarse_registro)
         btnInsertarPersona.setOnClickListener {
@@ -25,15 +41,16 @@ class RegistrarseActivity : AppCompatActivity(), IRegistrarseVista {
             val email: EditText? = findViewById(R.id.txt_email_registro)
             val password: EditText? = findViewById(R.id.txt_password_registro)
             val repetPassword: EditText? = findViewById(R.id.txt_repet_pass_registro)
-            val stringNombre = nombre?.text.toString().trim()
-            val stringEmail = email?.text.toString().trim()
-            val stringPass = password?.text.toString().trim()
-            val stringRepetPass = repetPassword?.text.toString().trim()
+            stringNombre = nombre?.text.toString().trim()
+            stringEmail = email?.text.toString().trim()
+            stringPass = password?.text.toString().trim()
+            stringRepetPass = repetPassword?.text.toString().trim()
 
             val intentRegistry = Intent(this, GestionarClaseActivity::class.java)
             if(iRegistraseControlador.onRegistry(this, stringNombre, stringEmail, stringPass, stringRepetPass) == -1) {
                 val persona = Persona(stringNombre, stringEmail, stringPass)
                 if (iRegistraseControlador.insertUser(this, persona) == 1) {
+                    loadWebService()
                     intentRegistry.putExtra("email", stringEmail)
                     startActivity(intentRegistry)
                 }
@@ -46,6 +63,24 @@ class RegistrarseActivity : AppCompatActivity(), IRegistrarseVista {
             val intentLogin = Intent(this, LoginActivity::class.java)
             startActivity(intentLogin)
         }
+    }
+
+    private fun loadWebService() {
+        var url = "https://webserviceasesoriasacademicas.000webhostapp.com/registrar_usuario.php?nombre=$stringNombre&email=$stringEmail" +
+                "&telefono=&direccion=&password=$stringPass"
+        url = url.replace(" ","%20")
+        val jsonObjectRequest = JsonObjectRequest(Request.Method.GET,url,null,
+            Response.Listener { response ->
+                if (response.getString("success") == "1"){
+                    Toast.makeText(this, "Registro exitoso!", Toast.LENGTH_SHORT).show()
+                } else if(response.getString("success") == "0") {
+                    Toast.makeText(this, "\n" + "Error de registro!", Toast.LENGTH_SHORT).show()
+                }
+            },
+            Response.ErrorListener { error ->
+                Toast.makeText(this, "\n" + "Error de registro!", Toast.LENGTH_SHORT).show();
+            })
+        request?.add(jsonObjectRequest)
     }
 
     override fun onLoginSuccess(mensaje: String) {
