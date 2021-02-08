@@ -244,10 +244,16 @@ class SolicitarClaseActivity : AppCompatActivity(), ISolicitarClaseVista {
         val lanzadorTiempo: ImageView = findViewById(R.id.img_hora_solicitar_clase)
         horaMinutos = findViewById(R.id.txt_hora_solicitar_clase)
         lanzadorTiempo.setOnClickListener{
-            val timePickerDialog = TimePickerDialog(this, TimePickerDialog.OnTimeSetListener{ view, hora, minutos ->
+            val timePickerDialog = TimePickerDialog(this, TimePickerDialog.OnTimeSetListener{ view, hora, minutos->
+                var am_pm = ""
+                if (hora < 12){
+                    am_pm = " AM"
+                } else {
+                    am_pm = " PM"
+                }
                 val horaReloj = "" + hora + ":" + minutos
                 val date: Date  = formatohora.parse(horaReloj)
-                horaMinutos?.setText(formatohora.format(date))
+                horaMinutos?.setText(formatohora.format(date).toString() + am_pm)
             }, hora, minutos, false)
             timePickerDialog.show()
         }

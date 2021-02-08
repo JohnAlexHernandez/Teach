@@ -262,9 +262,15 @@ class EditarClaseActivity : AppCompatActivity(), IEditarClaseVista {
         horaMinutos = findViewById(R.id.txt_hora_editar_clase)
         lanzadorTiempo.setOnClickListener{
             val timePickerDialog = TimePickerDialog(this, TimePickerDialog.OnTimeSetListener{ view, hora, minutos ->
+                var am_pm = ""
+                if (hora < 12){
+                    am_pm = " AM"
+                } else {
+                    am_pm = " PM"
+                }
                 var horaReloj = "" + hora + ":" + minutos
                 var date: Date  = formatohora.parse(horaReloj)
-                horaMinutos?.setText(formatohora.format(date))
+                horaMinutos?.setText(formatohora.format(date) + am_pm)
             }, hora, minutos, false)
             timePickerDialog.show()
         }
