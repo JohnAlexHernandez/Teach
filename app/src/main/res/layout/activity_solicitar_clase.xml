@@ -55,6 +55,7 @@
                 android:clickable="true"
                 android:filterTouchesWhenObscured="false"
                 android:layout_alignParentRight="true"
+                android:background="?selectableItemBackgroundBorderless"
                 app:srcCompat="@drawable/ic_calendar_today_black_18dp" />
 
         </RelativeLayout>
@@ -80,6 +81,7 @@
                 android:layout_height="46dp"
                 android:clickable="true"
                 android:layout_alignParentRight="true"
+                android:background="?selectableItemBackgroundBorderless"
                 app:srcCompat="@drawable/ic_schedule_black_18dp" />
 
         </RelativeLayout>
@@ -104,6 +106,7 @@
                 android:layout_height="46dp"
                 android:clickable="true"
                 android:layout_alignParentLeft="true"
+                android:background="?selectableItemBackgroundBorderless"
                 app:srcCompat="@drawable/ic_remove_circle_black_18dp" />
 
             <EditText
@@ -123,6 +126,7 @@
                 android:layout_height="46dp"
                 android:clickable="true"
                 android:layout_alignParentRight="true"
+                android:background="?selectableItemBackgroundBorderless"
                 app:srcCompat="@drawable/ic_add_circle_black_18dp" />
 
         </RelativeLayout>
