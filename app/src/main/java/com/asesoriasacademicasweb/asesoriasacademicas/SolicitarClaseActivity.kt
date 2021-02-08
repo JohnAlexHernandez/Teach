@@ -41,15 +41,15 @@ class SolicitarClaseActivity : AppCompatActivity(), ISolicitarClaseVista {
         var temaSeleccionado = ""
 
         val materias = arrayOf(
-                "Matemáticas 3",
-                "Matemáticas 4",
-                "Matemáticas 5",
-                "Matemáticas 6",
-                "Matemáticas 7",
-                "Matemáticas 8",
-                "Matemáticas 9",
-                "Matemáticas 10",
-                "Matemáticas 11",
+                "Matemáticas 3°",
+                "Matemáticas 4°",
+                "Matemáticas 5°",
+                "Matemáticas 6°",
+                "Matemáticas 7°",
+                "Matemáticas 8°",
+                "Matemáticas 9°",
+                "Matemáticas 10°",
+                "Matemáticas 11°",
                 "Geometría",
                 "Álgebra",
                 "Trigonometría",
@@ -59,12 +59,7 @@ class SolicitarClaseActivity : AppCompatActivity(), ISolicitarClaseVista {
                 "Física",
                 "Html Css y JavaScript",
                 "Algoritmia y Programación",
-                "Modelado UML",
-                "Patrones de diseño de software",
-                "GIT y GITHUB",
-                "Sistemas Operativos GNU/Linux",
                 "Base de datos",
-                "Metodologías Ágiles SCRUM",
                 "Herramientas Ofimáticas"
         )
 
@@ -163,15 +158,15 @@ class SolicitarClaseActivity : AppCompatActivity(), ISolicitarClaseVista {
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
                 materiaSeleccionada = spnMateria.getItemAtPosition(position).toString()
 
-                if (materiaSeleccionada.equals("Matemáticas 3")){
+                if (materiaSeleccionada.equals("Matemáticas 3°")){
                     spnTema.adapter = adapterMath3
-                } else if (materiaSeleccionada.equals("Matemáticas 4")){
+                } else if (materiaSeleccionada.equals("Matemáticas 4°")){
                     spnTema.adapter = adapterMath4
-                } else if (materiaSeleccionada.equals("Matemáticas 5")){
+                } else if (materiaSeleccionada.equals("Matemáticas 5°")){
                     spnTema.adapter = adapterMath5
-                } else if (materiaSeleccionada.equals("Matemáticas 6")){
+                } else if (materiaSeleccionada.equals("Matemáticas 6°")){
                     spnTema.adapter = adapterMath6
-                } else if (materiaSeleccionada.equals("Matemáticas 7")){
+                } else if (materiaSeleccionada.equals("Matemáticas 7°")){
                     spnTema.adapter = adapterMath7
                 }
             }
