@@ -24,7 +24,7 @@
     <string name="txt_desc_tema_solicitar_clase">En la clase usted comprenderá los principios
         básicos de la temática, apoyado en ejemplos prácticos que le ayudarán a interiorizar
         mejor los conceptos.</string>
-    <string name="txt_inquietudes_solicitar_clase">Inquietudes</string>
+    <string name="txt_inquietudes_solicitar_clase">¿Que dudas presenta en relación al tema en particular?</string>
     <string name="txt_fecha_solicitar_clase">Fecha</string>
     <string name="txt_hora_solicitar_clase">Hora</string>
     <string name="txt_duracion_solicitar_clase">Duracion</string>
@@ -47,7 +47,7 @@
     <string name="txt_editar_class">Editar clase</string>
     <string name="txt_materia_editar_clase">Materia</string>
     <string name="txt_tema_editar_clase">Tema</string>
-    <string name="txt_inquietudes_editar_clase">Inquietudes</string>
+    <string name="txt_inquietudes_editar_clase">¿Que dudas presenta en relación al tema en particular?</string>
     <string name="txt_fecha_editar_clase">Fecha</string>
     <string name="txt_hora_editar_clase">Hora</string>
     <string name="txt_duracion_editar_clase">Duracion</string>

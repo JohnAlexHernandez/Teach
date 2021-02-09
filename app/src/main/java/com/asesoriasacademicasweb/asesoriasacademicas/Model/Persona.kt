@@ -89,6 +89,8 @@ class Persona(_nombre: String = "", _email: String = "", _telefono: String = "",
         val obj = Modelo()
         return if (nombre.trim().isEmpty()) {
             0
+        } else if (!Pattern.compile("^([a-zA-ZñÑáéíóúÁÉÍÓÚ\\s])*\$").matcher(nombre.trim()).matches()){
+            7
         } else if (email.trim().isEmpty()) {
             1
         } else if (!Pattern.compile("^[_A-Za-z0-9-+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$").matcher(email.trim()).matches()){
@@ -109,12 +111,16 @@ class Persona(_nombre: String = "", _email: String = "", _telefono: String = "",
     override fun editarPerfil(context: Context, repetContrasenia: String): Int {
         return if (nombre.trim().isEmpty()) {
             0
+        } else if (!Pattern.compile("^([a-zA-ZñÑáéíóúÁÉÍÓÚ\\s])*\$").matcher(nombre.trim()).matches()){
+            8
         } else if (email.trim().isEmpty()) {
             1
         } else if (!Pattern.compile("^[_A-Za-z0-9-+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$").matcher(email.trim()).matches()){
             2
         } else if (telefono.trim().isEmpty()) {
             3
+        } else if (!Pattern.compile("^(8+[0-9]{6}|3+[0-9]{9})\$").matcher(telefono.trim()).matches()){
+            9
         } else if (direccion.trim().isEmpty()) {
             4
         } else if (contrasenia.trim().isEmpty()){

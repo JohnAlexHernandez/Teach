@@ -14,7 +14,6 @@ import com.android.volley.toolbox.Volley
 import com.asesoriasacademicasweb.asesoriasacademicas.Controlador.RegistrarseControlador
 import com.asesoriasacademicasweb.asesoriasacademicas.Model.Persona
 import com.asesoriasacademicasweb.asesoriasacademicas.Vista.IRegistrarseVista
-import org.json.JSONObject
 
 
 

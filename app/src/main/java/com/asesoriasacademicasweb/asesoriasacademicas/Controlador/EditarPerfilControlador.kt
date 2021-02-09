@@ -25,6 +25,8 @@ class EditarPerfilControlador(val iEditarPerfilVista: IEditarPerfilVista) : IEdi
             5 -> this.iEditarPerfilVista.onLoginError("El campo contraseña no puede estar vacío")
             6 -> this.iEditarPerfilVista.onLoginError("El campo contraseña no es válido. Debe contener entre 8 y 15 caracteres, utiliza al menos 1 letra Mayúscula, 1 letra minúscula y un número")
             7 -> this.iEditarPerfilVista.onLoginError("La contraseña no coincide, verifica e intenta nuevamente")
+            8 -> this.iEditarPerfilVista.onLoginError("El campo nombre no es válido")
+            9 -> this.iEditarPerfilVista.onLoginError("El campo telefono no es válido")
             -1 -> this.iEditarPerfilVista.onLoginSuccess("Edición del perfil satisfactoria")
         }
         return persona.editarPerfil(context, repetContrasenia)
