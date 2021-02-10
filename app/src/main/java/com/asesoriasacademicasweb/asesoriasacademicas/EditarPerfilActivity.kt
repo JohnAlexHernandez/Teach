@@ -6,6 +6,11 @@ import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
+import com.android.volley.Request
+import com.android.volley.RequestQueue
+import com.android.volley.Response
+import com.android.volley.toolbox.JsonObjectRequest
+import com.android.volley.toolbox.Volley
 import com.asesoriasacademicasweb.asesoriasacademicas.Controlador.EditarPerfilControlador
 import com.asesoriasacademicasweb.asesoriasacademicas.Model.Persona
 import com.asesoriasacademicasweb.asesoriasacademicas.Vista.IEditarPerfilVista
@@ -13,10 +18,13 @@ import com.asesoriasacademicasweb.asesoriasacademicas.Vista.IEditarPerfilVista
 class EditarPerfilActivity : AppCompatActivity(), IEditarPerfilVista {
 
     val iEditarPerfilControlador = EditarPerfilControlador(this)
+    var request: RequestQueue? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_editar_perfil)
+
+        request = Volley.newRequestQueue(this)
 
         var persona = Persona()
         val emailBuscado= getIntent().getStringExtra("email")
@@ -50,18 +58,32 @@ class EditarPerfilActivity : AppCompatActivity(), IEditarPerfilVista {
             val password: EditText? = findViewById(R.id.txt_password_editar_perfil)
             val repetPassword: EditText? = findViewById(R.id.txt_repet_password_editar_perfil)
             val stringNombre = nombre?.text.toString().trim()
-            val stringEmail = emailBuscado
+            val stringEmail = persona.email
             val stringTelefono = telefono?.text.toString().trim()
             val stringDireccion = direccion?.text.toString().trim()
             val stringPass = password?.text.toString().trim()
             val stringRepetPass = repetPassword?.text.toString().trim()
 
             val intentEditProfile = Intent(this, GestionarClaseActivity::class.java)
-            if(iEditarPerfilControlador.onEditProfile(this, stringNombre, stringEmail!!, stringTelefono, stringDireccion, stringPass, stringRepetPass) == -1) {
-                val persona = Persona(stringNombre, stringEmail!!, stringTelefono, stringDireccion, stringPass, "Estudiante")
+            if(iEditarPerfilControlador.onEditProfile(this, stringNombre, stringEmail, stringTelefono, stringDireccion, stringPass, stringRepetPass) == -1) {
+                val persona = Persona(stringNombre, stringEmail, stringTelefono, stringDireccion, stringPass, "Estudiante")
                 if (iEditarPerfilControlador.updateProfile(this, persona) == 1) {
-                    intentEditProfile.putExtra("email", stringEmail!!)
-                    startActivity(intentEditProfile)
+                    var url = "https://webserviceasesoriasacademicas.000webhostapp.com/editar_perfil.php?nombre=$stringNombre&email=$stringEmail" +
+                            "&telefono=$stringTelefono&direccion=$stringDireccion&password=$stringPass"
+                    url = url.replace(" ","%20")
+                    val jsonObjectRequest = JsonObjectRequest(Request.Method.GET,url,null,
+                            Response.Listener { response ->
+                                if (response.getString("success") == "1"){
+                                    intentEditProfile.putExtra("email", stringEmail!!)
+                                    startActivity(intentEditProfile)
+                                } else if(response.getString("error") == "0") {
+                                    Toast.makeText(this, "\n" + "Error de registro!", Toast.LENGTH_SHORT).show()
+                                }
+                            },
+                            Response.ErrorListener { error ->
+                                Toast.makeText(this, "\n" + "Error de registro!", Toast.LENGTH_SHORT).show();
+                            })
+                    request?.add(jsonObjectRequest)
                 }
             }
         }

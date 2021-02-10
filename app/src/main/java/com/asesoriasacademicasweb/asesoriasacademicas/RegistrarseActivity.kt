@@ -49,9 +49,22 @@ class RegistrarseActivity : AppCompatActivity(), IRegistrarseVista {
             if(iRegistraseControlador.onRegistry(this, stringNombre, stringEmail, stringPass, stringRepetPass) == -1) {
                 val persona = Persona(stringNombre, stringEmail, stringPass)
                 if (iRegistraseControlador.insertUser(this, persona) == 1) {
-                    loadWebService()
-                    intentRegistry.putExtra("email", stringEmail)
-                    startActivity(intentRegistry)
+                    var url = "https://webserviceasesoriasacademicas.000webhostapp.com/registrar_usuario.php?nombre=$stringNombre&email=$stringEmail" +
+                            "&telefono=&direccion=&password=$stringPass"
+                    url = url.replace(" ","%20")
+                    val jsonObjectRequest = JsonObjectRequest(Request.Method.GET,url,null,
+                            Response.Listener { response ->
+                                if (response.getString("success") == "1"){
+                                    intentRegistry.putExtra("email", stringEmail)
+                                    startActivity(intentRegistry)
+                                } else if(response.getString("success") == "0") {
+                                    Toast.makeText(this, "\n" + "Error de registro!", Toast.LENGTH_SHORT).show()
+                                }
+                            },
+                            Response.ErrorListener { error ->
+                                Toast.makeText(this, "\n" + "Error de registro!", Toast.LENGTH_SHORT).show();
+                            })
+                    request?.add(jsonObjectRequest)
                 }
             }
 
@@ -62,24 +75,6 @@ class RegistrarseActivity : AppCompatActivity(), IRegistrarseVista {
             val intentLogin = Intent(this, LoginActivity::class.java)
             startActivity(intentLogin)
         }
-    }
-
-    private fun loadWebService() {
-        var url = "https://webserviceasesoriasacademicas.000webhostapp.com/registrar_usuario.php?nombre=$stringNombre&email=$stringEmail" +
-                "&telefono=&direccion=&password=$stringPass"
-        url = url.replace(" ","%20")
-        val jsonObjectRequest = JsonObjectRequest(Request.Method.GET,url,null,
-            Response.Listener { response ->
-                if (response.getString("success") == "1"){
-                    Toast.makeText(this, "Registro exitoso!", Toast.LENGTH_SHORT).show()
-                } else if(response.getString("success") == "0") {
-                    Toast.makeText(this, "\n" + "Error de registro!", Toast.LENGTH_SHORT).show()
-                }
-            },
-            Response.ErrorListener { error ->
-                Toast.makeText(this, "\n" + "Error de registro!", Toast.LENGTH_SHORT).show();
-            })
-        request?.add(jsonObjectRequest)
     }
 
     override fun onLoginSuccess(mensaje: String) {

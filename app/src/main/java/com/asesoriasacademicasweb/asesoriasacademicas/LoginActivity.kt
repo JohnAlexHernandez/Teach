@@ -45,28 +45,23 @@ class LoginActivity : AppCompatActivity(), ILoginVista{
 
             val intentLogin = Intent(this, GestionarClaseActivity::class.java)
             if(iLoginControlador.onLogin(this, stringEmail, stringPass) == -1) {
-                loadWebService()
-                intentLogin.putExtra("email", stringEmail)
-                startActivity(intentLogin)
+                var url = "https://webserviceasesoriasacademicas.000webhostapp.com/login.php?email=$stringEmail&password=$stringPass"
+                url = url.replace(" ","%20")
+                val jsonObjectRequest = JsonObjectRequest(Request.Method.GET,url,null,
+                        Response.Listener { response ->
+                            if (response.getString("success") == "1"){
+                                intentLogin.putExtra("email", stringEmail)
+                                startActivity(intentLogin)
+                            } else if(response.getString("error") == "0") {
+                                Toast.makeText(this, "\n" + "Error en el inicio de sesión!", Toast.LENGTH_SHORT).show()
+                            }
+                        },
+                        Response.ErrorListener { error ->
+                            Toast.makeText(this, "\n" + "Error en el inicio de sesión!", Toast.LENGTH_SHORT).show();
+                        })
+                request?.add(jsonObjectRequest)
             }
         }
-    }
-
-    private fun loadWebService() {
-        var url = "https://webserviceasesoriasacademicas.000webhostapp.com/login.php?email=$stringEmail&password=$stringPass"
-        url = url.replace(" ","%20")
-        val jsonObjectRequest = JsonObjectRequest(Request.Method.GET,url,null,
-                Response.Listener { response ->
-                    if (response.getString("success") == "1"){
-                        Toast.makeText(this, "Inicio de sesión exitoso!", Toast.LENGTH_SHORT).show()
-                    } else if(response.getString("error") == "0") {
-                        Toast.makeText(this, "\n" + "Error en el inicio de sesión!", Toast.LENGTH_SHORT).show()
-                    }
-                },
-                Response.ErrorListener { error ->
-                    Toast.makeText(this, "\n" + "Error en el inicio de sesión!", Toast.LENGTH_SHORT).show();
-                })
-        request?.add(jsonObjectRequest)
     }
 
     override fun onLoginSuccess(mensaje: String) {
