@@ -52,6 +52,14 @@ class RegistrarseActivity : AppCompatActivity(), IRegistrarseVista {
                     var url = "https://webserviceasesoriasacademicas.000webhostapp.com/registrar_usuario.php?nombre=$stringNombre&email=$stringEmail" +
                             "&telefono=&direccion=&password=$stringPass"
                     url = url.replace(" ","%20")
+                    url = url.replace("#","%23")
+                    url = url.replace("-","%2D")
+                    url = url.replace("á","%C3%A1")
+                    url = url.replace("é","%C3%A9")
+                    url = url.replace("í","%C3%AD")
+                    url = url.replace("ó","%C3%B3")
+                    url = url.replace("ú","%C3%BA")
+                    url = url.replace("°","%C2%B0")
                     val jsonObjectRequest = JsonObjectRequest(Request.Method.GET,url,null,
                             Response.Listener { response ->
                                 if (response.getString("success") == "1"){

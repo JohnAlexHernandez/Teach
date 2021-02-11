@@ -9,6 +9,11 @@ import android.view.MenuItem
 import android.view.View
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
+import com.android.volley.Request
+import com.android.volley.RequestQueue
+import com.android.volley.Response
+import com.android.volley.toolbox.JsonObjectRequest
+import com.android.volley.toolbox.Volley
 import com.asesoriasacademicasweb.asesoriasacademicas.Controlador.SolicitarClaseControlador
 import com.asesoriasacademicasweb.asesoriasacademicas.Model.Clase
 import com.asesoriasacademicasweb.asesoriasacademicas.Model.Estudiante
@@ -29,10 +34,13 @@ class SolicitarClaseActivity : AppCompatActivity(), ISolicitarClaseVista {
     var hora = calendar.get(Calendar.HOUR_OF_DAY)
     var minutos = calendar.get(Calendar.MINUTE)
     val iSolicitarClaseControlador = SolicitarClaseControlador(this)
+    var request: RequestQueue? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_solicitar_clase)
+
+        request = Volley.newRequestQueue(this)
 
         val spnMateria: Spinner = findViewById(R.id.spn_materia)
         val spnTema: Spinner = findViewById(R.id.spn_tema)
@@ -217,8 +225,33 @@ class SolicitarClaseActivity : AppCompatActivity(), ISolicitarClaseVista {
                 )
 
                 if (iSolicitarClaseControlador.insertClass(this, clase) == 1) {
-                    intentInsert.putExtra("email", stringEmail)
-                    startActivity(intentInsert)
+                    var idEstudiante = estudiante.id
+                    var estadoClase = "activo"
+                    var url = "https://webserviceasesoriasacademicas.000webhostapp.com/guardar_clase.php?materia=$stringMateria&tema=$stringTema" +
+                            "&inquietudes=$stringInquietudes&estado=$estadoClase&fecha=$stringFecha&hora=$stringHoraMinutos&duracion=$stringDuracion&idEstudiante=$idEstudiante"
+                    url = url.replace(" ","%20")
+                    url = url.replace("#","%23")
+                    url = url.replace("-","%2D")
+                    url = url.replace("á","%C3%A1")
+                    url = url.replace("é","%C3%A9")
+                    url = url.replace("í","%C3%AD")
+                    url = url.replace("ó","%C3%B3")
+                    url = url.replace("ú","%C3%BA")
+                    url = url.replace("°","%C2%B0")
+                    println(url)
+                    val jsonObjectRequest = JsonObjectRequest(Request.Method.GET,url,null,
+                            Response.Listener { response ->
+                                if (response.getString("success") == "1"){
+                                    intentInsert.putExtra("email", stringEmail)
+                                    startActivity(intentInsert)
+                                } else if(response.getString("error") == "0") {
+                                    Toast.makeText(this, "\n" + "Error de registro!", Toast.LENGTH_SHORT).show()
+                                }
+                            },
+                            Response.ErrorListener { error ->
+                                Toast.makeText(this, "\n" + "Error de registro!", Toast.LENGTH_SHORT).show();
+                            })
+                    request?.add(jsonObjectRequest)
                 }
             }
         }

@@ -14,6 +14,9 @@ import com.android.volley.toolbox.Volley
 import com.asesoriasacademicasweb.asesoriasacademicas.Controlador.EditarPerfilControlador
 import com.asesoriasacademicasweb.asesoriasacademicas.Model.Persona
 import com.asesoriasacademicasweb.asesoriasacademicas.Vista.IEditarPerfilVista
+import org.json.JSONArray
+import org.json.JSONException
+import org.json.JSONObject
 
 class EditarPerfilActivity : AppCompatActivity(), IEditarPerfilVista {
 
@@ -28,7 +31,7 @@ class EditarPerfilActivity : AppCompatActivity(), IEditarPerfilVista {
 
         var persona = Persona()
         val emailBuscado= getIntent().getStringExtra("email")
-        persona = iEditarPerfilControlador.getUser(this, "" + emailBuscado)
+        //persona = iEditarPerfilControlador.getUser(this, "" + emailBuscado)
 
         val nombre: EditText? = findViewById<EditText>(R.id.txt_nombre_editar_perfil)
         val telefono: EditText? = findViewById<EditText>(R.id.txt_telefono_editar_perfil)
@@ -36,11 +39,32 @@ class EditarPerfilActivity : AppCompatActivity(), IEditarPerfilVista {
         val password: EditText? = findViewById<EditText>(R.id.txt_password_editar_perfil)
         val repetPassword: EditText? = findViewById<EditText>(R.id.txt_repet_password_editar_perfil)
 
-        nombre?.setText(persona.nombre)
-        telefono?.setText(persona.telefono)
-        direccion?.setText(persona.direccion)
-        password?.setText(persona.contrasenia)
-        repetPassword?.setText(persona.contrasenia)
+        var url = "https://webserviceasesoriasacademicas.000webhostapp.com/cargar_perfil.php?email=$emailBuscado"
+        url = url.replace(" ","%20")
+        val jsonObjectRequest = JsonObjectRequest(Request.Method.GET,url,null,
+                Response.Listener { response ->
+                    try {
+                        val jsonArray = response.optJSONArray("user")
+                        val jsonObjet = jsonArray.getJSONObject(0)
+                        persona.nombre = jsonObjet.getString("nombre")
+                        persona.telefono = jsonObjet.getString("telefono")
+                        persona.email = jsonObjet.getString("email")
+                        persona.direccion = jsonObjet.getString("direccion")
+                        persona.contrasenia = jsonObjet.getString("password")
+
+                        nombre?.setText(persona.nombre)
+                        telefono?.setText(persona.telefono)
+                        direccion?.setText(persona.direccion)
+                        password?.setText(persona.contrasenia)
+                        repetPassword?.setText(persona.contrasenia)
+                    } catch (e: JSONException) {
+                        e.printStackTrace()
+                    }
+                },
+                Response.ErrorListener { error ->
+                    Toast.makeText(this, "\n" + "Error de registro!", Toast.LENGTH_SHORT).show();
+                })
+        request?.add(jsonObjectRequest)
 
         val btnCancelarEditarPerfil = findViewById<Button>(R.id.btn_cancelar_editar_perfil)
         btnCancelarEditarPerfil.setOnClickListener{
@@ -71,6 +95,14 @@ class EditarPerfilActivity : AppCompatActivity(), IEditarPerfilVista {
                     var url = "https://webserviceasesoriasacademicas.000webhostapp.com/editar_perfil.php?nombre=$stringNombre&email=$stringEmail" +
                             "&telefono=$stringTelefono&direccion=$stringDireccion&password=$stringPass"
                     url = url.replace(" ","%20")
+                    url = url.replace("#","%23")
+                    url = url.replace("-","%2D")
+                    url = url.replace("á","%C3%A1")
+                    url = url.replace("é","%C3%A9")
+                    url = url.replace("í","%C3%AD")
+                    url = url.replace("ó","%C3%B3")
+                    url = url.replace("ú","%C3%BA")
+                    url = url.replace("°","%C2%B0")
                     val jsonObjectRequest = JsonObjectRequest(Request.Method.GET,url,null,
                             Response.Listener { response ->
                                 if (response.getString("success") == "1"){
