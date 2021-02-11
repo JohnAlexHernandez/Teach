@@ -9,12 +9,18 @@ import android.view.MenuItem
 import android.view.View
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
+import com.android.volley.Request
+import com.android.volley.RequestQueue
+import com.android.volley.Response
+import com.android.volley.toolbox.JsonObjectRequest
+import com.android.volley.toolbox.Volley
 import com.asesoriasacademicasweb.asesoriasacademicas.Controlador.EditarClaseControlador
 import com.asesoriasacademicasweb.asesoriasacademicas.Model.Clase
 import com.asesoriasacademicasweb.asesoriasacademicas.Model.Estudiante
 import com.asesoriasacademicasweb.asesoriasacademicas.Model.Modelo
 import com.asesoriasacademicasweb.asesoriasacademicas.Model.Tutoria
 import com.asesoriasacademicasweb.asesoriasacademicas.Vista.IEditarClaseVista
+import org.json.JSONException
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -32,10 +38,13 @@ class EditarClaseActivity : AppCompatActivity(), IEditarClaseVista {
     var minutos = calendar.get(Calendar.MINUTE)
 
     val iEditarClaseControlador = EditarClaseControlador(this)
+    var request: RequestQueue? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_editar_clase)
+
+        request = Volley.newRequestQueue(this)
 
         var idClase= getIntent().getStringExtra("id_clase")
         var obj = Modelo()
@@ -49,11 +58,36 @@ class EditarClaseActivity : AppCompatActivity(), IEditarClaseVista {
         var tiempo: EditText? = findViewById<EditText>(R.id.txt_hora_editar_clase)
         var duracion: EditText? = findViewById<EditText>(R.id.txt_duracion_editar_clase)
 
-        clase = obj.buscarClase(this, idClase.toString())
-        inquietudes?.setText(clase.inquietudes)
-        fecha?.setText(clase.fecha)
-        tiempo?.setText(clase.hora)
-        duracion?.setText(clase.duracion)
+        //clase = obj.buscarClase(this, idClase.toString())
+
+        var url = "https://webserviceasesoriasacademicas.000webhostapp.com/cargar_clase.php?idClase=$idClase"
+        url = url.replace(" ","%20")
+        val jsonObjectRequest = JsonObjectRequest(Request.Method.GET,url,null,
+                Response.Listener { response ->
+                    try {
+                        val jsonArray = response.optJSONArray("class")
+                        val jsonObjet = jsonArray.getJSONObject(0)
+                        clase.id = jsonObjet.getInt("id_clase")
+                        clase.fecha = jsonObjet.getString("fecha")
+                        clase.hora = jsonObjet.getString("hora")
+                        clase.duracion = jsonObjet.getString("duracion")
+                        clase.materia = jsonObjet.getString("materia")
+                        clase.tema = jsonObjet.getString("tema")
+                        clase.inquietudes = jsonObjet.getString("inquietudes")
+                        clase.estado = jsonObjet.getString("estado")
+
+                        inquietudes?.setText(clase.inquietudes)
+                        fecha?.setText(clase.fecha)
+                        tiempo?.setText(clase.hora)
+                        duracion?.setText(clase.duracion)
+                    } catch (e: JSONException) {
+                        e.printStackTrace()
+                    }
+                },
+                Response.ErrorListener { error ->
+                    Toast.makeText(this, "\n" + "Error de registro!", Toast.LENGTH_SHORT).show();
+                })
+        request?.add(jsonObjectRequest)
 
         var materiaSeleccionada = ""
         var temaSeleccionado = ""
@@ -237,8 +271,33 @@ class EditarClaseActivity : AppCompatActivity(), IEditarClaseVista {
                     var idBusqueda = clase.id.toString()
                     intentDetalleClase.putExtra("id_clase", idBusqueda);
                     val email = getIntent().getStringExtra("email")
-                    intentDetalleClase.putExtra("email", email);
-                    startActivity(intentDetalleClase)
+                    var idClase = clase.id
+                    var estadoClase = clase.estado
+                    var url = "https://webserviceasesoriasacademicas.000webhostapp.com/editar_clase.php?materia=$stringMateria&tema=$stringTema" +
+                            "&inquietudes=$stringInquietudes&estado=$estadoClase&fecha=$stringFecha&hora=$stringHoraMinutos&duracion=$stringDuracion&idClase=$idClase"
+                    url = url.replace(" ","%20")
+                    url = url.replace("#","%23")
+                    url = url.replace("-","%2D")
+                    url = url.replace("á","%C3%A1")
+                    url = url.replace("é","%C3%A9")
+                    url = url.replace("í","%C3%AD")
+                    url = url.replace("ó","%C3%B3")
+                    url = url.replace("ú","%C3%BA")
+                    url = url.replace("°","%C2%B0")
+                    println(url)
+                    val jsonObjectRequest = JsonObjectRequest(Request.Method.GET,url,null,
+                            Response.Listener { response ->
+                                if (response.getString("success") == "1"){
+                                    intentDetalleClase.putExtra("email", email);
+                                    startActivity(intentDetalleClase)
+                                } else if(response.getString("error") == "0") {
+                                    Toast.makeText(this, "\n" + "Error de registro!", Toast.LENGTH_SHORT).show()
+                                }
+                            },
+                            Response.ErrorListener { error ->
+                                Toast.makeText(this, "\n" + "Error de registro!", Toast.LENGTH_SHORT).show();
+                            })
+                    request?.add(jsonObjectRequest)
                 } else {
                     Toast.makeText(this, "Transaccion fallida", Toast.LENGTH_SHORT).show()
                 }

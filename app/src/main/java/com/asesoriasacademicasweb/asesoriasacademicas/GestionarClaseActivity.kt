@@ -17,6 +17,7 @@ import com.asesoriasacademicasweb.asesoriasacademicas.Model.Clase
 import com.asesoriasacademicasweb.asesoriasacademicas.Model.Estudiante
 import com.asesoriasacademicasweb.asesoriasacademicas.Vista.IGestionarClaseVista
 import org.json.JSONException
+import org.json.JSONObject
 
 
 class GestionarClaseActivity : AppCompatActivity(), IGestionarClaseVista {
@@ -43,10 +44,11 @@ class GestionarClaseActivity : AppCompatActivity(), IGestionarClaseVista {
                 Response.Listener { response ->
                     try {
                         val clases: ArrayList<Clase> = ArrayList<Clase>()
-                        val clase = Clase()
+                        var jsonObjet : JSONObject
                         val jsonArray = response.optJSONArray("listaClases")
                         for (i in 0 until jsonArray.length()) {
-                            val jsonObjet = jsonArray.getJSONObject(i)
+                            var clase = Clase()
+                            jsonObjet = jsonArray.getJSONObject(i)
                             clase.id = jsonObjet.getInt("id_clase")
                             clase.fecha = jsonObjet.getString("fecha")
                             clase.hora = jsonObjet.getString("hora")
@@ -57,9 +59,9 @@ class GestionarClaseActivity : AppCompatActivity(), IGestionarClaseVista {
                             clase.estado = jsonObjet.getString("estado")
                             clases.add(clase)
                         }
-
                         val listView: ListView? = findViewById(R.id.listView_class)
-                        val adaptador: ArrayAdapter<Clase> = ArrayAdapter<Clase>(this, R.layout.activity_listview, R.id.label, clases)
+                        val adaptador: ArrayAdapter<Clase> = ArrayAdapter(this, R.layout.activity_listview, R.id.label, clases)
+
                         if (adaptador.count != 0) {
                             listView?.setAdapter(adaptador)
 

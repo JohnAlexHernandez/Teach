@@ -6,17 +6,27 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.*
+import com.android.volley.Request
+import com.android.volley.RequestQueue
+import com.android.volley.Response
+import com.android.volley.toolbox.JsonObjectRequest
+import com.android.volley.toolbox.Volley
 import com.asesoriasacademicasweb.asesoriasacademicas.Controlador.GestionarClaseControlador
 import com.asesoriasacademicasweb.asesoriasacademicas.Model.Clase
 import com.asesoriasacademicasweb.asesoriasacademicas.Vista.IGestionarClaseVista
+import org.json.JSONException
 
 class PopupDetalleClaseActivity : AppCompatActivity(), IGestionarClaseVista {
 
     val iGestionarClaseControlador = GestionarClaseControlador(this)
 
+    var request: RequestQueue? = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_popup_detalle_class)
+
+        request = Volley.newRequestQueue(this)
 
         val intentListadoClases = Intent(this, GestionarClaseActivity::class.java)
         val idClase= getIntent().getStringExtra("id_clase")
@@ -28,35 +38,60 @@ class PopupDetalleClaseActivity : AppCompatActivity(), IGestionarClaseVista {
         val duracion: TextView? = findViewById<TextView>(R.id.txv_duracion_detalle_clase)
         val estado: Switch = findViewById(R.id.swt_estado_solicitar_clase)
 
-        clase = iGestionarClaseControlador.findClass(this, idClase.toString())
-        materia?.setText(clase.materia)
-        tema?.setText(clase.tema)
+        //clase = iGestionarClaseControlador.findClass(this, idClase.toString())
 
-        if(iGestionarClaseControlador.getStatus(this, idClase.toString()).equals("activo")){
-            estado.setChecked(true)
-            estado.setTextOn("Activa")
-        } else {
-            estado.setChecked(false)
-            estado.setTextOff("Inactiva")
-        }
+        var url = "https://webserviceasesoriasacademicas.000webhostapp.com/cargar_clase.php?idClase=$idClase"
+        url = url.replace(" ","%20")
+        val jsonObjectRequest = JsonObjectRequest(Request.Method.GET,url,null,
+                Response.Listener { response ->
+                    try {
+                        val jsonArray = response.optJSONArray("class")
+                        val jsonObjet = jsonArray.getJSONObject(0)
+                        clase.id = jsonObjet.getInt("id_clase")
+                        clase.fecha = jsonObjet.getString("fecha")
+                        clase.hora = jsonObjet.getString("hora")
+                        clase.duracion = jsonObjet.getString("duracion")
+                        clase.materia = jsonObjet.getString("materia")
+                        clase.tema = jsonObjet.getString("tema")
+                        clase.inquietudes = jsonObjet.getString("inquietudes")
+                        clase.estado = jsonObjet.getString("estado")
 
-        fecha?.setText(clase.fecha)
-        hora?.setText(clase.hora)
-        duracion?.setText(clase.duracion)
+                        materia?.setText(clase.materia)
+                        tema?.setText(clase.tema)
 
-        estado.setOnCheckedChangeListener{buttonView, isChecked ->
-            if (isChecked){
-                iGestionarClaseControlador.changeStatus(this, "activo", idClase.toString())
-                Toast.makeText(this, "La clase se cambió a estado ACTIVO", Toast.LENGTH_SHORT).show()
-            } else {
-                iGestionarClaseControlador.changeStatus(this, "inactivo", idClase.toString())
-                Toast.makeText(this, "La clase se cambió a estado INACTIVO", Toast.LENGTH_SHORT).show()
+                        if(iGestionarClaseControlador.getStatus(this, idClase.toString()).equals("activo")){
+                            estado.setChecked(true)
+                            estado.setTextOn("Activa")
+                        } else {
+                            estado.setChecked(false)
+                            estado.setTextOff("Inactiva")
+                        }
 
-            }
-            val email= getIntent().getStringExtra("email")
-            intentListadoClases.putExtra("email", email);
-            startActivity(intentListadoClases)
-        }
+                        fecha?.setText(clase.fecha)
+                        hora?.setText(clase.hora)
+                        duracion?.setText(clase.duracion)
+
+                        estado.setOnCheckedChangeListener{buttonView, isChecked ->
+                            if (isChecked){
+                                iGestionarClaseControlador.changeStatus(this, "activo", idClase.toString())
+                                Toast.makeText(this, "La clase se cambió a estado ACTIVO", Toast.LENGTH_SHORT).show()
+                            } else {
+                                iGestionarClaseControlador.changeStatus(this, "inactivo", idClase.toString())
+                                Toast.makeText(this, "La clase se cambió a estado INACTIVO", Toast.LENGTH_SHORT).show()
+
+                            }
+                            val email= getIntent().getStringExtra("email")
+                            intentListadoClases.putExtra("email", email);
+                            startActivity(intentListadoClases)
+                        }
+                    } catch (e: JSONException) {
+                        e.printStackTrace()
+                    }
+                },
+                Response.ErrorListener { error ->
+                    Toast.makeText(this, "\n" + "Error de registro!", Toast.LENGTH_SHORT).show();
+                })
+        request?.add(jsonObjectRequest)
 
         val btnBuscarClase =findViewById<Button>(R.id.btn_buscar_detalle_clase)
         btnBuscarClase.setOnClickListener {
