@@ -59,7 +59,7 @@ class PopupDetalleClaseActivity : AppCompatActivity(), IGestionarClaseVista {
                         materia?.setText(clase.materia)
                         tema?.setText(clase.tema)
 
-                        if(iGestionarClaseControlador.getStatus(this, idClase.toString()).equals("activo")){
+                        if(clase.estado.equals("activo")){
                             estado.setChecked(true)
                             estado.setTextOn("Activa")
                         } else {
@@ -73,12 +73,41 @@ class PopupDetalleClaseActivity : AppCompatActivity(), IGestionarClaseVista {
 
                         estado.setOnCheckedChangeListener{buttonView, isChecked ->
                             if (isChecked){
-                                iGestionarClaseControlador.changeStatus(this, "activo", idClase.toString())
-                                Toast.makeText(this, "La clase se cambió a estado ACTIVO", Toast.LENGTH_SHORT).show()
+                                if(iGestionarClaseControlador.changeStatus(this, "activo", idClase.toString()) == 1) {
+                                    var estado = "activo"
+                                    var url = "https://webserviceasesoriasacademicas.000webhostapp.com/editar_estado.php?idClase=$idClase&estado=$estado"
+                                    url = url.replace(" ", "%20")
+                                    val jsonObjectRequest = JsonObjectRequest(Request.Method.GET, url, null,
+                                            Response.Listener { response ->
+                                                if (response.getString("success") == "1") {
+                                                    Toast.makeText(this, "La clase se cambió a estado ACTIVO", Toast.LENGTH_SHORT).show()
+                                                } else if (response.getString("error") == "0") {
+                                                    Toast.makeText(this, "\n" + "Ocurrió un error en el cambio de estado!", Toast.LENGTH_SHORT).show()
+                                                }
+                                            },
+                                            Response.ErrorListener { error ->
+                                                Toast.makeText(this, "\n" + "Ocurrió un error en el cambio de estado!", Toast.LENGTH_SHORT).show();
+                                            })
+                                    request?.add(jsonObjectRequest)
+                                }
                             } else {
-                                iGestionarClaseControlador.changeStatus(this, "inactivo", idClase.toString())
-                                Toast.makeText(this, "La clase se cambió a estado INACTIVO", Toast.LENGTH_SHORT).show()
-
+                                if(iGestionarClaseControlador.changeStatus(this, "inactivo", idClase.toString()) == 1) {
+                                    var estado = "inactivo"
+                                    var url = "https://webserviceasesoriasacademicas.000webhostapp.com/editar_estado.php?idClase=$idClase&estado=$estado"
+                                    url = url.replace(" ", "%20")
+                                    val jsonObjectRequest = JsonObjectRequest(Request.Method.GET, url, null,
+                                            Response.Listener { response ->
+                                                if (response.getString("success") == "1") {
+                                                    Toast.makeText(this, "La clase se cambió a estado INACTIVO", Toast.LENGTH_SHORT).show()
+                                                } else if (response.getString("error") == "0") {
+                                                    Toast.makeText(this, "\n" + "Ocurrió un error en el cambio de estado!", Toast.LENGTH_SHORT).show()
+                                                }
+                                            },
+                                            Response.ErrorListener { error ->
+                                                Toast.makeText(this, "\n" + "Ocurrió un error en el cambio de estado!", Toast.LENGTH_SHORT).show();
+                                            })
+                                    request?.add(jsonObjectRequest)
+                                }
                             }
                             val email= getIntent().getStringExtra("email")
                             intentListadoClases.putExtra("email", email);
