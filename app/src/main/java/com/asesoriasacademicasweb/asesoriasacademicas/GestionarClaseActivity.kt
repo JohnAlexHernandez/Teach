@@ -42,23 +42,48 @@ class GestionarClaseActivity : AppCompatActivity(), IGestionarClaseVista {
         url = url.replace(" ","%20")
         val jsonObjectRequest = JsonObjectRequest(Request.Method.GET,url,null,
                 Response.Listener { response ->
-                    try {
-                        val clases: ArrayList<Clase> = ArrayList<Clase>()
-                        var jsonObjet : JSONObject
-                        val jsonArray = response.optJSONArray("listaClases")
-                        for (i in 0 until jsonArray.length()) {
-                            var clase = Clase()
-                            jsonObjet = jsonArray.getJSONObject(i)
-                            clase.id = jsonObjet.getInt("id_clase")
-                            clase.fecha = jsonObjet.getString("fecha")
-                            clase.hora = jsonObjet.getString("hora")
-                            clase.duracion = jsonObjet.getString("duracion")
-                            clase.materia = jsonObjet.getString("materia")
-                            clase.tema = jsonObjet.getString("tema")
-                            clase.inquietudes = jsonObjet.getString("inquietudes")
-                            clase.estado = jsonObjet.getString("estado")
-                            clases.add(clase)
+                    val clases: ArrayList<Clase> = ArrayList<Clase>()
+                    response.getString("success")
+                    if (response.getString("success") == "1") {
+                        try {
+                            var jsonObjet: JSONObject
+                            val jsonArray = response.optJSONArray("listaClases")
+                            for (i in 0 until jsonArray.length()) {
+                                var clase = Clase()
+                                jsonObjet = jsonArray.getJSONObject(i)
+                                clase.id = jsonObjet.getInt("id_clase")
+                                clase.fecha = jsonObjet.getString("fecha")
+                                clase.hora = jsonObjet.getString("hora")
+                                clase.duracion = jsonObjet.getString("duracion")
+                                clase.materia = jsonObjet.getString("materia")
+                                clase.tema = jsonObjet.getString("tema")
+                                clase.inquietudes = jsonObjet.getString("inquietudes")
+                                clase.estado = jsonObjet.getString("estado")
+                                clases.add(clase)
+                            }
+                            val listView: ListView? = findViewById(R.id.listView_class)
+                            val adaptador: ArrayAdapter<Clase> = ArrayAdapter(this, R.layout.activity_listview, R.id.label, clases)
+
+                            if (adaptador.count != 0) {
+                                listView?.setAdapter(adaptador)
+
+                                listView?.setOnItemClickListener(OnItemClickListener { parent, view, position, id ->
+                                    val intentPopupDetalleClass = Intent(this, PopupDetalleClaseActivity::class.java)
+                                    intentPopupDetalleClass.putExtra("id_clase", clases[position].id.toString());
+                                    val email = getIntent().getStringExtra("email")
+                                    intentPopupDetalleClass.putExtra("email", email);
+                                    startActivity(intentPopupDetalleClass)
+                                })
+                            } else {
+                                val mensajeClasesVacio: ArrayList<String> = ArrayList()
+                                mensajeClasesVacio.add("No tiene clases")
+                                val adaptadorEmpty: ArrayAdapter<String> = ArrayAdapter<String>(this, R.layout.activity_listview, R.id.label_empty, mensajeClasesVacio)
+                                listView?.setAdapter(adaptadorEmpty)
+                            }
+                        } catch (e: JSONException) {
+                            e.printStackTrace()
                         }
+                    } else {
                         val listView: ListView? = findViewById(R.id.listView_class)
                         val adaptador: ArrayAdapter<Clase> = ArrayAdapter(this, R.layout.activity_listview, R.id.label, clases)
 
@@ -68,18 +93,16 @@ class GestionarClaseActivity : AppCompatActivity(), IGestionarClaseVista {
                             listView?.setOnItemClickListener(OnItemClickListener { parent, view, position, id ->
                                 val intentPopupDetalleClass = Intent(this, PopupDetalleClaseActivity::class.java)
                                 intentPopupDetalleClass.putExtra("id_clase", clases[position].id.toString());
-                                val email= getIntent().getStringExtra("email")
+                                val email = getIntent().getStringExtra("email")
                                 intentPopupDetalleClass.putExtra("email", email);
                                 startActivity(intentPopupDetalleClass)
                             })
-                        } else{
+                        } else {
                             val mensajeClasesVacio: ArrayList<String> = ArrayList()
                             mensajeClasesVacio.add("No tiene clases")
                             val adaptadorEmpty: ArrayAdapter<String> = ArrayAdapter<String>(this, R.layout.activity_listview, R.id.label_empty, mensajeClasesVacio)
                             listView?.setAdapter(adaptadorEmpty)
                         }
-                    } catch (e: JSONException) {
-                        e.printStackTrace()
                     }
                 },
                 Response.ErrorListener { error ->
