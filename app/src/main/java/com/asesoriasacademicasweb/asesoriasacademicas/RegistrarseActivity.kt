@@ -66,11 +66,11 @@ class RegistrarseActivity : AppCompatActivity(), IRegistrarseVista {
                                     intentRegistry.putExtra("email", stringEmail)
                                     startActivity(intentRegistry)
                                 } else if(response.getString("success") == "0") {
-                                    Toast.makeText(this, "\n" + "Error de registro!", Toast.LENGTH_SHORT).show()
+                                    Toast.makeText(this, "\n" + "Ocurrió un error en el registro de su información!", Toast.LENGTH_SHORT).show()
                                 }
                             },
                             Response.ErrorListener { error ->
-                                Toast.makeText(this, "\n" + "Error de registro!", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(this, "\n" + "Ocurrió un error en el registro de su información!", Toast.LENGTH_SHORT).show();
                             })
                     request?.add(jsonObjectRequest)
                 }

@@ -85,7 +85,7 @@ class EditarClaseActivity : AppCompatActivity(), IEditarClaseVista {
                     }
                 },
                 Response.ErrorListener { error ->
-                    Toast.makeText(this, "\n" + "Error de registro!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this, "\n" + "Ocurrió un error cargando la infomación de su clase!", Toast.LENGTH_SHORT).show();
                 })
         request?.add(jsonObjectRequest)
 
@@ -291,11 +291,11 @@ class EditarClaseActivity : AppCompatActivity(), IEditarClaseVista {
                                     intentDetalleClase.putExtra("email", email);
                                     startActivity(intentDetalleClase)
                                 } else if(response.getString("error") == "0") {
-                                    Toast.makeText(this, "\n" + "Error de registro!", Toast.LENGTH_SHORT).show()
+                                    Toast.makeText(this, "\n" + "Ocurrió un error en la actualización de su clase!", Toast.LENGTH_SHORT).show()
                                 }
                             },
                             Response.ErrorListener { error ->
-                                Toast.makeText(this, "\n" + "Error de registro!", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(this, "\n" + "Ocurrió un error en la actualización de su clase!", Toast.LENGTH_SHORT).show();
                             })
                     request?.add(jsonObjectRequest)
                 } else {

@@ -62,7 +62,7 @@ class EditarPerfilActivity : AppCompatActivity(), IEditarPerfilVista {
                     }
                 },
                 Response.ErrorListener { error ->
-                    Toast.makeText(this, "\n" + "Error de registro!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this, "\n" + "Ocurrió un error cargando la información de su perfil!", Toast.LENGTH_SHORT).show();
                 })
         request?.add(jsonObjectRequest)
 
@@ -109,11 +109,11 @@ class EditarPerfilActivity : AppCompatActivity(), IEditarPerfilVista {
                                     intentEditProfile.putExtra("email", stringEmail!!)
                                     startActivity(intentEditProfile)
                                 } else if(response.getString("error") == "0") {
-                                    Toast.makeText(this, "\n" + "Error de registro!", Toast.LENGTH_SHORT).show()
+                                    Toast.makeText(this, "\n" + "Ocurrió un error en la actualización de su perfil!", Toast.LENGTH_SHORT).show()
                                 }
                             },
                             Response.ErrorListener { error ->
-                                Toast.makeText(this, "\n" + "Error de registro!", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(this, "\n" + "Ocurrió un error en la actualización de su perfil!", Toast.LENGTH_SHORT).show();
                             })
                     request?.add(jsonObjectRequest)
                 }

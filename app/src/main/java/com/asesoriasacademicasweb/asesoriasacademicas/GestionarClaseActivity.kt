@@ -42,10 +42,8 @@ class GestionarClaseActivity : AppCompatActivity(), IGestionarClaseVista {
         url = url.replace(" ","%20")
         val jsonObjectRequest = JsonObjectRequest(Request.Method.GET,url,null,
                 Response.Listener { response ->
-                    val clases: ArrayList<Clase> = ArrayList<Clase>()
-                    response.getString("success")
-                    if (response.getString("success") == "1") {
                         try {
+                            val clases: ArrayList<Clase> = ArrayList<Clase>()
                             var jsonObjet: JSONObject
                             val jsonArray = response.optJSONArray("listaClases")
                             for (i in 0 until jsonArray.length()) {
@@ -81,32 +79,15 @@ class GestionarClaseActivity : AppCompatActivity(), IGestionarClaseVista {
                                 listView?.setAdapter(adaptadorEmpty)
                             }
                         } catch (e: JSONException) {
-                            e.printStackTrace()
-                        }
-                    } else {
-                        val listView: ListView? = findViewById(R.id.listView_class)
-                        val adaptador: ArrayAdapter<Clase> = ArrayAdapter(this, R.layout.activity_listview, R.id.label, clases)
-
-                        if (adaptador.count != 0) {
-                            listView?.setAdapter(adaptador)
-
-                            listView?.setOnItemClickListener(OnItemClickListener { parent, view, position, id ->
-                                val intentPopupDetalleClass = Intent(this, PopupDetalleClaseActivity::class.java)
-                                intentPopupDetalleClass.putExtra("id_clase", clases[position].id.toString());
-                                val email = getIntent().getStringExtra("email")
-                                intentPopupDetalleClass.putExtra("email", email);
-                                startActivity(intentPopupDetalleClass)
-                            })
-                        } else {
+                            val listViewEmpty: ListView? = findViewById(R.id.listView_class)
                             val mensajeClasesVacio: ArrayList<String> = ArrayList()
                             mensajeClasesVacio.add("No tiene clases")
                             val adaptadorEmpty: ArrayAdapter<String> = ArrayAdapter<String>(this, R.layout.activity_listview, R.id.label_empty, mensajeClasesVacio)
-                            listView?.setAdapter(adaptadorEmpty)
+                            listViewEmpty?.setAdapter(adaptadorEmpty)
                         }
-                    }
                 },
                 Response.ErrorListener { error ->
-                    Toast.makeText(this, "\n" + "Error de registro!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this, "\n" + "Ocurrió un error al cargar las clases!", Toast.LENGTH_SHORT).show();
                 })
         request?.add(jsonObjectRequest)
 

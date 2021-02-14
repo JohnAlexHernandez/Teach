@@ -245,11 +245,11 @@ class SolicitarClaseActivity : AppCompatActivity(), ISolicitarClaseVista {
                                     intentInsert.putExtra("email", stringEmail)
                                     startActivity(intentInsert)
                                 } else if(response.getString("error") == "0") {
-                                    Toast.makeText(this, "\n" + "Error de registro!", Toast.LENGTH_SHORT).show()
+                                    Toast.makeText(this, "\n" + "Ocurrió un error en el registrar de su clase!", Toast.LENGTH_SHORT).show()
                                 }
                             },
                             Response.ErrorListener { error ->
-                                Toast.makeText(this, "\n" + "Error de registro!", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(this, "\n" + "Ocurrió un error en el registrar de su clase!", Toast.LENGTH_SHORT).show();
                             })
                     request?.add(jsonObjectRequest)
                 }

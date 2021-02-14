@@ -89,11 +89,15 @@
             android:id="@+id/txt_inquietudes_editar_clase"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
             android:autofillHints="@string/txt_inquietudes_editar_clase"
             android:ems="10"
             android:hint="@string/txt_inquietudes_editar_clase"
-            android:inputType="textMultiLine" />
+            android:inputType="textMultiLine"
+            android:lines="20"
+            android:minLines="2"
+            android:scrollHorizontally="false"
+            android:scrollbars="vertical"
+            android:gravity="bottom" />
 
         <RelativeLayout
             android:layout_width="match_parent"

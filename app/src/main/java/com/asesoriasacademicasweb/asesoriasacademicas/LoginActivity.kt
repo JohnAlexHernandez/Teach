@@ -53,11 +53,11 @@ class LoginActivity : AppCompatActivity(), ILoginVista{
                                 intentLogin.putExtra("email", stringEmail)
                                 startActivity(intentLogin)
                             } else if(response.getString("error") == "0") {
-                                Toast.makeText(this, "\n" + "Error en el inicio de sesión!", Toast.LENGTH_SHORT).show()
+                                Toast.makeText(this, "\n" + "Ocurrió un error en el inicio de sesión!", Toast.LENGTH_SHORT).show()
                             }
                         },
                         Response.ErrorListener { error ->
-                            Toast.makeText(this, "\n" + "Error en el inicio de sesión!", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(this, "\n" + "Ocurrió un error en el inicio de sesión!", Toast.LENGTH_SHORT).show();
                         })
                 request?.add(jsonObjectRequest)
             }
